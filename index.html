@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyAI - Assistente de Estudos</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 16px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #2563eb;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #resposta {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eff6ff;
+            border-radius: 10px;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .feature {
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .feature span {
+            font-size: 35px;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 StudyAI</h1>
+    <p>O teu assistente inteligente de estudos</p>
+</header>
+
+<main>
+
+    <div class="card">
+        <h2>🤖 Assistente de Estudos</h2>
+
+        <label>Escolhe uma disciplina:</label>
+
+        <select id="disciplina">
+            <option>Matemática</option>
+            <option>Português</option>
+            <option>História</option>
+            <option>Geografia</option>
+            <option>Ciências</option>
+            <option>Física</option>
+            <option>Química</option>
+        </select>
+
+        <label>O que queres aprender?</label>
+
+        <input
+            id="tema"
+            type="text"
+            placeholder="Ex.: Frações, Revolução Francesa..."
+        >
+
+        <button onclick="ensinar()">Ensinar-me</button>
+
+        <div id="resposta">
+            Escolhe uma disciplina e escreve um tema para começar.
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h2>🎯 O que o StudyAI terá</h2>
+
+        <div class="features">
+
+            <div class="feature">
+                <span>📖</span>
+                <h3>Aprender</h3>
+                <p>Explicações simples e fáceis de entender.</p>
+            </div>
+
+            <div class="feature">
+                <span>📝</span>
+                <h3>Testes</h3>
+                <p>Testa os teus conhecimentos depois de estudar.</p>
+            </div>
+
+            <div class="feature">
+                <span>📊</span>
+                <h3>Resultados</h3>
+                <p>Vê a tua pontuação e acompanha o teu progresso.</p>
+            </div>
+
+            <div class="feature">
+                <span>🔄</span>
+                <h3>Revisão</h3>
+                <p>Revê os assuntos em que tiveste dificuldades.</p>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+<script>
+function ensinar() {
+
+    const disciplina =
+        document.getElementById("disciplina").value;
+
+    const tema =
+        document.getElementById("tema").value;
+
+    const resposta =
+        document.getElementById("resposta");
+
+    if (tema.trim() === "") {
+        resposta.innerHTML =
+            "⚠️ Escreve primeiro o tema que queres aprender.";
+        return;
+    }
+
+    resposta.innerHTML = `
+        <h3>📚 Vamos aprender!</h3>
+        <p>
+            Estás a estudar <strong>${disciplina}</strong>
+            e escolheste o tema
+            <strong>${tema}</strong>.
+        </p>
+
+        <p>
+            Nesta versão inicial, o StudyAI ainda não está
+            conectado a uma inteligência artificial.
+        </p>
+
+        <p>
+            🚀 Na próxima etapa vamos transformar isto
+            num verdadeiro assistente de estudos.
+        </p>
+    `;
+}
+</script>
+
+</body>
+</html>
