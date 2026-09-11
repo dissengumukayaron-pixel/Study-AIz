@@ -426,7 +426,96 @@ function ensinar() {
 
     }
 
+// CIÊNCIAS
 
+else if (
+    disciplinaAtual === "Ciências" &&
+    (temaAtual.includes("sistema solar") ||
+     temaAtual.includes("planetas"))
+) {
+    texto = `
+        <h3>🔬 Sistema Solar</h3>
+
+        <p>
+        O Sistema Solar é formado pelo Sol e pelos corpos
+        celestes que orbitam à sua volta.
+        </p>
+
+        <p>
+        Os oito planetas são:
+        Mercúrio, Vénus, Terra, Marte, Júpiter,
+        Saturno, Urano e Neptuno.
+        </p>
+
+        <p>
+        ☀️ O Sol é uma estrela e é a principal fonte de
+        energia do nosso sistema planetário.
+        </p>
+
+        <p>🎯 Agora vamos testar os teus conhecimentos!</p>
+    `;
+}
+
+
+// FÍSICA
+
+else if (
+    disciplinaAtual === "Física" &&
+    (temaAtual.includes("velocidade") ||
+     temaAtual.includes("movimento"))
+) {
+    texto = `
+        <h3>⚡ Velocidade</h3>
+
+        <p>
+        A velocidade indica quão rapidamente um objeto
+        muda de posição.
+        </p>
+
+        <p>
+        Uma fórmula simples é:
+        <strong>velocidade = distância ÷ tempo</strong>.
+        </p>
+
+        <p>
+        Por exemplo, se um carro percorre 100 km em 2 horas,
+        a velocidade média é 50 km/h.
+        </p>
+
+        <p>🎯 Agora vamos testar os teus conhecimentos!</p>
+    `;
+}
+
+
+// QUÍMICA
+
+else if (
+    disciplinaAtual === "Química" &&
+    (temaAtual.includes("átomo") ||
+     temaAtual.includes("átomos"))
+) {
+    texto = `
+        <h3>⚗️ Átomos</h3>
+
+        <p>
+        Os átomos são unidades muito pequenas que formam
+        a matéria.
+        </p>
+
+        <p>
+        Um átomo possui um núcleo, que contém protões
+        e neutrões, e eletrões que ocupam regiões à volta
+        do núcleo.
+        </p>
+
+        <p>
+        Diferentes tipos de átomos formam os elementos
+        químicos.
+        </p>
+
+        <p>🎯 Agora vamos testar os teus conhecimentos!</p>
+    `;
+}
     // TEMA NÃO CADASTRADO
 
     else {
