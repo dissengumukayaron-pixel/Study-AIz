@@ -22,8 +22,6 @@
             color: #172033;
         }
 
-        /* HEADER */
-
         header {
             background:
                 radial-gradient(circle at 85% 20%, rgba(99,102,241,.45), transparent 30%),
@@ -70,8 +68,6 @@
             opacity: .9;
         }
 
-        /* NAVEGAÇÃO */
-
         .nav {
             max-width: 1100px;
             margin: -28px auto 25px;
@@ -103,8 +99,6 @@
             transform: none;
         }
 
-        /* MAIN */
-
         main {
             max-width: 1100px;
             margin: auto;
@@ -128,8 +122,6 @@
         .section-title p {
             color: #667085;
         }
-
-        /* FORMULÁRIO */
 
         label {
             display: block;
@@ -155,7 +147,7 @@
             margin-top: 18px;
             border: none;
             border-radius: 14px;
-            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            background: linear-gradient(135deg,#2563eb,#4f46e5);
             color: white;
             font-size: 16px;
             font-weight: bold;
@@ -163,11 +155,8 @@
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37,99,235,.2);
+            transform: translateY(-1px);
         }
-
-        /* CURSO */
 
         #universidade {
             display: none;
@@ -178,9 +167,8 @@
             margin-top: 15px;
         }
 
-        /* ÁREA DE ESTUDO */
-
-        .study-area {
+        .study-area,
+        .testes-area {
             display: none;
         }
 
@@ -192,11 +180,6 @@
             margin-top: 18px;
         }
 
-        .topic-card h3 {
-            color: #123b83;
-            margin-top: 0;
-        }
-
         .resposta {
             background: #eff6ff;
             border-left: 5px solid #2563eb;
@@ -204,12 +187,6 @@
             border-radius: 15px;
             margin-top: 20px;
             line-height: 1.7;
-        }
-
-        /* TESTES */
-
-        .testes-area {
-            display: none;
         }
 
         .pergunta {
@@ -229,8 +206,6 @@
         .opcao:hover {
             background: #eef4ff;
         }
-
-        /* RESULTADO */
 
         .resultado {
             text-align: center;
@@ -264,8 +239,6 @@
             margin-bottom: 5px;
         }
 
-        /* RECURSOS */
-
         .features {
             display: grid;
             grid-template-columns: repeat(3,1fr);
@@ -287,15 +260,11 @@
             line-height: 1.5;
         }
 
-        /* FOOTER */
-
         footer {
             text-align: center;
             color: #667085;
             padding: 30px;
         }
-
-        /* MOBILE */
 
         @media(max-width:700px) {
 
@@ -335,34 +304,20 @@
 <header>
 
     <div class="topbar">
-
-        <div class="logo">
-            📚 StudyAIz
-        </div>
-
-        <div class="badge">
-            🤖 Tutor inteligente
-        </div>
-
+        <div class="logo">📚 StudyAIz</div>
+        <div class="badge">🤖 Tutor inteligente</div>
     </div>
 
     <div class="hero">
-
-        <h1>
-            Aprende sem limites.
-        </h1>
-
+        <h1>Aprende sem limites.</h1>
         <p>
-            Aprende, pratica e testa os teus conhecimentos
-            numa única plataforma.
+            Um assistente inteligente para estudantes de qualquer país,
+            nível de ensino e área de estudo.
         </p>
-
     </div>
 
 </header>
 
-
-<!-- NAVEGAÇÃO -->
 
 <div class="nav">
 
@@ -387,444 +342,15 @@
 
 <main>
 
-    <!-- INÍCIO -->
+<section id="inicio">
 
-    <section id="inicio">
+    <div class="card">
 
-        <div class="card">
-
-            <div class="section-title">
-
-                <h2>
-                    👋 O que queres aprender hoje?
-                </h2>
-
-                <p>
-                    Escolhe o teu nível, curso e tema.
-                </p>
-
-            </div>
-
-
-            <label>
-                🎓 Nível de ensino
-            </label>
-
-            <select id="nivel" onchange="mostrarUniversidade()">
-
-                <option value="">
-                    Seleciona o teu nível
-                </option>
-
-                <option value="basico">
-                    Ensino Básico
-                </option>
-
-                <option value="secundario">
-                    Ensino Secundário
-                </option>
-
-                <option value="universidade">
-                    Universidade
-                </option>
-
-            </select>
-
-
-            <div id="universidade">
-
-                <label>
-                    🎓 Curso
-                </label>
-
-                <input
-                    id="curso"
-                    placeholder="Ex.: Engenharia Informática"
-                >
-
-                <label>
-                    📖 Ano
-                </label>
-
-                <select id="ano">
-
-                    <option>1º ano</option>
-                    <option>2º ano</option>
-                    <option>3º ano</option>
-                    <option>4º ano</option>
-
-                </select>
-
-            </div>
-
-
-            <label>
-                📚 Matéria
-            </label>
-
-            <select id="disciplina">
-
-                <option value="">
-                    Escolhe uma matéria
-                </option>
-
-                <option value="Matemática">
-                    🧮 Matemática
-                </option>
-
-                <option value="Português">
-                    📖 Português
-                </option>
-
-                <option value="História">
-                    🏛️ História
-                </option>
-
-                <option value="Geografia">
-                    🌍 Geografia
-                </option>
-
-                <option value="Ciências">
-                    🔬 Ciências
-                </option>
-
-                <option value="Inglês">
-                    🇬🇧 Inglês
-                </option>
-
-                <option value="Tecnologia">
-                    💻 Tecnologia
-                </option>
-
-            </select>
-
-
-            <label>
-                💡 Tema
-            </label>
-
-            <input
-                id="tema"
-                placeholder="Ex.: Frações, Revolução Francesa..."
-            >
-
-
-            <button onclick="começarAprender()">
-                🚀 Começar a aprender
-            </button>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="section-title">
-
-                <h2>
-                    ✨ O que o StudyAIz oferece
-                </h2>
-
-            </div>
-
-            <div class="features">
-
-                <div class="feature">
-
-                    <div class="feature-icon">
-                        🤖
-                    </div>
-
-                    <h3>
-                        Tutor inteligente
-                    </h3>
-
-                    <p>
-                        Explicações simples e organizadas
-                        para ajudar no estudo.
-                    </p>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <div class="feature-icon">
-                        📝
-                    </div>
-
-                    <h3>
-                        Testes
-                    </h3>
-
-                    <p>
-                        Testa os conhecimentos depois de estudar.
-                    </p>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <div class="feature-icon">
-                        📊
-                    </div>
-
-                    <h3>
-                        Resultados
-                    </h3>
-
-                    <p>
-                        Descobre o teu desempenho e o que precisas
-                        melhorar.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- APRENDER -->
-
-    <section id="estudo" class="study-area">
-
-        <div class="card">
-
-            <h2>
-                🤖 Área de aprendizagem
-            </h2>
-
-            <p id="infoEstudo">
-                Escolhe uma matéria e um tema para começar.
-            </p>
-
-            <div id="conteudoEstudo">
-
-                <div class="topic-card">
-
-                    <h3>
-                        📚 Como funciona?
-                    </h3>
-
-                    <p>
-                        O StudyAIz vai apresentar o tema de forma
-                        simples e organizada.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- TESTES -->
-
-    <section id="testes" class="testes-area">
-
-        <div class="card">
-
-            <h2>
-                📝 Testa o que aprendeste
-            </h2>
+        <div class="section-title">
+            <h2>🎓 Começa a aprender</h2>
 
             <p>
-                Escolhe uma matéria para começar o teste.
+                Diz ao StudyAIz onde estudas e o que queres aprender.
             </p>
-
-            <label>
-                📚 Matéria
-            </label>
-
-            <select id="disciplinaTeste">
-
-                <option value="">
-                    Escolhe uma matéria
-                </option>
-
-                <option value="Matemática">
-                    🧮 Matemática
-                </option>
-
-                <option value="Português">
-                    📖 Português
-                </option>
-
-                <option value="História">
-                    🏛️ História
-                </option>
-
-                <option value="Geografia">
-                    🌍 Geografia
-                </option>
-
-            </select>
-
-            <button onclick="iniciarTeste()">
-                🚀 Começar teste
-            </button>
-
-            <div id="teste">
-
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<footer>
-
-    © 2026 StudyAIz — Aprende sem limites.
-
-</footer>
-
-
-<script>
-
-    function mostrarUniversidade() {
-
-        const nivel =
-            document.getElementById("nivel").value;
-
-        const universidade =
-            document.getElementById("universidade");
-
-        universidade.style.display =
-            nivel === "universidade"
-            ? "block"
-            : "none";
-    }
-
-
-    function mostrarAba(aba) {
-
-        document.getElementById("inicio").style.display = "none";
-
-        document.getElementById("estudo").style.display = "none";
-
-        document.getElementById("testes").style.display = "none";
-
-
-        if (aba === "inicio") {
-
-            document.getElementById("inicio").style.display = "block";
-
-        }
-
-        if (aba === "estudo") {
-
-            document.getElementById("estudo").style.display = "block";
-
-        }
-
-        if (aba === "testes") {
-
-            document.getElementById("testes").style.display = "block";
-
-        }
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-
-
-    function começarAprender() {
-
-        const nivel =
-            document.getElementById("nivel").value;
-
-        const disciplina =
-            document.getElementById("disciplina").value;
-
-        const tema =
-            document.getElementById("tema").value;
-
-
-        if (!nivel) {
-
-            alert("Escolhe primeiro o teu nível de ensino.");
-
-            return;
-        }
-
-
-        if (!disciplina) {
-
-            alert("Escolhe uma matéria.");
-
-            return;
-        }
-
-
-        if (!tema) {
-
-            alert("Escreve o tema que queres aprender.");
-
-            return;
-        }
-
-
-        document.getElementById("infoEstudo").innerHTML = `
-
-            🎓 Nível: <strong>${nivel}</strong><br>
-            📚 Matéria: <strong>${disciplina}</strong><br>
-            💡 Tema: <strong>${tema}</strong>
-
-        `;
-
-
-        document.getElementById("conteudoEstudo").innerHTML = `
-
-            <div class="topic-card">
-
-                <h3>
-                    📖 ${tema}
-                </h3>
-
-                <p>
-                    Estás a estudar
-                    <strong>${tema}</strong>
-                    na disciplina de
-                    <strong>${disciplina}</strong>.
-                </p>
-
-            </div>
-
-            <div class="resposta">
-
-                <h3>
-                    💡 Próximo passo
-                </h3>
-
-                <p>
-                    Depois de estudar este tema,
-                    vai à aba <strong>📝 Testes</strong>
-                    para testar os teus conhecimentos.
-                </p>
-
-            </div>
-
-        `;
-
-
-        mostrarAba("estudo");
-    }
-
-</script>
-
-
-<script src="script.js"></script>
-
-</body>
-</html>                      
+        </                                 
                 
