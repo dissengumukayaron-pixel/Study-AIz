@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyAI - Assistente de Estudos</title>
+    <title>StudyAI - Aprende sem limites</title>
 
     <style>
         * {
@@ -14,121 +14,155 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f3f6fb;
-            color: #1f2937;
+            background: #f5f7fb;
+            color: #172033;
         }
 
         header {
-            background: #2563eb;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
             color: white;
+            padding: 55px 20px;
             text-align: center;
-            padding: 30px 20px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 34px;
+        .logo {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 12px;
         }
 
         header p {
-            margin-top: 10px;
+            font-size: 18px;
+            margin: 0;
+            opacity: 0.95;
         }
 
         main {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
+            max-width: 950px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
         }
 
         .card {
             background: white;
-            margin-bottom: 20px;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
-        h2 {
-            color: #2563eb;
+        .welcome {
+            text-align: center;
+        }
+
+        .welcome h1 {
+            margin-top: 0;
+            font-size: 30px;
+        }
+
+        .welcome p {
+            color: #667085;
+            font-size: 17px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 8px;
         }
 
         select,
         input {
             width: 100%;
-            padding: 14px;
-            margin: 8px 0 15px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #d8dee9;
+            border-radius: 12px;
             font-size: 16px;
+            outline: none;
+            background: white;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #2563eb;
         }
 
         button {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
+            margin-top: 22px;
             border: none;
-            border-radius: 9px;
-            background: #2563eb;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
             color: white;
-            font-size: 16px;
+            font-size: 17px;
+            font-weight: bold;
             cursor: pointer;
-            margin-top: 8px;
         }
 
         button:hover {
-            background: #1d4ed8;
+            opacity: 0.92;
+        }
+
+        .universidade {
+            display: none;
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #f8faff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-box .icon {
+            font-size: 30px;
+        }
+
+        .info-box h3 {
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #667085;
+            font-size: 14px;
         }
 
         .resposta {
             background: #eff6ff;
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 15px;
             margin-top: 20px;
             line-height: 1.7;
         }
 
-        .pergunta {
-            background: #f8fafc;
-            padding: 20px;
-            margin-top: 15px;
-            border-radius: 12px;
-        }
-
-        .opcao {
-            background: white;
-            color: #1f2937;
-            border: 1px solid #d1d5db;
-        }
-
-        .opcao:hover {
-            background: #e5edff;
-        }
-
-        .correta {
-            background: #dcfce7 !important;
-            border: 2px solid #16a34a !important;
-        }
-
-        .errada {
-            background: #fee2e2 !important;
-            border: 2px solid #dc2626 !important;
-        }
-
-        .resultado {
-            text-align: center;
-            padding: 25px;
-            background: #eff6ff;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-
-        .nota {
-            font-size: 40px;
-            font-weight: bold;
-            color: #2563eb;
-        }
-
         .hidden {
             display: none;
+        }
+
+        @media (max-width: 700px) {
+            .info {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 34px;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+
+            .card {
+                padding: 22px;
+            }
         }
     </style>
 </head>
@@ -136,83 +170,164 @@
 <body>
 
 <header>
-    <h1>📚 StudyAI</h1>
-    <p>Aprende, pratica e testa os teus conhecimentos</p>
+    <div class="logo">📚 StudyAI</div>
+    <p>Aprende qualquer coisa. No teu nível. Ao teu ritmo.</p>
 </header>
 
 <main>
 
-    <!-- ÁREA DE ESTUDO -->
+    <div class="card welcome">
 
-    <div class="card">
+        <h1>👋 Bem-vindo ao StudyAI</h1>
 
-        <h2>🤖 Assistente de Estudos</h2>
+        <p>
+            Diz-nos quem és e o que queres aprender.
+            Nós adaptamos a experiência ao teu nível.
+        </p>
 
-        <label>Disciplina:</label>
+        <label for="nivel">
+            🎓 Qual é o teu nível de ensino?
+        </label>
 
-        <select id="disciplina">
-            <option>Matemática</option>
-            <option>Português</option>
-            <option>História</option>
-            <option>Geografia</option>
-            <option>Ciências</option>
-            <option>Física</option>
-            <option>Química</option>
+        <select id="nivel" onchange="mostrarUniversidade()">
+
+            <option value="">
+                Seleciona o teu nível
+            </option>
+
+            <option value="basico">
+                Ensino Básico
+            </option>
+
+            <option value="secundario">
+                Ensino Secundário
+            </option>
+
+            <option value="universidade">
+                Universidade
+            </option>
+
         </select>
 
-        <label>Tema:</label>
+
+        <div id="universidade" class="universidade">
+
+            <label for="curso">
+                🎓 Qual é o teu curso?
+            </label>
+
+            <input
+                id="curso"
+                type="text"
+                placeholder="Ex.: Engenharia Informática"
+            >
+
+            <label for="ano">
+                📖 Em que ano estás?
+            </label>
+
+            <select id="ano">
+
+                <option value="1">
+                    1º ano
+                </option>
+
+                <option value="2">
+                    2º ano
+                </option>
+
+                <option value="3">
+                    3º ano
+                </option>
+
+                <option value="4">
+                    4º ano
+                </option>
+
+                <option value="5">
+                    5º ano
+                </option>
+
+                <option value="outro">
+                    Outro
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <label for="tema">
+            🔍 O que queres aprender?
+        </label>
 
         <input
             id="tema"
             type="text"
-            placeholder="Ex.: Frações"
+            placeholder="Ex.: Frações, programação, química..."
         >
 
-        <button onclick="ensinar()">
-            📖 Ensinar-me
+        <button onclick="começarEstudo()">
+            🚀 Começar a aprender
         </button>
-
-        <div id="explicacao" class="resposta hidden"></div>
 
     </div>
 
-
-    <!-- ÁREA DO TESTE -->
-
-    <div id="areaTeste" class="card hidden">
-
-        <h2>📝 Teste</h2>
-
-        <p>
-            Agora vamos verificar o que aprendeste.
-        </p>
-
-        <div id="perguntas"></div>
-
-        <button onclick="corrigirTeste()">
-            ✅ Corrigir teste
-        </button>
-
-        <div id="resultado"></div>
-
-    </div>
-
-
-    <!-- INFORMAÇÕES -->
 
     <div class="card">
 
-        <h2>🎯 Como funciona?</h2>
+        <h2>✨ O que podes fazer no StudyAI?</h2>
 
-        <p>📖 <strong>1. Aprende:</strong> escolhe uma disciplina e um tema.</p>
+        <div class="info">
 
-        <p>🧠 <strong>2. Entende:</strong> o StudyAI apresenta uma explicação.</p>
+            <div class="info-box">
 
-        <p>📝 <strong>3. Testa:</strong> responde às perguntas.</p>
+                <div class="icon">📚</div>
 
-        <p>🏆 <strong>4. Descobre o resultado:</strong> vê quantas acertaste.</p>
+                <h3>Aprender</h3>
 
-        <p>🔄 <strong>5. Pratica novamente:</strong> tenta melhorar a tua pontuação.</p>
+                <p>
+                    Aprende temas de diferentes áreas.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="icon">🧠</div>
+
+                <h3>Entender</h3>
+
+                <p>
+                    Recebe explicações adaptadas ao teu nível.
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <div class="icon">📝</div>
+
+                <h3>Praticar</h3>
+
+                <p>
+                    Faz exercícios e testa os teus conhecimentos.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="resultado" class="card hidden">
+
+        <h2>🎯 O teu estudo</h2>
+
+        <div id="mensagem" class="resposta"></div>
 
     </div>
 
@@ -221,682 +336,120 @@
 
 <script>
 
-let perguntasAtuais = [];
-let temaAtual = "";
-let disciplinaAtual = "";
+function mostrarUniversidade() {
+
+    const nivel =
+        document.getElementById("nivel").value;
+
+    const universidade =
+        document.getElementById("universidade");
+
+    if (nivel === "universidade") {
+
+        universidade.style.display = "block";
+
+    } else {
+
+        universidade.style.display = "none";
+
+    }
+}
 
 
-// ===============================
-// ENSINAR
-// ===============================
+function começarEstudo() {
 
-function ensinar() {
+    const nivel =
+        document.getElementById("nivel").value;
 
-    disciplinaAtual =
-        document.getElementById("disciplina").value;
+    const tema =
+        document.getElementById("tema").value.trim();
 
-    temaAtual =
-        document.getElementById("tema").value
-        .trim()
-        .toLowerCase();
+    const resultado =
+        document.getElementById("resultado");
 
-    const explicacao =
-        document.getElementById("explicacao");
+    const mensagem =
+        document.getElementById("mensagem");
 
-    if (temaAtual === "") {
 
-        explicacao.classList.remove("hidden");
+    if (nivel === "") {
 
-        explicacao.innerHTML =
-            "⚠️ Escreve primeiro o tema que queres aprender.";
+        alert("⚠️ Primeiro escolhe o teu nível de ensino.");
 
         return;
     }
 
 
-    let texto = "";
+    if (tema === "") {
 
-
-    // MATEMÁTICA
-
-    if (
-        disciplinaAtual === "Matemática" &&
-        (temaAtual.includes("fração") ||
-         temaAtual.includes("frações"))
-    ) {
-
-        texto = `
-            <h3>📖 Frações</h3>
-
-            <p>
-            Uma fração representa uma parte de um todo.
-            </p>
-
-            <p>
-            Ela possui duas partes:
-            </p>
-
-            <ul>
-                <li><strong>Numerador:</strong> fica em cima.</li>
-                <li><strong>Denominador:</strong> fica em baixo.</li>
-            </ul>
-
-            <p>
-            Por exemplo, em <strong>3/4</strong>,
-            o 3 é o numerador e o 4 é o denominador.
-            </p>
-
-            <p>
-            Isso significa que temos 3 partes de um total
-            de 4 partes iguais.
-            </p>
-
-            <p>🎯 Depois desta explicação, faz o teste abaixo!</p>
-        `;
-
-    }
-
-
-    else if (
-        disciplinaAtual === "Matemática" &&
-        (temaAtual.includes("equação") ||
-         temaAtual.includes("equações"))
-    ) {
-
-        texto = `
-            <h3>📖 Equações</h3>
-
-            <p>
-            Uma equação é uma igualdade que contém
-            uma ou mais incógnitas.
-            </p>
-
-            <p>
-            Por exemplo:
-            <strong>x + 5 = 12</strong>
-            </p>
-
-            <p>
-            Para descobrir x, precisamos deixar x sozinho.
-            </p>
-
-            <p>
-            Subtraindo 5 dos dois lados:
-            </p>
-
-            <p>
-            <strong>x = 7</strong>
-            </p>
-
-            <p>
-            Portanto, a solução é 7.
-            </p>
-
-            <p>🎯 Agora podes testar o que aprendeste!</p>
-        `;
-
-    }
-
-
-    // PORTUGUÊS
-
-    else if (
-        disciplinaAtual === "Português" &&
-        temaAtual.includes("verbo")
-    ) {
-
-        texto = `
-            <h3>📖 Verbos</h3>
-
-            <p>
-            Verbos são palavras que indicam ações,
-            estados ou acontecimentos.
-            </p>
-
-            <p>
-            Exemplos:
-            <strong>correr, estudar, escrever e dormir.</strong>
-            </p>
-
-            <p>
-            Na frase "O aluno estuda",
-            a palavra "estuda" é um verbo.
-            </p>
-
-            <p>🎯 Agora vamos testar o que aprendeste!</p>
-        `;
-
-    }
-
-
-    // HISTÓRIA
-
-    else if (
-        disciplinaAtual === "História" &&
-        temaAtual.includes("revolução francesa")
-    ) {
-
-        texto = `
-            <h3>📖 Revolução Francesa</h3>
-
-            <p>
-            A Revolução Francesa começou em 1789.
-            </p>
-
-            <p>
-            Foi um período de grandes mudanças políticas
-            e sociais na França.
-            </p>
-
-            <p>
-            Entre as causas estavam problemas económicos,
-            desigualdade social e insatisfação com o sistema
-            político da época.
-            </p>
-
-            <p>🎯 Agora testa os teus conhecimentos!</p>
-        `;
-
-    }
-
-
-    // GEOGRAFIA
-
-    else if (
-        disciplinaAtual === "Geografia" &&
-        (temaAtual.includes("continente") ||
-         temaAtual.includes("continentes"))
-    ) {
-
-        texto = `
-            <h3>📖 Continentes</h3>
-
-            <p>
-            Os continentes são grandes extensões de terra
-            existentes na superfície da Terra.
-            </p>
-
-            <p>
-            Entre eles estão África, Ásia, Europa,
-            América, Oceania e Antártida.
-            </p>
-
-            <p>🎯 Agora vamos fazer um pequeno teste!</p>
-        `;
-
-    }
-
-// CIÊNCIAS
-
-else if (
-    disciplinaAtual === "Ciências" &&
-    (temaAtual.includes("sistema solar") ||
-     temaAtual.includes("planetas"))
-) {
-    texto = `
-        <h3>🔬 Sistema Solar</h3>
-
-        <p>
-        O Sistema Solar é formado pelo Sol e pelos corpos
-        celestes que orbitam à sua volta.
-        </p>
-
-        <p>
-        Os oito planetas são:
-        Mercúrio, Vénus, Terra, Marte, Júpiter,
-        Saturno, Urano e Neptuno.
-        </p>
-
-        <p>
-        ☀️ O Sol é uma estrela e é a principal fonte de
-        energia do nosso sistema planetário.
-        </p>
-
-        <p>🎯 Agora vamos testar os teus conhecimentos!</p>
-    `;
-}
-
-
-// FÍSICA
-
-else if (
-    disciplinaAtual === "Física" &&
-    (temaAtual.includes("velocidade") ||
-     temaAtual.includes("movimento"))
-) {
-    texto = `
-        <h3>⚡ Velocidade</h3>
-
-        <p>
-        A velocidade indica quão rapidamente um objeto
-        muda de posição.
-        </p>
-
-        <p>
-        Uma fórmula simples é:
-        <strong>velocidade = distância ÷ tempo</strong>.
-        </p>
-
-        <p>
-        Por exemplo, se um carro percorre 100 km em 2 horas,
-        a velocidade média é 50 km/h.
-        </p>
-
-        <p>🎯 Agora vamos testar os teus conhecimentos!</p>
-    `;
-}
-
-
-// QUÍMICA
-
-else if (
-    disciplinaAtual === "Química" &&
-    (temaAtual.includes("átomo") ||
-     temaAtual.includes("átomos"))
-) {
-    texto = `
-        <h3>⚗️ Átomos</h3>
-
-        <p>
-        Os átomos são unidades muito pequenas que formam
-        a matéria.
-        </p>
-
-        <p>
-        Um átomo possui um núcleo, que contém protões
-        e neutrões, e eletrões que ocupam regiões à volta
-        do núcleo.
-        </p>
-
-        <p>
-        Diferentes tipos de átomos formam os elementos
-        químicos.
-        </p>
-
-        <p>🎯 Agora vamos testar os teus conhecimentos!</p>
-    `;
-}
-    // TEMA NÃO CADASTRADO
-
-    else {
-
-        texto = `
-            <h3>📚 Vamos estudar: ${temaAtual}</h3>
-
-            <p>
-            Ainda estou a aprender a explicar este tema
-            nesta versão do StudyAI.
-            </p>
-
-            <p>
-            Experimenta um destes temas:
-            </p>
-
-            <ul>
-                <li>Frações</li>
-                <li>Equações</li>
-                <li>Verbos</li>
-                <li>Revolução Francesa</li>
-                <li>Continentes</li>
-            </ul>
-
-            <p>
-            🚀 Na próxima versão vamos adicionar muito mais
-            conteúdos.
-            </p>
-        `;
-
-    }
-
-
-    explicacao.classList.remove("hidden");
-
-    explicacao.innerHTML = texto;
-
-
-    criarTeste();
-
-}
-
-
-// ===============================
-// CRIAR TESTE
-// ===============================
-
-function criarTeste() {
-
-    perguntasAtuais = [];
-
-
-    if (
-        disciplinaAtual === "Matemática" &&
-        (temaAtual.includes("fração") ||
-         temaAtual.includes("frações"))
-    ) {
-
-        perguntasAtuais = [
-
-            {
-                pergunta: "Em 3/4, qual é o numerador?",
-                opcoes: ["3", "4", "7", "1"],
-                correta: "3"
-            },
-
-            {
-                pergunta: "Em 5/8, qual é o denominador?",
-                opcoes: ["5", "8", "13", "3"],
-                correta: "8"
-            },
-
-            {
-                pergunta: "O que representa uma fração?",
-                opcoes: [
-                    "Uma parte de um todo",
-                    "Apenas números inteiros",
-                    "Uma multiplicação",
-                    "Uma divisão sem números"
-                ],
-                correta: "Uma parte de um todo"
-            }
-
-        ];
-
-    }
-
-
-    else if (
-        disciplinaAtual === "Matemática" &&
-        (temaAtual.includes("equação") ||
-         temaAtual.includes("equações"))
-    ) {
-
-        perguntasAtuais = [
-
-            {
-                pergunta: "Qual é a solução de x + 5 = 12?",
-                opcoes: ["5", "6", "7", "8"],
-                correta: "7"
-            },
-
-            {
-                pergunta: "O que devemos fazer para resolver uma equação?",
-                opcoes: [
-                    "Deixar a incógnita sozinha",
-                    "Apagar a equação",
-                    "Multiplicar sempre por 2",
-                    "Não fazer nada"
-                ],
-                correta: "Deixar a incógnita sozinha"
-            }
-
-        ];
-
-    }
-
-
-    else if (
-        disciplinaAtual === "Português" &&
-        temaAtual.includes("verbo")
-    ) {
-
-        perguntasAtuais = [
-
-            {
-                pergunta: "Qual destas palavras é um verbo?",
-                opcoes: [
-                    "correr",
-                    "mesa",
-                    "bonito",
-                    "casa"
-                ],
-                correta: "correr"
-            },
-
-            {
-                pergunta: "Na frase 'O aluno estuda', qual é o verbo?",
-                opcoes: [
-                    "aluno",
-                    "O",
-                    "estuda",
-                    "frase"
-                ],
-                correta: "estuda"
-            }
-
-        ];
-
-    }
-
-
-    else if (
-        disciplinaAtual === "História" &&
-        temaAtual.includes("revolução francesa")
-    ) {
-
-        perguntasAtuais = [
-
-            {
-                pergunta: "Em que ano começou a Revolução Francesa?",
-                opcoes: [
-                    "1789",
-                    "1500",
-                    "1800",
-                    "1914"
-                ],
-                correta: "1789"
-            },
-
-            {
-                pergunta: "A Revolução Francesa ocorreu em qual país?",
-                opcoes: [
-                    "Portugal",
-                    "França",
-                    "Brasil",
-                    "Espanha"
-                ],
-                correta: "França"
-            }
-
-        ];
-
-    }
-
-
-    else if (
-        disciplinaAtual === "Geografia" &&
-        (temaAtual.includes("continente") ||
-         temaAtual.includes("continentes"))
-    ) {
-
-        perguntasAtuais = [
-
-            {
-                pergunta: "Qual é o maior continente?",
-                opcoes: [
-                    "África",
-                    "Europa",
-                    "Ásia",
-                    "Oceania"
-                ],
-                correta: "Ásia"
-            },
-
-            {
-                pergunta: "Em qual continente fica Angola?",
-                opcoes: [
-                    "África",
-                    "Europa",
-                    "Ásia",
-                    "Oceania"
-                ],
-                correta: "África"
-            }
-
-        ];
-
-    }
-
-
-    if (perguntasAtuais.length === 0) {
-
-        document.getElementById("areaTeste")
-            .classList.add("hidden");
+        alert("⚠️ Escreve o que queres aprender.");
 
         return;
     }
 
 
-    mostrarPerguntas();
-
-}
+    let textoNivel = "";
 
 
-// ===============================
-// MOSTRAR PERGUNTAS
-// ===============================
+    if (nivel === "basico") {
 
-function mostrarPerguntas() {
-
-    const area =
-        document.getElementById("perguntas");
-
-    area.innerHTML = "";
-
-
-    perguntasAtuais.forEach((p, index) => {
-
-        let html = `
-            <div class="pergunta">
-
-                <h3>
-                    ${index + 1}. ${p.pergunta}
-                </h3>
-        `;
-
-
-        p.opcoes.forEach(opcao => {
-
-            html += `
-                <label style="display:block; margin:10px 0;">
-
-                    <input
-                        type="radio"
-                        name="pergunta${index}"
-                        value="${opcao}"
-                        style="width:auto; margin-right:8px;"
-                    >
-
-                    ${opcao}
-
-                </label>
-            `;
-
-        });
-
-
-        html += `</div>`;
-
-        area.innerHTML += html;
-
-    });
-
-
-    document.getElementById("areaTeste")
-        .classList.remove("hidden");
-
-}
-
-
-// ===============================
-// CORRIGIR TESTE
-// ===============================
-
-function corrigirTeste() {
-
-    let pontos = 0;
-
-
-    perguntasAtuais.forEach((p, index) => {
-
-        const resposta =
-            document.querySelector(
-                `input[name="pergunta${index}"]:checked`
-            );
-
-
-        if (resposta && resposta.value === p.correta) {
-
-            pontos++;
-
-        }
-
-    });
-
-
-    const total =
-        perguntasAtuais.length;
-
-
-    const percentagem =
-        Math.round((pontos / total) * 100);
-
-
-    let mensagem = "";
-
-
-    if (percentagem >= 80) {
-
-        mensagem =
-            "🎉 Excelente! Dominas muito bem este assunto.";
+        textoNivel = "Ensino Básico";
 
     }
 
-    else if (percentagem >= 50) {
+    else if (nivel === "secundario") {
 
-        mensagem =
-            "👍 Bom trabalho! Continua a praticar.";
+        textoNivel = "Ensino Secundário";
 
     }
 
     else {
 
-        mensagem =
-            "📚 Continua a estudar. Vais conseguir melhorar!";
+        const curso =
+            document.getElementById("curso").value;
 
+        const ano =
+            document.getElementById("ano").value;
+
+        textoNivel =
+            "Universidade — " +
+            (curso || "Curso não informado") +
+            " — " +
+            ano +
+            "º ano";
     }
 
 
-    document.getElementById("resultado").innerHTML = `
+    resultado.classList.remove("hidden");
 
-        <div class="resultado">
 
-            <h2>🏆 Resultado</h2>
+    mensagem.innerHTML = `
 
-            <div class="nota">
-                ${percentagem}%
-            </div>
+        <h3>📚 Vamos aprender!</h3>
 
-            <p>
-                Acertaste
-                <strong>${pontos}</strong>
-                de
-                <strong>${total}</strong>
-                perguntas.
-            </p>
+        <p>
+            <strong>Nível:</strong> ${textoNivel}
+        </p>
 
-            <p>${mensagem}</p>
+        <p>
+            <strong>Tema:</strong> ${tema}
+        </p>
 
-            <button onclick="criarTeste()">
-                🔄 Fazer outro teste
-            </button>
-
-        </div>
+        <p>
+            🚀 O StudyAI vai adaptar a aprendizagem
+            ao teu nível.
+        </p>
 
     `;
+
+
+    resultado.scrollIntoView({
+        behavior: "smooth"
+    });
 
 }
 
 </script>
 
 </body>
-</html>                    
+</html>
+                
