@@ -122,3 +122,13 @@ function mostrarResultado() {
         </button>
     `;
 }
+function prepararTeste() {
+    const disciplina = document.getElementById("disciplina").value;
+
+    if (!testes[disciplina]) {
+        alert("Ainda não temos testes para esta disciplina.");
+        return;
+    }
+
+    iniciarTeste();
+}
