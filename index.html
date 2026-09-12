@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudyAIz - Assistente de Estudos</title>
-
-<!-- Biblioteca 3D -->
+<title>StudyAIz</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
 <style>
 * {
     box-sizing: border-box;
@@ -24,8 +21,8 @@ body {
 header {
     background: linear-gradient(135deg, #5b21b6, #2563eb);
     color: white;
-    padding: 20px;
     text-align: center;
+    padding: 22px;
 }
 
 .logo {
@@ -35,7 +32,7 @@ header {
 
 .container {
     width: 92%;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 30px auto;
 }
 
@@ -44,7 +41,6 @@ header {
     padding: 28px;
     border-radius: 22px;
     box-shadow: 0 10px 30px rgba(0,0,0,.08);
-    margin-bottom: 25px;
 }
 
 .hidden {
@@ -57,7 +53,7 @@ h1, h2 {
 
 .hero {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     display: block;
     margin: 0 auto 20px;
     border-radius: 20px;
@@ -66,47 +62,43 @@ h1, h2 {
 select {
     width: 100%;
     padding: 15px;
+    margin: 10px 0 20px;
     border: 2px solid #ddd;
     border-radius: 12px;
     font-size: 16px;
-    margin: 10px 0 20px;
     background: white;
 }
 
 button {
     border: none;
-    padding: 13px 22px;
+    padding: 14px 22px;
+    margin: 5px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #6d28d9, #2563eb);
     color: white;
+    background: linear-gradient(135deg, #6d28d9, #2563eb);
     font-size: 16px;
     cursor: pointer;
-    margin: 5px;
 }
 
 button:hover {
     opacity: .9;
-    transform: translateY(-1px);
 }
 
-.back {
+.voltar {
     background: #6b7280;
 }
 
 .subjects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
+    gap: 12px;
     margin: 20px 0;
 }
 
 .subject {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px;
     border: 2px solid #e5e7eb;
     border-radius: 14px;
+    padding: 15px;
     cursor: pointer;
 }
 
@@ -115,76 +107,50 @@ button:hover {
     background: #f5f3ff;
 }
 
-.subject input {
-    width: 18px;
-    height: 18px;
-}
-
-.success {
-    background: #ecfdf5;
-    color: #065f46;
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 15px;
-}
-
-/* LABORATÓRIO */
-
-.lab-title {
-    text-align: center;
-    font-size: 32px;
-}
-
-.lab-description {
-    text-align: center;
-    color: #6b7280;
-}
-
 .lab-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
     margin-top: 25px;
 }
 
 .lab-card {
-    background: linear-gradient(145deg, #ffffff, #f1f5ff);
     padding: 25px;
-    border-radius: 20px;
+    border-radius: 18px;
     text-align: center;
+    background: #f5f3ff;
     border: 2px solid #e5e7eb;
     cursor: pointer;
-    transition: .2s;
 }
 
 .lab-card:hover {
-    transform: translateY(-5px);
     border-color: #7c3aed;
+    transform: translateY(-3px);
 }
 
 .lab-icon {
-    font-size: 50px;
+    font-size: 45px;
 }
 
-#canvas3d {
+.success {
+    padding: 15px;
+    border-radius: 12px;
+    background: #ecfdf5;
+    color: #065f46;
+}
+
+#modelo3d {
     width: 100%;
-    height: 430px;
-    border-radius: 20px;
-    overflow: hidden;
+    height: 350px;
     background: #050816;
+    border-radius: 18px;
     margin-top: 20px;
-    position: relative;
 }
 
-.controls {
-    text-align: center;
-    margin: 15px 0;
-}
-
-.info-box {
-    padding: 18px;
+.info {
     background: #f5f3ff;
-    border-radius: 15px;
+    padding: 18px;
+    border-radius: 14px;
     margin-top: 15px;
 }
 
@@ -205,9 +171,9 @@ footer {
 
 <div class="container">
 
-<!-- ================= PASSO 1 ================= -->
+<!-- PASSO 1 -->
 
-<section id="step1" class="card">
+<section id="passo1" class="card">
 
     <img src="studyaiz-visual.png"
          class="hero"
@@ -216,38 +182,55 @@ footer {
     <h1>🌍 Bem-vindo ao StudyAIz</h1>
 
     <p>
-        Primeiro, escolha o teu país para adaptarmos
-        a experiência de aprendizagem.
+        Primeiro, escolha o teu país.
     </p>
 
-    <label><strong>País</strong></label>
+    <label>
+        <strong>País</strong>
+    </label>
 
-    <select id="country">
-        <option value="">-- Escolha o país --</option>
-        <option value="Angola">🇦🇴 Angola</option>
-        <option value="Portugal">🇵🇹 Portugal</option>
-        <option value="Brasil">🇧🇷 Brasil</option>
-        <option value="Moçambique">🇲🇿 Moçambique</option>
-        <option value="Cabo Verde">🇨🇻 Cabo Verde</option>
-        <option value="Guiné-Bissau">🇬🇼 Guiné-Bissau</option>
-        <option value="São Tomé e Príncipe">🇸🇹 São Tomé e Príncipe</option>
-        <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
-        <option value="Reino Unido">🇬🇧 Reino Unido</option>
-        <option value="França">🇫🇷 França</option>
-        <option value="Espanha">🇪🇸 Espanha</option>
-        <option value="Outro">🌎 Outro</option>
+    <select id="pais">
+
+        <option value="">
+            -- Escolha o país --
+        </option>
+
+        <option value="Angola">
+            🇦🇴 Angola
+        </option>
+
+        <option value="Portugal">
+            🇵🇹 Portugal
+        </option>
+
+        <option value="Brasil">
+            🇧🇷 Brasil
+        </option>
+
+        <option value="Moçambique">
+            🇲🇿 Moçambique
+        </option>
+
+        <option value="Cabo Verde">
+            🇨🇻 Cabo Verde
+        </option>
+
+        <option value="Outro">
+            🌎 Outro
+        </option>
+
     </select>
 
-    <button onclick="nextStep(1)">
+    <button id="btn1">
         Continuar →
     </button>
 
 </section>
 
 
-<!-- ================= PASSO 2 ================= -->
+<!-- PASSO 2 -->
 
-<section id="step2" class="card hidden">
+<section id="passo2" class="card hidden">
 
     <h2>🎓 Nível de ensino</h2>
 
@@ -255,7 +238,7 @@ footer {
         Escolha o teu nível de ensino.
     </p>
 
-    <select id="level" onchange="updateGrades()">
+    <select id="nivel">
 
         <option value="">
             -- Escolha o nível --
@@ -279,29 +262,920 @@ footer {
 
     </select>
 
-    <label><strong>Classe / Ano</strong></label>
+    <label>
+        <strong>Classe / Ano</strong>
+    </label>
 
-    <select id="grade">
+    <select id="classe">
+
         <option value="">
-            -- Primeiro escolha o nível --
+            -- Escolha primeiro o nível --
         </option>
+
     </select>
 
     <br>
 
-    <button class="back" onclick="previousStep(2)">
+    <button class="voltar" id="voltar2">
         ← Voltar
     </button>
 
-    <button onclick="nextStep(2)">
+    <button id="btn2">
         Continuar →
     </button>
 
 </section>
 
 
-<!-- ================= PASSO 3 ================= -->
+<!-- PASSO 3 -->
 
-<section id="step3" class="card hidden">
+<section id="passo3" class="card hidden">
 
-    <w
+    <h2>📚 Disciplinas</h2>
+
+    <p>
+        Escolha as disciplinas que quer estudar.
+    </p>
+
+    <div class="subjects">
+
+        <label class="subject">
+            <input type="checkbox" value="Matemática">
+            ➗ Matemática
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="Português">
+            📖 Português
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="Inglês">
+            🇬🇧 Inglês
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="Física">
+            ⚡ Física
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="Química">
+            ⚗️ Química
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="Biologia">
+            🧬 Biologia
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="História">
+            🏛️ História
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="Geografia">
+            🌍 Geografia
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="Informática">
+            💻 Informática
+        </label>
+
+        <label class="subject">
+            <input type="checkbox" value="Astronomia">
+            🔭 Astronomia
+        </label>
+
+    </div>
+
+    <button class="voltar" id="voltar3">
+        ← Voltar
+    </button>
+
+    <button id="btn3">
+        Continuar →
+    </button>
+
+</section>
+
+
+<!-- PASSO 4 -->
+
+<section id="passo4" class="card hidden">
+
+    <h2>🗣️ Idioma</h2>
+
+    <p>
+        Escolha o idioma do StudyAIz.
+    </p>
+
+    <select id="idioma">
+
+        <option value="">
+            -- Escolha o idioma --
+        </option>
+
+        <option value="Português">
+            🇵🇹 Português
+        </option>
+
+        <option value="English">
+            🇬🇧 English
+        </option>
+
+        <option value="Français">
+            🇫🇷 Français
+        </option>
+
+        <option value="Español">
+            🇪🇸 Español
+        </option>
+
+    </select>
+
+    <button class="voltar" id="voltar4">
+        ← Voltar
+    </button>
+
+    <button id="finalizar">
+        🚀 Entrar no StudyAIz
+    </button>
+
+</section>
+
+
+<!-- HOME -->
+
+<section id="inicio" class="card hidden">
+
+    <h1>🎉 Bem-vindo ao StudyAIz!</h1>
+
+    <div class="success">
+        O teu perfil foi configurado com sucesso!
+    </div>
+
+    <h2>🧪 Laboratório 3D</h2>
+
+    <p>
+        Aprende através de modelos 3D interativos.
+    </p>
+
+    <div class="lab-grid">
+
+        <div class="lab-card" data-modelo="solar">
+            <div class="lab-icon">☀️</div>
+            <h3>Sistema Solar</h3>
+            <p>Explora os planetas.</p>
+        </div>
+
+        <div class="lab-card" data-modelo="molecula">
+            <div class="lab-icon">⚛️</div>
+            <h3>Moléculas</h3>
+            <p>Explora átomos.</p>
+        </div>
+
+        <div class="lab-card" data-modelo="celula">
+            <div class="lab-icon">🧬</div>
+            <h3>Célula</h3>
+            <p>Explora a célula.</p>
+        </div>
+
+        <div class="lab-card" data-modelo="geometria">
+            <div class="lab-icon">📐</div>
+            <h3>Geometria</h3>
+            <p>Explora sólidos 3D.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LABORATÓRIO -->
+
+<section id="laboratorio" class="card hidden">
+
+    <h1>🧪 Laboratório 3D</h1>
+
+    <p id="tituloModelo">
+        Modelo 3D
+    </p>
+
+    <div id="modelo3d"></div>
+
+    <div class="info" id="infoModelo">
+        Modelo interativo.
+    </div>
+
+    <button id="girarEsquerda">
+        ↶ Girar
+    </button>
+
+    <button id="girarDireita">
+        Girar ↷
+    </button>
+
+    <button id="voltarLab">
+        ← Voltar
+    </button>
+
+</section>
+
+</div>
+
+<footer>
+    StudyAIz © 2026
+</footer>
+
+
+<script>
+
+/* ============================
+   FUNÇÃO PARA TROCAR DE PÁGINA
+============================ */
+
+function mostrar(id) {
+
+    document.getElementById("passo1")
+        .classList.add("hidden");
+
+    document.getElementById("passo2")
+        .classList.add("hidden");
+
+    document.getElementById("passo3")
+        .classList.add("hidden");
+
+    document.getElementById("passo4")
+        .classList.add("hidden");
+
+    document.getElementById("inicio")
+        .classList.add("hidden");
+
+    document.getElementById("laboratorio")
+        .classList.add("hidden");
+
+    document.getElementById(id)
+        .classList.remove("hidden");
+
+    window.scrollTo(0, 0);
+}
+
+
+/* ============================
+   PASSO 1
+============================ */
+
+document.getElementById("btn1")
+.addEventListener("click", function() {
+
+    const pais =
+        document.getElementById("pais").value;
+
+    if (pais === "") {
+
+        alert("🌍 Escolhe primeiro o teu país.");
+
+        return;
+    }
+
+    mostrar("passo2");
+});
+
+
+/* ============================
+   CLASSES
+============================ */
+
+document.getElementById("nivel")
+.addEventListener("change", function() {
+
+    const nivel = this.value;
+
+    const classe =
+        document.getElementById("classe");
+
+    classe.innerHTML = "";
+
+    const primeiro =
+        document.createElement("option");
+
+    primeiro.value = "";
+
+    primeiro.textContent =
+        "-- Escolha a classe/ano --";
+
+    classe.appendChild(primeiro);
+
+
+    let lista = [];
+
+
+    if (nivel === "basico") {
+
+        lista = [
+            "1ª Classe",
+            "2ª Classe",
+            "3ª Classe",
+            "4ª Classe",
+            "5ª Classe",
+            "6ª Classe"
+        ];
+
+    }
+
+
+    if (nivel === "secundario") {
+
+        lista = [
+            "7ª Classe",
+            "8ª Classe",
+            "9ª Classe",
+            "10ª Classe",
+            "11ª Classe",
+            "12ª Classe"
+        ];
+
+    }
+
+
+    if (nivel === "medio") {
+
+        lista = [
+            "10º Ano",
+            "11º Ano",
+            "12º Ano"
+        ];
+
+    }
+
+
+    if (nivel === "universidade") {
+
+        lista = [
+            "1º Ano",
+            "2º Ano",
+            "3º Ano",
+            "4º Ano",
+            "5º Ano"
+        ];
+
+    }
+
+
+    lista.forEach(function(item) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = item;
+
+        option.textContent = item;
+
+        classe.appendChild(option);
+
+    });
+
+});
+
+
+/* ============================
+   PASSO 2
+============================ */
+
+document.getElementById("btn2")
+.addEventListener("click", function() {
+
+    const nivel =
+        document.getElementById("nivel").value;
+
+    const classe =
+        document.getElementById("classe").value;
+
+    if (nivel === "") {
+
+        alert("🎓 Escolhe o nível de ensino.");
+
+        return;
+    }
+
+    if (classe === "") {
+
+        alert("📚 Escolhe a classe ou ano.");
+
+        return;
+    }
+
+    mostrar("passo3");
+
+});
+
+
+document.getElementById("voltar2")
+.addEventListener("click", function() {
+
+    mostrar("passo1");
+
+});
+
+
+/* ============================
+   PASSO 3
+============================ */
+
+document.getElementById("btn3")
+.addEventListener("click", function() {
+
+    const selecionadas =
+        document.querySelectorAll(
+            '.subject input:checked'
+        );
+
+    if (selecionadas.length === 0) {
+
+        alert(
+            "📚 Escolhe pelo menos uma disciplina."
+        );
+
+        return;
+    }
+
+    mostrar("passo4");
+
+});
+
+
+document.getElementById("voltar3")
+.addEventListener("click", function() {
+
+    mostrar("passo2");
+
+});
+
+
+/* ============================
+   PASSO 4
+============================ */
+
+document.getElementById("finalizar")
+.addEventListener("click", function() {
+
+    const idioma =
+        document.getElementById("idioma").value;
+
+    if (idioma === "") {
+
+        alert("🗣️ Escolhe o idioma.");
+
+        return;
+    }
+
+
+    const pais =
+        document.getElementById("pais").value;
+
+    const nivel =
+        document.getElementById("nivel").value;
+
+    const classe =
+        document.getElementById("classe").value;
+
+
+    localStorage.setItem(
+        "studyaizPais",
+        pais
+    );
+
+    localStorage.setItem(
+        "studyaizNivel",
+        nivel
+    );
+
+    localStorage.setItem(
+        "studyaizClasse",
+        classe
+    );
+
+    localStorage.setItem(
+        "studyaizIdioma",
+        idioma
+    );
+
+
+    mostrar("inicio");
+
+});
+
+
+document.getElementById("voltar4")
+.addEventListener("click", function() {
+
+    mostrar("passo3");
+
+});
+
+
+/* ============================
+   LABORATÓRIO 3D
+============================ */
+
+let cena;
+let camera;
+let renderizador;
+let objeto;
+let animacao;
+
+
+function iniciar3D() {
+
+    const area =
+        document.getElementById("modelo3d");
+
+    area.innerHTML = "";
+
+
+    cena =
+        new THREE.Scene();
+
+
+    cena.background =
+        new THREE.Color(0x050816);
+
+
+    camera =
+        new THREE.PerspectiveCamera(
+            45,
+            area.clientWidth /
+            area.clientHeight,
+            0.1,
+            100
+        );
+
+
+    camera.position.z = 6;
+
+
+    renderizador =
+        new THREE.WebGLRenderer({
+            antialias: true
+        });
+
+
+    renderizador.setSize(
+        area.clientWidth,
+        area.clientHeight
+    );
+
+
+    area.appendChild(
+        renderizador.domElement
+    );
+
+
+    const luz =
+        new THREE.DirectionalLight(
+            0xffffff,
+            2
+        );
+
+    luz.position.set(
+        5,
+        5,
+        5
+    );
+
+    cena.add(luz);
+
+
+    const luzAmbiente =
+        new THREE.AmbientLight(
+            0xffffff,
+            .5
+        );
+
+    cena.add(luzAmbiente);
+
+
+    animar();
+
+}
+
+
+function animar() {
+
+    animacao =
+        requestAnimationFrame(animar);
+
+
+    if (objeto) {
+
+        objeto.rotation.y += 0.005;
+
+    }
+
+
+    renderizador.render(
+        cena,
+        camera
+    );
+
+}
+
+
+/* ============================
+   CRIAR MODELO
+============================ */
+
+function criarModelo(tipo) {
+
+    if (objeto) {
+
+        cena.remove(objeto);
+
+    }
+
+
+    objeto =
+        new THREE.Group();
+
+
+    if (tipo === "solar") {
+
+        const sol =
+            new THREE.Mesh(
+
+                new THREE.SphereGeometry(
+                    1.2,
+                    32,
+                    32
+                ),
+
+                new THREE.MeshStandardMaterial({
+                    color: 0xffaa00
+                })
+
+            );
+
+        objeto.add(sol);
+
+
+        const terra =
+            new THREE.Mesh(
+
+                new THREE.SphereGeometry(
+                    .45,
+                    32,
+                    32
+                ),
+
+                new THREE.MeshStandardMaterial({
+                    color: 0x2288ff
+                })
+
+            );
+
+        terra.position.x = 2.5;
+
+        objeto.add(terra);
+
+
+        document.getElementById(
+            "tituloModelo"
+        ).textContent =
+            "☀️ Sistema Solar 3D";
+
+
+        document.getElementById(
+            "infoModelo"
+        ).innerHTML =
+            "<strong>Sistema Solar</strong><br>" +
+            "Este é um modelo 3D inicial. " +
+            "Podemos adicionar os oito planetas, Lua e órbitas.";
+
+    }
+
+
+    if (tipo === "molecula") {
+
+        const grupo =
+            new THREE.Group();
+
+
+        for (
+            let i = 0;
+            i < 3;
+            i++
+        ) {
+
+            const atom =
+                new THREE.Mesh(
+
+                    new THREE.SphereGeometry(
+                        .6,
+                        32,
+                        32
+                    ),
+
+                    new THREE.MeshStandardMaterial({
+                        color: 0x3399ff
+                    })
+
+                );
+
+
+            atom.position.x =
+                (i - 1) * 1.4;
+
+
+            grupo.add(atom);
+
+        }
+
+
+        objeto = grupo;
+
+
+        document.getElementById(
+            "tituloModelo"
+        ).textContent =
+            "⚛️ Molécula 3D";
+
+
+        document.getElementById(
+            "infoModelo"
+        ).innerHTML =
+            "<strong>Molécula</strong><br>" +
+            "As esferas representam átomos.";
+    }
+
+
+    if (tipo === "celula") {
+
+        const celula =
+            new THREE.Mesh(
+
+                new THREE.SphereGeometry(
+                    2,
+                    32,
+                    32
+                ),
+
+                new THREE.MeshStandardMaterial({
+
+                    color: 0x33cc88,
+
+                    transparent: true,
+
+                    opacity: .5
+
+                })
+
+            );
+
+
+        objeto.add(celula);
+
+
+        const nucleo =
+            new THREE.Mesh(
+
+                new THREE.SphereGeometry(
+                    .7,
+                    32,
+                    32
+                ),
+
+                new THREE.MeshStandardMaterial({
+                    color: 0xaa44ff
+                })
+
+            );
+
+
+        objeto.add(nucleo);
+
+
+        document.getElementById(
+            "tituloModelo"
+        ).textContent =
+            "🧬 Célula 3D";
+
+
+        document.getElementById(
+            "infoModelo"
+        ).innerHTML =
+            "<strong>Célula</strong><br>" +
+            "Modelo simplificado de uma célula.";
+    }
+
+
+    if (tipo === "geometria") {
+
+        const cubo =
+            new THREE.Mesh(
+
+                new THREE.BoxGeometry(
+                    2.5,
+                    2.5,
+                    2.5
+                ),
+
+                new THREE.MeshStandardMaterial({
+                    color: 0x7733dd
+                })
+
+            );
+
+
+        objeto.add(cubo);
+
+
+        document.getElementById(
+            "tituloModelo"
+        ).textContent =
+            "📐 Cubo 3D";
+
+
+        document.getElementById(
+            "infoModelo"
+        ).innerHTML =
+            "<strong>Cubo</strong><br>" +
+            "Um cubo possui 6 faces, 12 arestas e 8 vértices.";
+    }
+
+
+    cena.add(objeto);
+
+}
+
+
+/* ============================
+   ABRIR LAB
+============================ */
+
+document.querySelectorAll(".lab-card")
+.forEach(function(card) {
+
+    card.addEventListener("click", function() {
+
+        mostrar("laboratorio");
+
+        iniciar3D();
+
+        criarModelo(
+            this.dataset.modelo
+        );
+
+    });
+
+});
+
+
+/* ============================
+   CONTROLOS
+============================ */
+
+document.getElementById(
+    "girarEsquerda"
+)
+.addEventListener("click", function() {
+
+    if (objeto) {
+
+        objeto.rotation.y -= .4;
+
+    }
+
+});
+
+
+document.getElementById(
+    "girarDireita"
+)
+.addEventListener("click", function() {
+
+    if (objeto) {
+
+        objeto.rotation.y += .4;
+
+    }
+
+});
+
+
+document.getElementById(
+    "voltarLab"
+)
+.addEventListener("click", function() {
+
+    mostrar("inicio");
+
+});
+
+
+</script>
+
+</body>
+    </html>
