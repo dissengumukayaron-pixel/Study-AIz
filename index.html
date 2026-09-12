@@ -44,7 +44,7 @@ button {
     background: #111827;
     color: white;
     padding: 25px 15px;
-    transition: .3s;
+    transition: 0.3s;
     z-index: 999;
     overflow-y: auto;
 }
@@ -156,6 +156,7 @@ select {
     border: 1px solid #d1d5db;
     border-radius: 10px;
     background: white;
+    width: 100%;
 }
 
 .option:hover {
@@ -212,18 +213,8 @@ select {
     margin: 10px 0;
 }
 
-.success {
-    color: #15803d;
-    font-weight: bold;
-}
-
-.danger {
-    color: #dc2626;
-    font-weight: bold;
-}
-
-.hidden {
-    display: none;
+.center {
+    text-align: center;
 }
 
 .setup-step {
@@ -232,10 +223,6 @@ select {
 
 .setup-step.active {
     display: block;
-}
-
-.center {
-    text-align: center;
 }
 
 .subject-grid {
@@ -250,14 +237,6 @@ select {
     border-radius: 15px;
     box-shadow: 0 3px 15px rgba(0,0,0,.06);
     text-align: center;
-}
-
-#labCanvas {
-    width: 100%;
-    height: 400px;
-    border-radius: 15px;
-    overflow: hidden;
-    background: #111827;
 }
 
 @media(max-width:600px) {
@@ -292,7 +271,6 @@ select {
     <button onclick="showScreen('home')">🏠 Início</button>
     <button onclick="showScreen('ai')">🤖 Tutor IA</button>
     <button onclick="showScreen('theory')">📖 Teoria</button>
-    <button onclick="showScreen('lab')">🔬 Laboratório 3D</button>
     <button onclick="showScreen('tests')">📝 Testes</button>
     <button onclick="showScreen('progress')">📊 Progresso</button>
     <button onclick="showScreen('subjects')">📚 Disciplinas</button>
@@ -300,8 +278,6 @@ select {
 </aside>
 
 <main>
-
-<!-- CONFIGURAÇÃO -->
 
 <section id="setup" class="screen active">
 
@@ -330,7 +306,9 @@ select {
             <option value="Outro">🌍 Outro</option>
         </select>
 
-        <button class="primary" onclick="nextStep(2)">Continuar</button>
+        <button class="primary" onclick="nextStep(2)">
+            Continuar
+        </button>
     </div>
 
     <div id="step2" class="setup-step card">
@@ -345,7 +323,9 @@ select {
             <option>Universidade</option>
         </select>
 
-        <button class="primary" onclick="nextStep(3)">Continuar</button>
+        <button class="primary" onclick="nextStep(3)">
+            Continuar
+        </button>
     </div>
 
     <div id="step3" class="setup-step card">
@@ -368,7 +348,9 @@ select {
             <option>Universitário</option>
         </select>
 
-        <button class="primary" onclick="nextStep(4)">Continuar</button>
+        <button class="primary" onclick="nextStep(4)">
+            Continuar
+        </button>
     </div>
 
     <div id="step4" class="setup-step card">
@@ -389,564 +371,9 @@ select {
             <option>Filosofia</option>
         </select>
 
-        <button class="primary" onclick="finishSetup()">Começar a estudar 🚀</button>
-    </div>
-
-</section>
-
-
-<!-- INÍCIO -->
-
-<section id="home" class="screen">
-
-    <div class="card">
-        <h1>🏠 Olá, estudante!</h1>
-        <p id="welcomeText">Bem-vindo ao StudyAIz.</p>
-    </div>
-
-    <div class="card">
-        <h2>🚀 O que queres estudar?</h2>
-        <button class="primary" onclick="showScreen('ai')">🤖 Falar com o Tutor IA</button>
-        <button class="secondary" onclick="showScreen('tests')">📝 Fazer um teste</button>
-    </div>
-
-    <div class="card">
-        <h2>📈 O teu progresso</h2>
-        <div class="stat">
-            <strong>Pontos:</strong>
-            <span id="points">0</span>
-        </div>
-
-        <div class="stat">
-            <strong>Testes concluídos:</strong>
-            <span id="testsCompleted">0</span>
-        </div>
-    </div>
-
-</section>
-
-
-<!-- TUTOR IA -->
-
-<section id="ai" class="screen">
-
-    <div class="card">
-        <h1>🤖 Tutor IA</h1>
-        <p>Faz uma pergunta e o Tutor IA vai ajudar-te.</p>
-
-        <div id="chatBox">
-            <div class="message ai">
-                👋 Olá! Sou o Tutor IA do StudyAIz. Como posso ajudar-te hoje?
-            </div>
-        </div>
-
-        <div class="ai-input">
-            <input
-                id="aiInput"
-                type="text"
-                placeholder="Escreve a tua pergunta..."
-                onkeydown="if(event.key === 'Enter') sendAI()"
-            >
-
-            <button id="sendButton" class="primary" onclick="sendAI()">
-                Enviar
-            </button>
-        </div>
-    </div>
-
-</section>
-
-
-<!-- TEORIA -->
-
-<section id="theory" class="screen">
-
-    <div class="card">
-        <h1>📖 Teoria</h1>
-
-        <select id="theorySubject" onchange="loadTheory()">
-            <option value="">Escolhe uma disciplina</option>
-            <option>Matemática</option>
-            <option>Português</option>
-            <option>Física</option>
-            <option>Química</option>
-            <option>Biologia</option>
-            <option>História</option>
-        </select>
-
-        <div id="theoryContent">
-            Escolhe uma disciplina para começar.
-        </div>
-    </div>
-
-</section>
-
-
-<!-- LABORATÓRIO -->
-
-<section id="lab" class="screen">
-
-    <div class="card">
-        <h1>🔬 Laboratório 3D</h1>
-        <p>Explora o laboratório virtual do StudyAIz.</p>
-
-        <div id="labCanvas"></div>
-    </div>
-
-</section>
-
-
-<!-- TESTES -->
-
-<section id="tests" class="screen">
-
-    <div class="card">
-        <h1>📝 Testes</h1>
-
-        <select id="testSubject" onchange="startTest()">
-            <option value="">Escolhe uma disciplina</option>
-            <option>Matemática</option>
-            <option>Português</option>
-            <option>Física</option>
-            <option>Biologia</option>
-            <option>História</option>
-        </select>
-
-        <div id="testArea"></div>
-    </div>
-
-</section>
-
-
-<!-- PROGRESSO -->
-
-<section id="progress" class="screen">
-
-    <div class="card">
-        <h1>📊 O teu progresso</h1>
-
-        <div class="stat">
-            ⭐ Pontos: <strong id="progressPoints">0</strong>
-        </div>
-
-        <div class="stat">
-            📝 Testes concluídos:
-            <strong id="progressTests">0</strong>
-        </div>
-    </div>
-
-</section>
-
-
-<!-- DISCIPLINAS -->
-
-<section id="subjects" class="screen">
-
-    <div class="card">
-        <h1>📚 Disciplinas</h1>
-
-        <div class="subject-grid">
-            <div class="subject">📐 Matemática</div>
-            <div class="subject">📖 Português</div>
-            <div class="subject">🇬🇧 Inglês</div>
-            <div class="subject">⚡ Física</div>
-            <div class="subject">🧪 Química</div>
-            <div class="subject">🧬 Biologia</div>
-            <div class="subject">🌍 Geografia</div>
-            <div class="subject">🏛️ História</div>
-        </div>
-    </div>
-
-</section>
-
-
-<!-- DEFINIÇÕES -->
-
-<section id="settings" class="screen">
-
-    <div class="card">
-        <h1>⚙️ Definições</h1>
-
-        <p>As tuas informações são guardadas neste dispositivo.</p>
-
-        <button class="secondary" onclick="resetApp()">
-            🔄 Reiniciar StudyAIz
+        <button class="primary" onclick="finishSetup()">
+            Começar a estudar 🚀
         </button>
     </div>
 
 </section>
-
-</main>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-<script>
-
-let currentTest = null;
-let testIndex = 0;
-let testScore = 0;
-
-
-/* MENU */
-
-function toggleMenu() {
-    document.getElementById("sidebar").classList.toggle("open");
-    document.getElementById("overlay").classList.toggle("show");
-}
-
-
-/* NAVEGAÇÃO */
-
-function showScreen(id) {
-
-    document.querySelectorAll(".screen").forEach(function(screen) {
-        screen.classList.remove("active");
-    });
-
-    const selected = document.getElementById(id);
-
-    if (selected) {
-        selected.classList.add("active");
-    }
-
-    document.getElementById("sidebar").classList.remove("open");
-    document.getElementById("overlay").classList.remove("show");
-
-    if (id === "progress") {
-        updateProgress();
-    }
-
-    if (id === "lab") {
-        setTimeout(initLab, 100);
-    }
-}
-
-
-/* CONFIGURAÇÃO */
-
-function nextStep(number) {
-
-    document.querySelectorAll(".setup-step").forEach(function(step) {
-        step.classList.remove("active");
-    });
-
-    document.getElementById("step" + number).classList.add("active");
-}
-
-
-function finishSetup() {
-
-    const country = document.getElementById("country").value;
-    const level = document.getElementById("level").value;
-    const year = document.getElementById("year").value;
-    const subject = document.getElementById("subject").value;
-
-    if (!country || !level || !year || !subject) {
-        alert("Preenche todas as opções antes de continuar.");
-        return;
-    }
-
-    const profile = {
-        country: country,
-        level: level,
-        year: year,
-        subject: subject
-    };
-
-    localStorage.setItem("studyaizProfile", JSON.stringify(profile));
-
-    document.getElementById("welcomeText").textContent =
-        "País: " + country +
-        " • " + level +
-        " • " + year +
-        " • " + subject;
-
-    showScreen("home");
-}
-
-
-/* ============================= */
-/* TUTOR IA - API VERDADEIRA */
-/* ============================= */
-
-async function sendAI() {
-
-    const input = document.getElementById("aiInput");
-    const button = document.getElementById("sendButton");
-
-    const question = input.value.trim();
-
-    if (!question) {
-        return;
-    }
-
-    addMessage(question, "user");
-
-    input.value = "";
-    input.disabled = true;
-    button.disabled = true;
-    button.textContent = "A responder...";
-
-    const loadingMessage = addMessage(
-        "🤖 Estou a pensar na resposta...",
-        "ai"
-    );
-
-    try {
-
-        const response = await fetch("/api/chat", {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                message: question
-            })
-
-        });
-
-        if (!response.ok) {
-            throw new Error("Erro do servidor: " + response.status);
-        }
-
-        const data = await response.json();
-
-        let answer =
-            data.reply ||
-            data.answer ||
-            data.message ||
-            data.content ||
-            data.output ||
-            (data.choices &&
-             data.choices[0] &&
-             data.choices[0].message &&
-             data.choices[0].message.content);
-
-        if (!answer) {
-            answer = "O servidor respondeu, mas não enviou uma resposta válida.";
-        }
-
-        loadingMessage.remove();
-
-        addMessage(answer, "ai");
-
-    } catch (error) {
-
-        loadingMessage.remove();
-
-        addMessage(
-            "❌ Não consegui ligar ao Tutor IA agora.\n\n" +
-            "Verifica se o servidor está online e se a rota /api/chat está funcionando.",
-            "ai"
-        );
-
-        console.error(error);
-
-    } finally {
-
-        input.disabled = false;
-        button.disabled = false;
-        button.textContent = "Enviar";
-
-        input.focus();
-    }
-}
-
-
-function addMessage(text, type) {
-
-    const chat = document.getElementById("chatBox");
-
-    const message = document.createElement("div");
-
-    message.className = "message " + type;
-
-    message.textContent = text;
-
-    chat.appendChild(message);
-
-    chat.scrollTop = chat.scrollHeight;
-
-    return message;
-}
-
-
-/* TEORIA */
-
-function loadTheory() {
-
-    const subject = document.getElementById("theorySubject").value;
-    const content = document.getElementById("theoryContent");
-
-    if (!subject) {
-        content.textContent = "Escolhe uma disciplina para começar.";
-        return;
-    }
-
-    const theories = {
-
-        "Matemática":
-            "📐 A Matemática estuda números, quantidades, formas, padrões e relações.",
-
-        "Português":
-            "📖 O Português envolve leitura, escrita, gramática, interpretação e comunicação.",
-
-        "Física":
-            "⚡ A Física estuda matéria, energia, movimento e as leis da natureza.",
-
-        "Química":
-            "🧪 A Química estuda a matéria, as suas propriedades e as suas transformações.",
-
-        "Biologia":
-            "🧬 A Biologia estuda os seres vivos e os processos da vida.",
-
-        "História":
-            "🏛️ A História estuda acontecimentos e sociedades do passado."
-    };
-
-    content.textContent = theories[subject] || "Conteúdo em preparação.";
-}
-
-
-/* TESTES */
-
-const testes = {
-
-    "Matemática": [
-        {
-            pergunta: "Quanto é 5 + 7?",
-            opcoes: ["10", "12", "13", "15"],
-            correta: "12"
-        },
-        {
-            pergunta: "Quanto é 8 × 3?",
-            opcoes: ["21", "24", "26", "28"],
-            correta: "24"
-        },
-        {
-            pergunta: "Quanto é 20 ÷ 4?",
-            opcoes: ["4", "5", "6", "8"],
-            correta: "5"
-        }
-    ],
-
-    "Português": [
-        {
-            pergunta: "Qual destas palavras é um verbo?",
-            opcoes: ["Casa", "Correr", "Azul", "Mesa"],
-            correta: "Correr"
-        }
-    ],
-
-    "Física": [
-        {
-            pergunta: "Qual é uma unidade de força?",
-            opcoes: ["Newton", "Metro", "Litro", "Segundo"],
-            correta: "Newton"
-        }
-    ],
-
-    "Biologia": [
-        {
-            pergunta: "Qual órgão bombeia o sangue?",
-            opcoes: ["Pulmão", "Coração", "Estômago", "Fígado"],
-            correta: "Coração"
-        }
-    ],
-
-    "História": [
-        {
-            pergunta: "Qual civilização construiu as pirâmides de Gizé?",
-            opcoes: ["Egípcia", "Romana", "Grega", "Inca"],
-            correta: "Egípcia"
-        }
-    ]
-};
-
-
-function startTest() {
-
-    const subject = document.getElementById("testSubject").value;
-
-    if (!subject) {
-        document.getElementById("testArea").innerHTML = "";
-        return;
-    }
-
-    currentTest = testes[subject];
-
-    testIndex = 0;
-    testScore = 0;
-
-    showQuestion();
-}
-
-
-function showQuestion() {
-
-    const area = document.getElementById("testArea");
-
-    if (!currentTest || testIndex >= currentTest.length) {
-
-        const oldPoints =
-            Number(localStorage.getItem("studyaizPoints") || 0);
-
-        const oldTests =
-            Number(localStorage.getItem("studyaizTests") || 0);
-
-        localStorage.setItem(
-            "studyaizPoints",
-            oldPoints + testScore
-        );
-
-        localStorage.setItem(
-            "studyaizTests",
-            oldTests + 1
-        );
-
-        area.innerHTML =
-            "<h2>🎉 Teste terminado!</h2>" +
-            "<p>Acertaste " + testScore +
-            " de " + currentTest.length + " perguntas.</p>";
-
-        return;
-    }
-
-    const question = currentTest[testIndex];
-
-    area.innerHTML =
-        "<h3>" +
-        (testIndex + 1) +
-        ". " +
-        question.pergunta +
-        "</h3>";
-
-    const options = document.createElement("div");
-
-    options.className = "options";
-
-    question.opcoes.forEach(function(option) {
-
-        const button = document.createElement("button");
-
-        button.className = "option";
-
-        button.textContent = option;
-
-        button.onclick = function() {
-    if (option === question.correta) {
-        testScore++;
-    }
-
-    testIndex++;
-    mostrarPergunta();
-};
-
-options.appendChild(button);
-});
-
-area.appendChild(options);
-}
