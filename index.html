@@ -1081,3 +1081,1101 @@ Economia
 </section>
 
 </div>
+<!-- =========================
+     JAVASCRIPT DO STUDYAIZ
+========================= -->
+
+<script>
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+let currentTest = null;
+let testIndex = 0;
+let testScore = 0;
+
+
+/* =========================
+   MENU
+========================= */
+
+function toggleMenu() {
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    sidebar.classList.toggle("open");
+    overlay.classList.toggle("show");
+}
+
+
+/* =========================
+   MUDAR DE TELA
+========================= */
+
+function showScreen(id) {
+
+    document.querySelectorAll(".screen").forEach(function(screen) {
+        screen.classList.remove("active");
+    });
+
+    const selected = document.getElementById(id);
+
+    if (selected) {
+        selected.classList.add("active");
+    }
+
+    document.getElementById("sidebar").classList.remove("open");
+    document.getElementById("overlay").classList.remove("show");
+
+    if (id === "progress") {
+        updateProgress();
+    }
+
+    if (id === "subjects") {
+        loadMyDisciplines();
+    }
+}
+
+
+/* =========================
+   PASSOS DA CONFIGURAÇÃO
+========================= */
+
+function nextStep(number) {
+
+    if (number === 2) {
+
+        const country = document.getElementById("country").value;
+
+        if (!country) {
+            alert("Escolhe primeiro o teu país.");
+            return;
+        }
+
+        updateEducationSystem();
+    }
+
+
+    if (number === 3) {
+
+        const level = document.getElementById("level").value;
+
+        if (!level) {
+            alert("Escolhe primeiro o teu nível de ensino.");
+            return;
+        }
+
+        updateCourses();
+    }
+
+
+    if (number === 4) {
+
+        const course = document.getElementById("course").value;
+
+        if (!course) {
+            alert("Escolhe primeiro o teu curso.");
+            return;
+        }
+    }
+
+
+    document.querySelectorAll(".setup-step").forEach(function(step) {
+        step.classList.remove("active");
+    });
+
+    const next = document.getElementById("step" + number);
+
+    if (next) {
+        next.classList.add("active");
+    }
+}
+
+
+/* =========================
+   SISTEMA EDUCACIONAL
+========================= */
+
+function updateEducationSystem() {
+
+    const country = document.getElementById("country").value;
+
+    const level = document.getElementById("level");
+
+    if (!country) return;
+
+    /*
+       Mantemos os níveis gerais.
+       Mais países e sistemas podem ser adicionados
+       posteriormente.
+    */
+
+    level.innerHTML = `
+        <option value="">Escolher nível</option>
+        <option value="basico">Ensino Básico / Fundamental</option>
+        <option value="medio">Ensino Médio / Secundário</option>
+        <option value="tecnico">Ensino Técnico e Profissional</option>
+        <option value="superior">Ensino Superior</option>
+        <option value="profissional">Cursos Profissionais</option>
+    `;
+
+    updateCourses();
+}
+
+
+/* =========================
+   CURSOS
+========================= */
+
+function updateCourses() {
+
+    const level = document.getElementById("level").value;
+    const course = document.getElementById("course");
+
+    course.innerHTML = "";
+
+    if (!level) {
+
+        course.innerHTML = `
+            <option value="">
+                Primeiro escolhe o nível
+            </option>
+        `;
+
+        return;
+    }
+
+
+    let courses = [];
+
+
+    if (level === "basico") {
+
+        courses = [
+            "Ensino Geral",
+            "Ciências",
+            "Humanidades",
+            "Tecnologias"
+        ];
+
+    }
+
+
+    else if (level === "medio") {
+
+        courses = [
+            "Ciências Físicas e Biológicas",
+            "Ciências Económicas e Jurídicas",
+            "Ciências Humanas",
+            "Línguas e Humanidades",
+            "Ciências e Tecnologias",
+            "Artes"
+        ];
+
+    }
+
+
+    else if (level === "tecnico") {
+
+        courses = [
+            "Informática",
+            "Eletrónica",
+            "Eletricidade",
+            "Mecânica",
+            "Construção Civil",
+            "Contabilidade",
+            "Gestão",
+            "Saúde",
+            "Agricultura",
+            "Turismo"
+        ];
+
+    }
+
+
+    else if (level === "superior") {
+
+        courses = [
+            "Engenharia Informática",
+            "Engenharia Civil",
+            "Engenharia Mecânica",
+            "Medicina",
+            "Enfermagem",
+            "Direito",
+            "Economia",
+            "Gestão",
+            "Contabilidade",
+            "Arquitetura",
+            "Educação",
+            "Biologia",
+            "Química",
+            "Física",
+            "Matemática",
+            "Comunicação",
+            "Agronomia"
+        ];
+
+    }
+
+
+    else if (level === "profissional") {
+
+        courses = [
+            "Programação",
+            "Design",
+            "Marketing Digital",
+            "Eletricidade",
+            "Mecânica",
+            "Fotografia",
+            "Administração",
+            "Empreendedorismo"
+        ];
+
+    }
+
+
+    course.innerHTML = `
+        <option value="">
+            Escolher curso
+        </option>
+    `;
+
+
+    courses.forEach(function(item) {
+
+        const option = document.createElement("option");
+
+        option.value = item;
+        option.textContent = item;
+
+        course.appendChild(option);
+
+    });
+}
+
+
+/* =========================
+   FINALIZAR PERFIL
+========================= */
+
+function finishSetup() {
+
+    const country =
+        document.getElementById("country").value;
+
+    const level =
+        document.getElementById("level").value;
+
+    const course =
+        document.getElementById("course").value;
+
+
+    const selected =
+        document.querySelectorAll(
+            "#disciplineSelection input:checked"
+        );
+
+
+    if (!country || !level || !course) {
+
+        alert(
+            "Preenche o país, nível e curso antes de continuar."
+        );
+
+        return;
+    }
+
+
+    if (selected.length === 0) {
+
+        alert(
+            "Escolhe pelo menos uma disciplina."
+        );
+
+        return;
+    }
+
+
+    const disciplines = [];
+
+    selected.forEach(function(input) {
+        disciplines.push(input.value);
+    });
+
+
+    const profile = {
+
+        country: country,
+        level: level,
+        course: course,
+        disciplines: disciplines
+
+    };
+
+
+    localStorage.setItem(
+        "studyaizProfile",
+        JSON.stringify(profile)
+    );
+
+
+    if (!localStorage.getItem("studyaizPoints")) {
+        localStorage.setItem("studyaizPoints", "0");
+    }
+
+
+    if (!localStorage.getItem("studyaizTests")) {
+        localStorage.setItem("studyaizTests", "0");
+    }
+
+
+    document.getElementById("welcomeText").textContent =
+        country +
+        " • " +
+        course +
+        " • " +
+        disciplines.join(", ");
+
+
+    updateDashboard();
+
+    loadMyDisciplines();
+
+    showScreen("home");
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard() {
+
+    const points =
+        Number(localStorage.getItem("studyaizPoints") || 0);
+
+    const tests =
+        Number(localStorage.getItem("studyaizTests") || 0);
+
+
+    const profile =
+        JSON.parse(
+            localStorage.getItem("studyaizProfile") || "null"
+        );
+
+
+    document.getElementById("points").textContent =
+        points;
+
+
+    document.getElementById("testsCompleted").textContent =
+        tests;
+
+
+    if (profile) {
+
+        document.getElementById("welcomeText").textContent =
+            profile.country +
+            " • " +
+            profile.course +
+            " • " +
+            profile.disciplines.join(", ");
+
+
+        document.getElementById("disciplineCount").textContent =
+            profile.disciplines.length;
+
+    }
+}
+
+
+/* =========================
+   MINHAS DISCIPLINAS
+========================= */
+
+function loadMyDisciplines() {
+
+    const container =
+        document.getElementById("myDisciplines");
+
+
+    const profile =
+        JSON.parse(
+            localStorage.getItem("studyaizProfile") || "null"
+        );
+
+
+    if (!profile) {
+
+        container.innerHTML =
+            "<p>Configura primeiro o teu perfil.</p>";
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    profile.disciplines.forEach(function(subject) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "discipline selected";
+
+        card.innerHTML = `
+            <div style="font-size:30px;">📚</div>
+            <strong>${subject}</strong>
+            <p style="color:#64748b;">
+                Estudar ${subject}
+            </p>
+        `;
+
+
+        card.onclick = function() {
+
+            document.getElementById(
+                "theorySubject"
+            ).value = subject;
+
+            showScreen("theory");
+
+            loadTheory();
+        };
+
+
+        container.appendChild(card);
+
+    });
+}
+
+
+/* =========================
+   TUTOR IA
+========================= */
+
+async function sendAI() {
+
+    const input =
+        document.getElementById("aiInput");
+
+    const button =
+        document.getElementById("sendButton");
+
+
+    const question =
+        input.value.trim();
+
+
+    if (!question) return;
+
+
+    addMessage(question, "user");
+
+
+    input.value = "";
+    input.disabled = true;
+    button.disabled = true;
+    button.textContent = "A responder...";
+
+
+    const loading =
+        addMessage(
+            "🤖 Estou a pensar...",
+            "ai"
+        );
+
+
+    try {
+
+        const response =
+            await fetch("/api/chat", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    message: question
+                })
+
+            });
+
+
+        if (!response.ok) {
+            throw new Error(
+                "Servidor respondeu com erro."
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const answer =
+            data.reply ||
+            data.answer ||
+            data.message ||
+            data.content ||
+            data.output;
+
+
+        loading.remove();
+
+
+        if (answer) {
+
+            addMessage(
+                answer,
+                "ai"
+            );
+
+        } else {
+
+            addMessage(
+                "O servidor não enviou uma resposta válida.",
+                "ai"
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        loading.remove();
+
+
+        addMessage(
+            "❌ Não consegui ligar ao Tutor IA.\n\n" +
+            "Verifica se o servidor StudyAIz está online e se a rota /api/chat está configurada.",
+            "ai"
+        );
+
+
+        console.error(error);
+
+    }
+
+
+    finally {
+
+        input.disabled = false;
+        button.disabled = false;
+        button.textContent = "Enviar";
+
+        input.focus();
+
+    }
+}
+
+
+/* =========================
+   MENSAGEM DO CHAT
+========================= */
+
+function addMessage(text, type) {
+
+    const chat =
+        document.getElementById("chatBox");
+
+
+    const message =
+        document.createElement("div");
+
+
+    message.className =
+        "message " + type;
+
+
+    message.textContent =
+        text;
+
+
+    chat.appendChild(message);
+
+
+    chat.scrollTop =
+        chat.scrollHeight;
+
+
+    return message;
+}
+
+
+/* =========================
+   TEORIA
+========================= */
+
+function loadTheory() {
+
+    const subject =
+        document.getElementById(
+            "theorySubject"
+        ).value;
+
+
+    const content =
+        document.getElementById(
+            "theoryContent"
+        );
+
+
+    if (!subject) {
+
+        content.textContent =
+            "Escolhe uma disciplina para começar.";
+
+        return;
+    }
+
+
+    const theories = {
+
+        "Matemática":
+            "📐 Matemática estuda números, operações, álgebra, geometria, funções e relações matemáticas.",
+
+        "Português":
+            "📖 Português envolve leitura, escrita, gramática, interpretação de textos e comunicação.",
+
+        "Inglês":
+            "🇬🇧 Inglês desenvolve vocabulário, gramática, leitura, escrita, compreensão e comunicação.",
+
+        "Física":
+            "⚡ Física estuda movimento, forças, energia, eletricidade, ondas e as leis da natureza.",
+
+        "Química":
+            "🧪 Química estuda a matéria, os elementos, compostos, reações e transformações químicas.",
+
+        "Biologia":
+            "🧬 Biologia estuda os seres vivos, células, genética, evolução e ecossistemas.",
+
+        "História":
+            "🏛️ História estuda sociedades, acontecimentos e transformações ao longo do tempo.",
+
+        "Geografia":
+            "🌍 Geografia estuda o espaço geográfico, população, ambiente, clima e território.",
+
+        "Informática":
+            "💻 Informática envolve computadores, programação, sistemas, redes e tecnologia.",
+
+        "Economia":
+            "💰 Economia estuda produção, consumo, mercados, recursos e organização económica."
+
+    };
+
+
+    content.innerHTML = `
+        <h2>${subject}</h2>
+        <p style="font-size:18px;line-height:1.8;">
+            ${theories[subject] || 
+            "Conteúdo desta disciplina em preparação."}
+        </p>
+    `;
+}
+
+
+/* =========================
+   BANCO DE TESTES
+========================= */
+
+const testes = {
+
+    "Matemática": [
+
+        {
+            pergunta: "Quanto é 5 + 7?",
+            opcoes: ["10", "12", "13", "15"],
+            correta: "12"
+        },
+
+        {
+            pergunta: "Quanto é 8 × 3?",
+            opcoes: ["21", "24", "26", "28"],
+            correta: "24"
+        },
+
+        {
+            pergunta: "Quanto é 20 ÷ 4?",
+            opcoes: ["4", "5", "6", "8"],
+            correta: "5"
+        }
+
+    ],
+
+
+    "Português": [
+
+        {
+            pergunta: "Qual destas palavras é um verbo?",
+            opcoes: [
+                "Casa",
+                "Correr",
+                "Azul",
+                "Mesa"
+            ],
+            correta: "Correr"
+        }
+
+    ],
+
+
+    "Física": [
+
+        {
+            pergunta: "Qual é uma unidade de força?",
+            opcoes: [
+                "Newton",
+                "Metro",
+                "Litro",
+                "Segundo"
+            ],
+            correta: "Newton"
+        }
+
+    ],
+
+
+    "Biologia": [
+
+        {
+            pergunta: "Qual órgão bombeia o sangue?",
+            opcoes: [
+                "Pulmão",
+                "Coração",
+                "Estômago",
+                "Fígado"
+            ],
+            correta: "Coração"
+        }
+
+    ],
+
+
+    "História": [
+
+        {
+            pergunta:
+                "Qual civilização construiu as pirâmides de Gizé?",
+
+            opcoes: [
+                "Egípcia",
+                "Romana",
+                "Grega",
+                "Inca"
+            ],
+
+            correta: "Egípcia"
+        }
+
+    ]
+
+};
+
+
+/* =========================
+   INICIAR TESTE
+========================= */
+
+function startTest() {
+
+    const subject =
+        document.getElementById(
+            "testSubject"
+        ).value;
+
+
+    const area =
+        document.getElementById(
+            "testArea"
+        );
+
+
+    if (!subject) {
+
+        area.innerHTML =
+            "Escolhe uma disciplina para começar.";
+
+        return;
+    }
+
+
+    currentTest =
+        testes[subject];
+
+
+    if (!currentTest) {
+
+        area.innerHTML =
+            "📝 Ainda estamos a preparar testes para esta disciplina.";
+
+        return;
+    }
+
+
+    testIndex = 0;
+    testScore = 0;
+
+
+    showQuestion();
+}
+
+
+/* =========================
+   MOSTRAR PERGUNTA
+========================= */
+
+function showQuestion() {
+
+    const area =
+        document.getElementById(
+            "testArea"
+        );
+
+
+    if (!currentTest) return;
+
+
+    if (testIndex >= currentTest.length) {
+
+        const total =
+            currentTest.length;
+
+
+        const oldPoints =
+            Number(
+                localStorage.getItem(
+                    "studyaizPoints"
+                ) || 0
+            );
+
+
+        const oldTests =
+            Number(
+                localStorage.getItem(
+                    "studyaizTests"
+                ) || 0
+            );
+
+
+        localStorage.setItem(
+            "studyaizPoints",
+            String(oldPoints + testScore)
+        );
+
+
+        localStorage.setItem(
+            "studyaizTests",
+            String(oldTests + 1)
+        );
+
+
+        area.innerHTML = `
+
+            <h2>🎉 Teste concluído!</h2>
+
+            <p style="font-size:20px;">
+                Acertaste
+                <strong>${testScore}</strong>
+                de
+                <strong>${total}</strong>
+                perguntas.
+            </p>
+
+            <p>
+                ⭐ Ganhaste ${testScore} pontos!
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="startTest()"
+            >
+                🔄 Fazer novamente
+            </button>
+
+        `;
+
+
+        updateDashboard();
+        updateProgress();
+
+        return;
+    }
+
+
+    const question =
+        currentTest[testIndex];
+
+
+    area.innerHTML = `
+
+        <h2>
+            Pergunta ${testIndex + 1}
+            de
+            ${currentTest.length}
+        </h2>
+
+        <h3 style="
+            font-size:22px;
+            margin:25px 0;
+        ">
+            ${question.pergunta}
+        </h3>
+
+        <div
+            id="optionsContainer"
+            class="cards"
+        ></div>
+
+    `;
+
+
+    const optionsContainer =
+        document.getElementById(
+            "optionsContainer"
+        );
+
+
+    question.opcoes.forEach(function(option) {
+
+        const button =
+            document.createElement("button");
+
+
+        button.className =
+            "option";
+
+
+        button.textContent =
+            option;
+
+
+        button.style.cssText = `
+            width:100%;
+            padding:20px;
+            border:2px solid #e2e8f0;
+            border-radius:16px;
+            background:white;
+            font-size:17px;
+            cursor:pointer;
+        `;
+
+
+        button.onclick = function() {
+
+            const buttons =
+                optionsContainer.querySelectorAll(
+                    "button"
+                );
+
+
+            buttons.forEach(function(btn) {
+                btn.disabled = true;
+            });
+
+
+            if (option === question.correta) {
+
+                testScore++;
+
+                button.textContent =
+                    "✅ " + option;
+
+                button.style.borderColor =
+                    "#22c55e";
+
+            }
+
+            else {
+
+                button.textContent =
+                    "❌ " + option;
+
+                button.style.borderColor =
+                    "#ef4444";
+
+
+                buttons.forEach(function(btn) {
+
+                    if (
+                        btn.textContent ===
+                        question.correta
+                    ) {
+
+                        btn.textContent =
+                            "✅ " + btn.textContent;
+
+                        btn.style.borderColor =
+                            "#22c55e";
+                    }
+
+                });
+
+            }
+
+
+            setTimeout(function() {
+
+                testIndex++;
+
+                showQuestion();
+
+            }, 900);
+
+        };
+
+
+        optionsContainer.appendChild(button);
+
+    });
+
+}
+
+
+/* =========================
+   PROGRESSO
+========================= */
+
+function updateProgress() {
+
+    const points =
+        Number(
+            localStorage.getItem(
+                "studyaizPoints"
+            ) || 0
+        );
+
+
+    const tests =
+        Number(
+            localStorage.getItem(
+                "studyaizTests"
+            ) || 0
+        );
+
+
+    document.getElementById(
+        "progressPoints"
+    ).textContent = points;
+
+
+    document.getElementById(
+        "progressTests"
+    ).textContent = tests;
+
+
+    document.getElementById(
+        "progressLevel"
+    ).textContent =
+        Math.floor(points / 10) + 1;
+}
+
+
+/* =========================
+   LABORATÓ
