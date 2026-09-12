@@ -58,6 +58,10 @@ const testes = {
 };
 
 
+/* =========================
+   VARIÁVEIS DO TESTE
+========================= */
+
 let perguntasAtuais = [];
 let perguntaAtual = 0;
 let pontuacao = 0;
@@ -75,42 +79,30 @@ function iniciarTeste() {
         document.getElementById("disciplinaTeste") ||
         document.getElementById("disciplina");
 
-    const disciplina =
-        campo ? campo.value.trim() : "";
-
+    const disciplina = campo
+        ? campo.value.trim()
+        : "";
 
     if (!disciplina) {
-
-        alert("Escreve a matéria que queres testar.");
-
+        alert("Escolhe uma matéria para começar.");
         return;
     }
-
 
     if (!testes[disciplina]) {
-
         alert(
-            "Ainda não temos perguntas preparadas para esta matéria. " +
-            "Vamos adicionar mais matérias em breve!"
+            "Ainda não temos perguntas preparadas para esta matéria."
         );
-
         return;
     }
-
 
     perguntasAtuais = [...testes[disciplina]];
 
     perguntaAtual = 0;
-
     pontuacao = 0;
-
     respostasErradas = [];
-
     inicioTeste = Date.now();
 
-
     mostrarPergunta();
-
 }
 
 
@@ -123,24 +115,20 @@ function mostrarPergunta() {
     const area =
         document.getElementById("teste");
 
-
-    if (!area) return;
-
-
-    if (perguntaAtual >= perguntasAtuais.length) {
-
-        mostrarResultado();
-
+    if (!area) {
+        console.error("Elemento #teste não encontrado.");
         return;
     }
 
+    if (perguntaAtual >= perguntasAtuais.length) {
+        mostrarResultado();
+        return;
+    }
 
     const pergunta =
         perguntasAtuais[perguntaAtual];
 
-
     let html = `
-
         <div class="pergunta">
 
             <p>
@@ -154,34 +142,31 @@ function mostrarPergunta() {
                 ${pergunta.pergunta}
             </h3>
 
+            <div class="opcoes">
     `;
 
+    pergunta.opcoes.forEach((opcao) => {
 
-    pergunta.opcoes.forEach(opcao => {
+        const opcaoSegura =
+            opcao.replace(/'/g, "\\'");
 
         html += `
-
             <button
                 class="opcao"
-                onclick="responder('${opcao.replace(/'/g, "\\'")}')"
+                onclick="responder('${opcaoSegura}')"
             >
                 ${opcao}
             </button>
-
         `;
-
     });
 
-
     html += `
+            </div>
 
         </div>
-
     `;
 
-
     area.innerHTML = html;
-
 }
 
 
@@ -194,6 +179,7 @@ function responder(resposta) {
     const pergunta =
         perguntasAtuais[perguntaAtual];
 
+    if (!pergunta) return;
 
     if (resposta === pergunta.correta) {
 
@@ -202,22 +188,15 @@ function responder(resposta) {
     } else {
 
         respostasErradas.push({
-
             pergunta: pergunta.pergunta,
-
             resposta: resposta,
-
             correta: pergunta.correta
-
         });
-
     }
-
 
     perguntaAtual++;
 
     mostrarPergunta();
-
 }
 
 
@@ -230,65 +209,54 @@ function mostrarResultado() {
     const area =
         document.getElementById("teste");
 
+    if (!area) return;
 
     const tempo =
-        Math.round((Date.now() - inicioTeste) / 1000);
-
+        inicioTeste
+            ? Math.round((Date.now() - inicioTeste) / 1000)
+            : 0;
 
     const minutos =
         Math.floor(tempo / 60);
 
-
     const segundos =
         tempo % 60;
-
 
     const total =
         perguntasAtuais.length;
 
-
     const percentagem =
-        Math.round((pontuacao / total) * 100);
-
+        total > 0
+            ? Math.round((pontuacao / total) * 100)
+            : 0;
 
     let classificacao = "";
-
     let mensagem = "";
-
 
     if (percentagem >= 90) {
 
         classificacao = "🏆 Excelente!";
-
-        mensagem =
-            "Dominas muito bem este conteúdo.";
+        mensagem = "Dominas muito bem este conteúdo.";
 
     } else if (percentagem >= 70) {
 
         classificacao = "🌟 Muito bom!";
-
-        mensagem =
-            "Tens um ótimo desempenho.";
+        mensagem = "Tens um ótimo desempenho.";
 
     } else if (percentagem >= 50) {
 
         classificacao = "💪 Bom trabalho!";
-
         mensagem =
             "Continua a estudar para melhorar ainda mais.";
 
     } else {
 
         classificacao = "📚 Continua a tentar!";
-
         mensagem =
             "Revê a matéria e tenta novamente.";
-
     }
 
-
     area.innerHTML = `
-
         <div class="resultado">
 
             <h2>${classificacao}</h2>
@@ -297,22 +265,175 @@ function mostrarResultado() {
                 ${percentagem}%
             </div>
 
-            <p>
-                ${mensagem}
-            </p>
-
+            <p>${mensagem}</p>
 
             <div class="estatisticas">
 
                 <div class="estatistica">
-
                     <strong>${pontuacao}</strong>
-
                     <span>✅ Certas</span>
-
                 </div>
 
+                <div class="estatistica">
+                    <strong>${total - pontuacao}</strong>
+                    <span>❌ Erradas</span>
+                </div>
 
                 <div class="estatistica">
+                    <strong>${minutos}m ${segundos}s</strong>
+                    <span>⏱️ Tempo</span>
+                </div>
 
-                    <strong>${total
+            </div>
+
+            <button
+                class="btn"
+                onclick="reiniciarTeste()"
+            >
+                🔄 Fazer novamente
+            </button>
+
+        </div>
+    `;
+}
+
+
+/* =========================
+   REINICIAR TESTE
+========================= */
+
+function reiniciarTeste() {
+
+    perguntaAtual = 0;
+    pontuacao = 0;
+    respostasErradas = [];
+
+    iniciarTeste();
+}
+
+
+/* =========================
+   BOTÃO CONTINUAR
+========================= */
+
+function continuar() {
+
+    const inicio =
+        document.getElementById("inicio");
+
+    const configuracao =
+        document.getElementById("configuracao");
+
+    const tutor =
+        document.getElementById("tutor");
+
+    if (inicio) {
+        inicio.style.display = "none";
+    }
+
+    if (configuracao) {
+        configuracao.style.display = "block";
+    }
+
+    if (tutor) {
+        tutor.style.display = "none";
+    }
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+function abrirMenu() {
+
+    const menu =
+        document.getElementById("menu");
+
+    if (!menu) {
+        console.warn("Elemento #menu não encontrado.");
+        return;
+    }
+
+    if (
+        menu.style.display === "none" ||
+        menu.style.display === ""
+    ) {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+}
+
+
+/* =========================
+   FECHAR MENU
+========================= */
+
+function fecharMenu() {
+
+    const menu =
+        document.getElementById("menu");
+
+    if (menu) {
+        menu.style.display = "none";
+    }
+}
+
+
+/* =========================
+   VOLTAR AO INÍCIO
+========================= */
+
+function voltarInicio() {
+
+    const inicio =
+        document.getElementById("inicio");
+
+    const configuracao =
+        document.getElementById("configuracao");
+
+    const teste =
+        document.getElementById("teste");
+
+    const tutor =
+        document.getElementById("tutor");
+
+    if (inicio) inicio.style.display = "block";
+    if (configuracao) configuracao.style.display = "none";
+    if (teste) teste.innerHTML = "";
+    if (tutor) tutor.style.display = "none";
+
+    fecharMenu();
+}
+
+
+/* =========================
+   QUANDO A PÁGINA CARREGAR
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("StudyAIz carregado com sucesso! 🤖");
+
+    const botaoContinuar =
+        document.getElementById("continuar");
+
+    if (botaoContinuar) {
+        botaoContinuar.addEventListener(
+            "click",
+            continuar
+        );
+    }
+
+    const botaoMenu =
+        document.getElementById("menuBtn");
+
+    if (botaoMenu) {
+        botaoMenu.addEventListener(
+            "click",
+            abrirMenu
+        );
+    }
+
+});
