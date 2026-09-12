@@ -1040,4 +1040,568 @@ select{
             Reiniciar configuração
         </button>
 
-    <a
+        </div>
+
+</section>
+
+</main>
+
+<script>
+
+/* ================= MENU ================= */
+
+function toggleMenu(){
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    sidebar.classList.toggle("open");
+    overlay.classList.toggle("show");
+}
+
+
+/* ================= NAVEGAÇÃO ================= */
+
+function showScreen(id){
+
+    document.querySelectorAll(".screen").forEach(function(screen){
+        screen.classList.remove("active");
+    });
+
+    const screen = document.getElementById(id);
+
+    if(screen){
+        screen.classList.add("active");
+    }
+
+    toggleMenu();
+
+}
+
+
+/* ================= ONBOARDING ================= */
+
+let currentStep = 1;
+
+
+function showStep(step){
+
+    document.querySelectorAll(".step").forEach(function(item){
+        item.classList.remove("active");
+    });
+
+    const selected = document.getElementById("step" + step);
+
+    if(selected){
+        selected.classList.add("active");
+    }
+
+    currentStep = step;
+
+    for(let i = 1; i <= 4; i++){
+
+        const dot = document.getElementById("dot" + i);
+
+        if(dot){
+            dot.classList.toggle("active", i <= step);
+        }
+
+    }
+}
+
+
+function nextStep(step){
+
+    if(step === 1){
+
+        const country =
+            document.getElementById("country").value;
+
+        if(country === ""){
+
+            alert("Escolhe o teu país primeiro.");
+
+            return;
+        }
+    }
+
+
+    if(step === 2){
+
+        const level =
+            document.getElementById("level").value;
+
+        if(level === ""){
+
+            alert("Escolhe o teu nível de ensino.");
+
+            return;
+        }
+    }
+
+
+    if(step === 3){
+
+        const grade =
+            document.getElementById("grade").value;
+
+        if(grade === ""){
+
+            alert("Escolhe a tua classe ou ano.");
+
+            return;
+        }
+    }
+
+
+    showStep(step + 1);
+}
+
+
+function prevStep(step){
+
+    showStep(step - 1);
+
+}
+
+
+/* ================= FINALIZAR ================= */
+
+function finishSetup(){
+
+    const country =
+        document.getElementById("country").value;
+
+    const level =
+        document.getElementById("level").value;
+
+    const grade =
+        document.getElementById("grade").value;
+
+    const language =
+        document.getElementById("language").value;
+
+
+    if(
+        country === "" ||
+        level === "" ||
+        grade === "" ||
+        language === ""
+    ){
+
+        alert("Preenche todas as opções.");
+
+        return;
+    }
+
+
+    const profile = {
+
+        country: country,
+        level: level,
+        grade: grade,
+        language: language
+
+    };
+
+
+    localStorage.setItem(
+        "studyaizProfile",
+        JSON.stringify(profile)
+    );
+
+
+    document.getElementById(
+        "onboarding"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "app"
+    ).style.display = "block";
+
+
+    updateProfile();
+
+}
+
+
+/* ================= PERFIL ================= */
+
+function updateProfile(){
+
+    const saved =
+        localStorage.getItem("studyaizProfile");
+
+    if(!saved) return;
+
+
+    const profile =
+        JSON.parse(saved);
+
+
+    const info =
+        document.getElementById("profileInfo");
+
+
+    if(info){
+
+        info.innerHTML =
+        "🌍 País: <strong>" + profile.country +
+        "</strong><br><br>" +
+
+        "🎓 Nível: <strong>" + profile.level +
+        "</strong><br><br>" +
+
+        "📚 Classe/Ano: <strong>" + profile.grade +
+        "</strong><br><br>" +
+
+        "🌐 Idioma: <strong>" + profile.language +
+        "</strong>";
+
+    }
+
+}
+
+
+/* ================= REINICIAR ================= */
+
+function resetApp(){
+
+    localStorage.removeItem(
+        "studyaizProfile"
+    );
+
+    location.reload();
+
+}
+
+
+/* ================= TESTES ================= */
+
+const questions = [
+
+    {
+        q: "Quanto é 3/4 de 20?",
+        options: ["10", "12", "15", "18"],
+        answer: "15"
+    },
+
+    {
+        q: "Se x + 5 = 12, quanto vale x?",
+        options: ["5", "6", "7", "8"],
+        answer: "7"
+    },
+
+    {
+        q: "Quantas faces possui um cubo?",
+        options: ["4", "6", "8", "12"],
+        answer: "6"
+    }
+
+];
+
+
+let questionIndex = 0;
+let score = 0;
+let answered = false;
+
+
+function loadQuestion(){
+
+    const question =
+        questions[questionIndex];
+
+
+    document.getElementById(
+        "questionText"
+    ).textContent = question.q;
+
+
+    const options =
+        document.getElementById("options");
+
+
+    options.innerHTML = "";
+
+
+    question.options.forEach(function(option){
+
+        const button =
+            document.createElement("button");
+
+
+        button.className = "option";
+
+        button.textContent = option;
+
+
+        button.onclick = function(){
+
+            answerQuestion(
+                button,
+                option
+            );
+
+        };
+
+
+        options.appendChild(button);
+
+    });
+
+}
+
+
+function answerQuestion(button, answer){
+
+    if(answered) return;
+
+    answered = true;
+
+
+    const question =
+        questions[questionIndex];
+
+
+    if(answer === question.answer){
+
+        button.classList.add("correct");
+
+        score++;
+
+        document.getElementById(
+            "testResult"
+        ).textContent =
+            "✅ Muito bem! Resposta correta.";
+
+    }
+    else{
+
+        button.classList.add("wrong");
+
+        document.getElementById(
+            "testResult"
+        ).textContent =
+            "❌ Ainda não. Revê a teoria deste assunto.";
+
+    }
+
+}
+
+
+function nextQuestion(){
+
+    if(!answered){
+
+        alert(
+            "Responde primeiro à questão."
+        );
+
+        return;
+    }
+
+
+    questionIndex++;
+
+
+    if(questionIndex >= questions.length){
+
+        document.getElementById(
+            "questionText"
+        ).textContent =
+            "🎉 Teste terminado!";
+
+
+        document.getElementById(
+            "options"
+        ).innerHTML = "";
+
+
+        document.getElementById(
+            "testResult"
+        ).textContent =
+            "Resultado: " +
+            score +
+            "/" +
+            questions.length;
+
+
+        return;
+
+    }
+
+
+    answered = false;
+
+
+    document.getElementById(
+        "testResult"
+    ).textContent = "";
+
+
+    loadQuestion();
+
+}
+
+
+/* ================= TEORIA ================= */
+
+function loadChapter(number){
+
+    const book =
+        document.getElementById("bookContent");
+
+
+    if(number === 1){
+
+        book.innerHTML = `
+
+            <h2>Frações</h2>
+
+            <p>
+                Uma fração representa uma quantidade dividida
+                em partes iguais.
+            </p>
+
+            <div class="example">
+
+                <h3>📌 Exemplo</h3>
+
+                <p>
+                    Em 3/4, o 3 é o numerador e o 4 é o denominador.
+                </p>
+
+            </div>
+
+            <h3>🧠 Resumo</h3>
+
+            <div class="summary">
+
+                <ul>
+                    <li>Numerador = partes consideradas.</li>
+                    <li>Denominador = partes iguais.</li>
+                </ul>
+
+            </div>
+
+        `;
+
+    }
+
+
+    if(number === 2){
+
+        book.innerHTML = `
+
+            <h2>Equações</h2>
+
+            <p>
+                Uma equação é uma igualdade matemática que
+                contém uma ou mais incógnitas.
+            </p>
+
+            <div class="example">
+
+                <h3>📌 Exemplo</h3>
+
+                <p>
+                    x + 5 = 12
+                </p>
+
+            </div>
+
+            <h3>🧠 Resumo</h3>
+
+            <div class="summary">
+
+                <p>
+                    O objetivo é descobrir o valor da incógnita
+                    que torna a igualdade verdadeira.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    if(number === 3){
+
+        book.innerHTML = `
+
+            <h2>Geometria</h2>
+
+            <p>
+                A geometria estuda formas, tamanhos, posições
+                e propriedades das figuras.
+            </p>
+
+            <div class="example">
+
+                <h3>📌 Exemplo</h3>
+
+                <p>
+                    Um cubo possui 6 faces, 12 arestas e
+                    8 vértices.
+                </p>
+
+            </div>
+
+            <h3>🧠 Resumo</h3>
+
+            <div class="summary">
+
+                <p>
+                    Área mede uma superfície e volume mede
+                    o espaço ocupado por um sólido.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ================= INICIALIZAÇÃO ================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const saved =
+            localStorage.getItem(
+                "studyaizProfile"
+            );
+
+
+        if(saved){
+
+            document.getElementById(
+                "onboarding"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "app"
+            ).style.display = "block";
+
+
+            updateProfile();
+
+        }
+
+
+        loadQuestion();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
