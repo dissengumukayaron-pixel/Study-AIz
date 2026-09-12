@@ -609,3 +609,475 @@ Economia
 
 </div>
 </section>
+<!-- =========================
+     TELA INICIAL
+========================= -->
+
+<section id="home" class="screen">
+
+    <div class="hero">
+        <h1>Olá! 👋 Bem-vindo ao StudyAIz</h1>
+
+        <p id="welcomeText">
+            A tua aprendizagem inteligente começa aqui.
+        </p>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-icon">⭐</div>
+            <strong id="points">0</strong>
+            <span>Pontos</span>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">📝</div>
+            <strong id="testsCompleted">0</strong>
+            <span>Testes concluídos</span>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">📚</div>
+            <strong id="disciplineCount">0</strong>
+            <span>Disciplinas</span>
+        </div>
+
+    </div>
+
+    <h2 class="section-title">🚀 O que queres estudar?</h2>
+
+    <div class="cards">
+
+        <div class="card" onclick="showScreen('ai')">
+            <div class="card-icon">🤖</div>
+            <h3>Tutor IA</h3>
+            <p>
+                Faz perguntas e aprende com um tutor inteligente.
+            </p>
+        </div>
+
+        <div class="card" onclick="showScreen('theory')">
+            <div class="card-icon">📖</div>
+            <h3>Teoria</h3>
+            <p>
+                Aprende conteúdos organizados por disciplina.
+            </p>
+        </div>
+
+        <div class="card" onclick="showScreen('tests')">
+            <div class="card-icon">📝</div>
+            <h3>Testes</h3>
+            <p>
+                Testa os teus conhecimentos e ganha pontos.
+            </p>
+        </div>
+
+        <div class="card" onclick="showScreen('lab')">
+            <div class="card-icon">🧪</div>
+            <h3>Laboratório 3D</h3>
+            <p>
+                Explora modelos científicos interativos em 3D.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TUTOR IA
+========================= -->
+
+<section id="ai" class="screen">
+
+    <h1 class="section-title">🤖 Tutor IA</h1>
+
+    <div class="chat">
+
+        <div id="chatBox" class="chat-box">
+
+            <div class="message ai">
+                Olá! 👋 Sou o Tutor IA do StudyAIz.
+                <br><br>
+                Podes perguntar-me sobre qualquer uma das tuas disciplinas.
+            </div>
+
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                id="aiInput"
+                type="text"
+                placeholder="Escreve a tua pergunta..."
+                onkeydown="if(event.key === 'Enter') sendAI()"
+            >
+
+            <button
+                id="sendButton"
+                onclick="sendAI()"
+            >
+                Enviar
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TEORIA
+========================= -->
+
+<section id="theory" class="screen">
+
+    <h1 class="section-title">📖 Centro de Teoria</h1>
+
+    <div class="card">
+
+        <h3>Escolhe uma disciplina</h3>
+
+        <select id="theorySubject" onchange="loadTheory()">
+
+            <option value="">
+                Selecionar disciplina
+            </option>
+
+            <option value="Matemática">
+                📐 Matemática
+            </option>
+
+            <option value="Português">
+                📖 Português
+            </option>
+
+            <option value="Inglês">
+                🇬🇧 Inglês
+            </option>
+
+            <option value="Física">
+                ⚡ Física
+            </option>
+
+            <option value="Química">
+                🧪 Química
+            </option>
+
+            <option value="Biologia">
+                🧬 Biologia
+            </option>
+
+            <option value="História">
+                🏛️ História
+            </option>
+
+            <option value="Geografia">
+                🌍 Geografia
+            </option>
+
+            <option value="Informática">
+                💻 Informática
+            </option>
+
+        </select>
+
+    </div>
+
+    <div
+        id="theoryContent"
+        class="card"
+        style="margin-top:22px;"
+    >
+        Escolhe uma disciplina para começar.
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TESTES
+========================= -->
+
+<section id="tests" class="screen">
+
+    <h1 class="section-title">📝 Centro de Testes</h1>
+
+    <div class="card">
+
+        <h3>Escolhe uma disciplina</h3>
+
+        <select id="testSubject" onchange="startTest()">
+
+            <option value="">
+                Selecionar disciplina
+            </option>
+
+            <option value="Matemática">
+                📐 Matemática
+            </option>
+
+            <option value="Português">
+                📖 Português
+            </option>
+
+            <option value="Física">
+                ⚡ Física
+            </option>
+
+            <option value="Biologia">
+                🧬 Biologia
+            </option>
+
+            <option value="História">
+                🏛️ História
+            </option>
+
+        </select>
+
+    </div>
+
+    <div
+        id="testArea"
+        class="card"
+        style="margin-top:22px;"
+    >
+        Escolhe uma disciplina para começar o teste.
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LABORATÓRIO 3D
+========================= -->
+
+<section id="lab" class="screen">
+
+    <h1 class="section-title">🧪 Laboratório 3D</h1>
+
+    <div class="hero">
+
+        <h1>🔬 Explora em 3D</h1>
+
+        <p>
+            Aprende ciência explorando modelos
+            tridimensionais interativos.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-icon">🧠</div>
+            <h3>Cérebro</h3>
+            <p>
+                Explora as principais regiões do cérebro.
+            </p>
+            <button
+                class="primary-btn"
+                onclick="open3D('brain')"
+            >
+                Explorar
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🫀</div>
+            <h3>Coração</h3>
+            <p>
+                Aprende sobre as estruturas principais do coração.
+            </p>
+            <button
+                class="primary-btn"
+                onclick="open3D('heart')"
+            >
+                Explorar
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🫁</div>
+            <h3>Pulmões</h3>
+            <p>
+                Explora o sistema respiratório.
+            </p>
+            <button
+                class="primary-btn"
+                onclick="open3D('lungs')"
+            >
+                Explorar
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🧬</div>
+            <h3>Célula</h3>
+            <p>
+                Conhece as estruturas de uma célula.
+            </p>
+            <button
+                class="primary-btn"
+                onclick="open3D('cell')"
+            >
+                Explorar
+            </button>
+        </div>
+
+    </div>
+
+    <div
+        id="threeContainer"
+        class="card"
+        style="
+            margin-top:25px;
+            min-height:450px;
+            display:none;
+            text-align:center;
+        "
+    >
+
+        <h2 id="modelTitle">Modelo 3D</h2>
+
+        <div
+            id="threeScene"
+            style="
+                width:100%;
+                height:350px;
+                border-radius:20px;
+                overflow:hidden;
+                background:#0f172a;
+            "
+        ></div>
+
+        <p id="modelDescription">
+            Modelo 3D interativo.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROGRESSO
+========================= -->
+
+<section id="progress" class="screen">
+
+    <h1 class="section-title">📊 O teu progresso</h1>
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-icon">⭐</div>
+            <strong id="progressPoints">0</strong>
+            <span>Pontos acumulados</span>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">📝</div>
+            <strong id="progressTests">0</strong>
+            <span>Testes realizados</span>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">🎯</div>
+            <strong id="progressLevel">1</strong>
+            <span>Nível</span>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>📈 Evolução</h2>
+
+        <p>
+            Continua a estudar, fazer testes e explorar
+            o Laboratório 3D para evoluir.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DISCIPLINAS
+========================= -->
+
+<section id="subjects" class="screen">
+
+    <h1 class="section-title">📚 Minhas disciplinas</h1>
+
+    <div
+        id="myDisciplines"
+        class="discipline-grid"
+    ></div>
+
+</section>
+
+
+<!-- =========================
+     DEFINIÇÕES
+========================= -->
+
+<section id="settings" class="screen">
+
+    <h1 class="section-title">⚙️ Definições</h1>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">👤</div>
+
+            <h3>Perfil de estudante</h3>
+
+            <p id="profileInfo">
+                Nenhum perfil configurado.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🌍</div>
+
+            <h3>País e sistema de ensino</h3>
+
+            <p id="educationInfo">
+                Configuração atual.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">🔄</div>
+
+            <h3>Recomeçar configuração</h3>
+
+            <p>
+                Podes alterar o teu país, curso e disciplinas.
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="resetApp()"
+            >
+                Alterar perfil
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
