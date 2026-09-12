@@ -989,4 +989,82 @@ level.addEventListener("change", function(){
 
     else if(
         selected.includes("Médio") ||
-      
+    selected.includes("Secundário")
+){
+
+    options = [
+        "7ª Classe / 7º Ano",
+        "8ª Classe / 8º Ano",
+        "9ª Classe / 9º Ano",
+        "10ª Classe / 10º Ano",
+        "11ª Classe / 11º Ano",
+        "12ª Classe / 12º Ano"
+    ];
+
+}
+
+else if(
+    selected.includes("Profissional") ||
+    selected.includes("Técnico")
+){
+
+    options = [
+        "1º Ano",
+        "2º Ano",
+        "3º Ano"
+    ];
+
+}
+
+else if(
+    selected.includes("Universidade")
+){
+
+    options = [
+        "1º Ano",
+        "2º Ano",
+        "3º Ano",
+        "4º Ano",
+        "5º Ano"
+    ];
+
+}
+
+else if(
+    selected.includes("Preparação")
+){
+
+    options = [
+        "Exame Nacional",
+        "Exame de Admissão",
+        "Exame Final",
+        "Outro exame"
+    ];
+
+}
+
+else if(
+    selected.includes("Aprendizagem")
+){
+
+    options = [
+        "Sem classe específica"
+    ];
+
+}
+
+
+options.forEach(function(item){
+
+    const option =
+        document.createElement("option");
+
+    option.value = item;
+
+    option.textContent = item;
+
+    grade.appendChild(option);
+
+});
+
+});      
