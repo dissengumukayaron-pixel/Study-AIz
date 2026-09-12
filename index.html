@@ -20,30 +20,380 @@ body {
 
 .header {
     text-align: center;
-    padding: 45px 20px 25px;
+    padding: 30px 18px 15px;
 }
 
 .logo {
-    font-size: 64px;
+    font-size: 55px;
 }
 
 .header h1 {
     margin: 5px 0;
-    font-size: 48px;
+    font-size: 46px;
     color: #5146d8;
 }
 
 .header p {
-    margin: 10px 0;
+    margin: 8px 0;
     color: #657089;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .container {
-    max-width: 700px;
-    margin: 25px auto 80px;
-    padding: 0 20px;
+    max-width: 760px;
+    margin: 20px auto 70px;
+    padding: 0 18px;
 }
 
-.card {                              
+.card {
+    background: white;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 12px 35px rgba(40,50,90,.09);
+}
+
+.hero {
+    width: 100%;
+    border-radius: 24px;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.step {
+    color: #5146d8;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 30px;
+    margin: 8px 0 20px;
+}
+
+label {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 18px 0 8px;
+}
+
+select,
+button {
+    width: 100%;
+    padding: 16px;
+    border-radius: 15px;
+    font-size: 17px;
+}
+
+select {
+    border: 1px solid #ccd2df;
+    background: white;
+}
+
+button {
+    margin-top: 20px;
+    border: none;
+    background: #5146d8;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4035c4;
+}
+
+.back {
+    background: #e9ecf5;
+    color: #30384b;
+}
+
+.hidden {
+    display: none;
+}
+
+.subjects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.subject {
+    border: 1px solid #d5d9e4;
+    border-radius: 14px;
+    padding: 14px;
+    background: white;
+}
+
+.subject input {
+    width: auto;
+    margin-right: 7px;
+}
+
+.summary {
+    background: #f3f5ff;
+    padding: 18px;
+    border-radius: 16px;
+    line-height: 1.5;
+}
+
+.welcome {
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 40px;
+    }
+
+    .card {
+        padding: 23px 18px;
+    }
+
+    .subjects {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">📚</div>
+
+    <h1>StudyAIz</h1>
+
+    <p>
+        O teu assistente inteligente de estudos
+    </p>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- ETAPA 1 -->
+
+<section id="step1" class="card">
+
+    <img
+        class="hero"
+        src="studyaiz-visual.png"
+        alt="Estudante a estudar com o StudyAIz"
+    >
+
+    <div class="step">
+        Etapa 1 de 4
+    </div>
+
+    <h2>
+        🌍 Vamos personalizar os teus estudos
+    </h2>
+
+    <label for="country">
+        País
+    </label>
+
+    <select id="country">
+
+        <option value="">
+            Seleciona o teu país
+        </option>
+
+        <option>
+            🇦🇴 Angola
+        </option>
+
+        <option>
+            🇵🇹 Portugal
+        </option>
+
+        <option>
+            🇧🇷 Brasil
+        </option>
+
+        <option>
+            🇲🇿 Moçambique
+        </option>
+
+        <option>
+            🇨🇻 Cabo Verde
+        </option>
+
+        <option>
+            🇬🇼 Guiné-Bissau
+        </option>
+
+        <option>
+            🇸🇹 São Tomé e Príncipe
+        </option>
+
+        <option>
+            🇹🇱 Timor-Leste
+        </option>
+
+        <option>
+            🇺🇸 Estados Unidos
+        </option>
+
+        <option>
+            🇬🇧 Reino Unido
+        </option>
+
+        <option>
+            🇫🇷 França
+        </option>
+
+        <option>
+            🇪🇸 Espanha
+        </option>
+
+        <option>
+            🌎 Outro
+        </option>
+
+    </select>
+
+
+    <button onclick="nextStep(1)">
+        Continuar →
+    </button>
+
+</section>
+
+
+
+<!-- ETAPA 2 -->
+
+<section id="step2" class="card hidden">
+
+    <div class="step">
+        Etapa 2 de 4
+    </div>
+
+    <h2>
+        🎓 Qual é o teu nível de ensino?
+    </h2>
+
+
+    <label for="level">
+        Nível de ensino
+    </label>
+
+    <select id="level">
+
+        <option value="">
+            Seleciona o nível
+        </option>
+
+        <option>
+            Ensino Básico
+        </option>
+
+        <option>
+            Ensino Secundário
+        </option>
+
+        <option>
+            Ensino Médio
+        </option>
+
+        <option>
+            Ensino Profissional
+        </option>
+
+        <option>
+            Universidade
+        </option>
+
+        <option>
+            Outro
+        </option>
+
+    </select>
+
+
+    <label for="grade">
+        Classe / Ano
+    </label>
+
+    <select id="grade">
+
+        <option value="">
+            Seleciona a classe / ano
+        </option>
+
+    </select>
+
+
+    <button
+        class="back"
+        onclick="previousStep(2)"
+    >
+        ← Voltar
+    </button>
+
+
+    <button onclick="nextStep(2)">
+        Continuar →
+    </button>
+
+</section>
+
+
+
+<!-- ETAPA 3 -->
+
+<section id="step3" class="card hidden">
+
+    <div class="step">
+        Etapa 3 de 4
+    </div>
+
+    <h2>
+        📚 Escolhe as tuas disciplinas
+    </h2>
+
+    <p>
+        Seleciona uma ou mais disciplinas.
+    </p>
+
+
+    <div class="subjects">
+
+
+        <label class="subject">
+            <input
+                type="checkbox"
+                value="Matemática"
+            >
+            🧮 Matemática
+        </label>
+
+
+        <label class="subject">
+            <input
+                type="checkbox"
+                value="Português"
+            >
+            📖 Português
+        </label>
+
+
+        <label class="subject">
+            <input
+                type="checkbox"
+                value="Inglês"
+            >
+            🇬🇧 Inglês
+        </label>
+
+
+        <label class="subject">
+            <input
+                                           
                 
