@@ -4,48 +4,56 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudyAIz - Seu Tutor Inteligente</title>
+<title>StudyAIz — Plataforma Educacional</title>
 
 <style>
 * {
     box-sizing: border-box;
 }
 
-body {
+html, body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
     font-family: Arial, sans-serif;
     background: #f4f7fb;
-    color: #1f2937;
+    color: #172033;
 }
 
-button {
-    cursor: pointer;
+body {
+    overflow-x: hidden;
 }
+
+/* ===== MENU ===== */
 
 .menu-btn {
     position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1000;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    width: 52px;
+    height: 52px;
     border: none;
+    border-radius: 15px;
     background: #2563eb;
     color: white;
-    padding: 12px 15px;
-    border-radius: 10px;
-    font-size: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, .25);
 }
 
 .sidebar {
     position: fixed;
-    left: -270px;
     top: 0;
-    width: 270px;
-    height: 100%;
-    background: #111827;
-    color: white;
-    padding: 25px 15px;
-    transition: 0.3s;
-    z-index: 999;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: white;
+    z-index: 1000;
+    padding: 90px 20px 25px;
+    box-shadow: 10px 0 35px rgba(0,0,0,.12);
+    transition: .3s;
     overflow-y: auto;
 }
 
@@ -54,167 +62,92 @@ button {
 }
 
 .sidebar h2 {
-    text-align: center;
-    margin-bottom: 25px;
+    margin: 0 0 30px;
+    color: #2563eb;
+    font-size: 25px;
 }
 
 .sidebar button {
     width: 100%;
-    padding: 13px;
-    margin: 5px 0;
     border: none;
-    border-radius: 8px;
-    background: #1f2937;
-    color: white;
+    background: transparent;
+    padding: 16px;
+    margin-bottom: 8px;
+    border-radius: 13px;
     text-align: left;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .sidebar button:hover {
-    background: #2563eb;
+    background: #eef4ff;
+    color: #2563eb;
 }
 
 .overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,.4);
-    z-index: 998;
+    background: rgba(0,0,0,.45);
+    z-index: 999;
 }
 
 .overlay.show {
     display: block;
 }
 
-main {
-    max-width: 1000px;
-    margin: auto;
-    padding: 70px 20px 40px;
+/* ===== CONTAINER ===== */
+
+.app {
+    width: 100%;
+    min-height: 100vh;
 }
 
 .screen {
     display: none;
+    width: 100%;
+    min-height: 100vh;
+    padding: 90px 6% 50px;
 }
 
 .screen.active {
     display: block;
 }
 
-.card {
-    background: white;
-    padding: 25px;
-    margin: 15px 0;
-    border-radius: 18px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.07);
-}
+/* ===== SETUP ===== */
 
-h1 {
-    color: #2563eb;
-}
-
-h2 {
-    color: #1d4ed8;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 13px;
-    margin: 8px 0;
-    border: 1px solid #d1d5db;
-    border-radius: 9px;
-    font-size: 16px;
-}
-
-.primary {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 13px 20px;
-    border-radius: 9px;
-    font-size: 16px;
-}
-
-.primary:hover {
-    background: #1d4ed8;
-}
-
-.secondary {
-    background: #e5e7eb;
-    color: #111827;
-    border: none;
-    padding: 13px 20px;
-    border-radius: 9px;
-}
-
-.options {
-    display: grid;
-    gap: 10px;
-}
-
-.option {
-    padding: 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    background: white;
-    width: 100%;
-}
-
-.option:hover {
-    background: #eff6ff;
-}
-
-#chatBox {
-    height: 430px;
-    overflow-y: auto;
-    padding: 15px;
-    background: #f3f4f6;
-    border-radius: 15px;
-    margin-bottom: 15px;
-}
-
-.message {
-    max-width: 85%;
-    padding: 12px 15px;
-    margin: 10px 0;
-    border-radius: 14px;
-    white-space: pre-wrap;
-    line-height: 1.5;
-}
-
-.message.user {
-    margin-left: auto;
-    background: #2563eb;
-    color: white;
-}
-
-.message.ai {
-    margin-right: auto;
-    background: white;
-    border: 1px solid #e5e7eb;
-}
-
-.ai-input {
+.setup {
+    min-height: 100vh;
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background:
+        radial-gradient(circle at top left, #dbeafe, transparent 35%),
+        radial-gradient(circle at bottom right, #e0e7ff, transparent 35%),
+        #f8fafc;
 }
 
-.ai-input input {
-    margin: 0;
+.setup-box {
+    width: min(900px, 100%);
+    background: white;
+    border-radius: 30px;
+    padding: 45px;
+    box-shadow: 0 25px 70px rgba(15,23,42,.12);
 }
 
-.ai-input button {
-    white-space: nowrap;
-}
-
-.stat {
-    padding: 20px;
-    background: #eff6ff;
-    border-radius: 15px;
-    margin: 10px 0;
-}
-
-.center {
+.logo {
     text-align: center;
+    font-size: 38px;
+    font-weight: 800;
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 35px;
 }
 
 .setup-step {
@@ -225,35 +158,284 @@ select {
     display: block;
 }
 
-.subject-grid {
+.setup-step h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.setup-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.select-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.select-card:hover {
+    border-color: #2563eb;
+    background: #f8fbff;
+}
+
+.select-card input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.select-card strong {
+    font-size: 17px;
+}
+
+select {
+    width: 100%;
+    padding: 17px;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    font-size: 16px;
+    background: white;
+    outline: none;
+}
+
+select:focus {
+    border-color: #2563eb;
+}
+
+.primary-btn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 18px;
+    border: none;
+    border-radius: 15px;
+    background: #2563eb;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+}
+
+/* ===== DASHBOARD ===== */
+
+.hero {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    border-radius: 30px;
+    padding: 45px;
+    margin-bottom: 30px;
+    box-shadow: 0 20px 45px rgba(37,99,235,.25);
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 52px);
+    margin: 0 0 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: .9;
+    max-width: 700px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 35px;
+}
+
+.stat {
+    background: white;
+    padding: 30px;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(15,23,42,.07);
+}
+
+.stat-icon {
+    font-size: 35px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+.stat span {
+    color: #64748b;
+}
+
+/* ===== CARDS ===== */
+
+.section-title {
+    font-size: 30px;
+    margin: 35px 0 20px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 23px;
+    box-shadow: 0 10px 30px rgba(15,23,42,.07);
+    transition: .2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(15,23,42,.11);
+}
+
+.card-icon {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+
+.card p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* ===== MULTI DISCIPLINES ===== */
+
+.discipline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
 }
 
-.subject {
+.discipline {
     background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 18px;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 15px rgba(0,0,0,.06);
-    text-align: center;
+    cursor: pointer;
 }
 
-@media(max-width:600px) {
-    main {
-        padding: 70px 12px 30px;
+.discipline.selected {
+    border-color: #2563eb;
+    background: #eff6ff;
+}
+
+.discipline input {
+    margin-right: 8px;
+}
+
+/* ===== IA ===== */
+
+.chat {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    border-radius: 28px;
+    padding: 25px;
+    box-shadow: 0 15px 40px rgba(15,23,42,.08);
+}
+
+.chat-box {
+    height: 450px;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 20px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 15px 18px;
+    border-radius: 17px;
+    margin-bottom: 12px;
+    white-space: pre-wrap;
+}
+
+.message.ai {
+    background: #e8f0ff;
+}
+
+.message.user {
+    background: #2563eb;
+    color: white;
+    margin-left: auto;
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 17px;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.chat-input button {
+    padding: 0 25px;
+    border: none;
+    border-radius: 15px;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ===== RESPONSIVO ===== */
+
+@media(max-width: 700px) {
+
+    .screen {
+        padding: 85px 18px 35px;
     }
 
-    .card {
-        padding: 18px;
+    .setup {
+        padding: 15px;
     }
 
-    .ai-input {
+    .setup-box {
+        padding: 25px 18px;
+        border-radius: 22px;
+    }
+
+    .setup-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 28px;
+        border-radius: 22px;
+    }
+
+    .chat-input {
         flex-direction: column;
     }
 
-    .message {
-        max-width: 95%;
+    .chat-input button {
+        padding: 16px;
     }
 }
 </style>
@@ -263,8 +445,6 @@ select {
 
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
 <aside class="sidebar" id="sidebar">
     <h2>📚 StudyAIz</h2>
 
@@ -272,108 +452,160 @@ select {
     <button onclick="showScreen('ai')">🤖 Tutor IA</button>
     <button onclick="showScreen('theory')">📖 Teoria</button>
     <button onclick="showScreen('tests')">📝 Testes</button>
+    <button onclick="showScreen('lab')">🧪 Laboratório 3D</button>
     <button onclick="showScreen('progress')">📊 Progresso</button>
     <button onclick="showScreen('subjects')">📚 Disciplinas</button>
     <button onclick="showScreen('settings')">⚙️ Definições</button>
 </aside>
 
-<main>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-<section id="setup" class="screen active">
+<div class="app">
 
-    <div class="card center">
-        <h1>🌍 Bem-vindo ao StudyAIz</h1>
-        <p>O teu tutor inteligente para aprender melhor.</p>
-    </div>
+<section id="setup" class="screen active setup">
 
-    <div id="step1" class="setup-step active card">
-        <h2>1️⃣ Escolhe o teu país</h2>
+<div class="setup-box">
 
-        <select id="country">
-            <option value="">Seleciona o país</option>
-            <option value="Angola">🇦🇴 Angola</option>
-            <option value="Portugal">🇵🇹 Portugal</option>
-            <option value="Brasil">🇧🇷 Brasil</option>
-            <option value="Moçambique">🇲🇿 Moçambique</option>
-            <option value="Cabo Verde">🇨🇻 Cabo Verde</option>
-            <option value="Guiné-Bissau">🇬🇼 Guiné-Bissau</option>
-            <option value="São Tomé e Príncipe">🇸🇹 São Tomé e Príncipe</option>
-            <option value="Timor-Leste">🇹🇱 Timor-Leste</option>
-            <option value="EUA">🇺🇸 Estados Unidos</option>
-            <option value="França">🇫🇷 França</option>
-            <option value="Espanha">🇪🇸 Espanha</option>
-            <option value="Reino Unido">🇬🇧 Reino Unido</option>
-            <option value="Outro">🌍 Outro</option>
-        </select>
+<div class="logo">🚀 StudyAIz</div>
 
-        <button class="primary" onclick="nextStep(2)">
-            Continuar
-        </button>
-    </div>
+<p class="subtitle">
+A tua plataforma inteligente de aprendizagem
+</p>
 
-    <div id="step2" class="setup-step card">
-        <h2>2️⃣ Escolhe o teu nível</h2>
+<!-- PASSO 1 -->
 
-        <select id="level">
-            <option value="">Seleciona o nível</option>
-            <option>Ensino Básico</option>
-            <option>Ensino Fundamental</option>
-            <option>Ensino Médio</option>
-            <option>Ensino Secundário</option>
-            <option>Universidade</option>
-        </select>
+<div id="step1" class="setup-step active">
 
-        <button class="primary" onclick="nextStep(3)">
-            Continuar
-        </button>
-    </div>
+<h2>🌍 Em que país estudas?</h2>
 
-    <div id="step3" class="setup-step card">
-        <h2>3️⃣ Qual é o teu ano?</h2>
+<select id="country" onchange="updateEducationSystem()">
+<option value="">Escolher país</option>
+<option value="Angola">🇦🇴 Angola</option>
+<option value="Brasil">🇧🇷 Brasil</option>
+<option value="Portugal">🇵🇹 Portugal</option>
+<option value="Moçambique">🇲🇿 Moçambique</option>
+<option value="Cabo Verde">🇨🇻 Cabo Verde</option>
+<option value="Guiné-Bissau">🇬🇼 Guiné-Bissau</option>
+<option value="São Tomé e Príncipe">🇸🇹 São Tomé e Príncipe</option>
+<option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+<option value="Reino Unido">🇬🇧 Reino Unido</option>
+<option value="França">🇫🇷 França</option>
+<option value="Espanha">🇪🇸 Espanha</option>
+<option value="Alemanha">🇩🇪 Alemanha</option>
+</select>
 
-        <select id="year">
-            <option value="">Seleciona o ano</option>
-            <option>1º ano</option>
-            <option>2º ano</option>
-            <option>3º ano</option>
-            <option>4º ano</option>
-            <option>5º ano</option>
-            <option>6º ano</option>
-            <option>7º ano</option>
-            <option>8º ano</option>
-            <option>9º ano</option>
-            <option>10º ano</option>
-            <option>11º ano</option>
-            <option>12º ano</option>
-            <option>Universitário</option>
-        </select>
+<button class="primary-btn" onclick="nextStep(2)">
+Continuar →
+</button>
 
-        <button class="primary" onclick="nextStep(4)">
-            Continuar
-        </button>
-    </div>
+</div>
 
-    <div id="step4" class="setup-step card">
-        <h2>4️⃣ Escolhe uma disciplina</h2>
+<!-- PASSO 2 -->
 
-        <select id="subject">
-            <option value="">Seleciona a disciplina</option>
-            <option>Matemática</option>
-            <option>Português</option>
-            <option>Inglês</option>
-            <option>Física</option>
-            <option>Química</option>
-            <option>Biologia</option>
-            <option>História</option>
-            <option>Geografia</option>
-            <option>Informática</option>
-            <option>Economia</option>
-            <option>Filosofia</option>
-        </select>
+<div id="step2" class="setup-step">
 
-        <button class="primary" onclick="finishSetup()">
-            Começar a estudar 🚀
-        </button>
-    </div>
+<h2>🏫 Qual é o teu nível?</h2>
 
-</section>
+<select id="level" onchange="updateCourses()">
+<option value="">Escolher nível</option>
+<option value="basico">Ensino Básico / Fundamental</option>
+<option value="medio">Ensino Médio / Secundário</option>
+<option value="tecnico">Ensino Técnico e Profissional</option>
+<option value="superior">Ensino Superior</option>
+<option value="profissional">Cursos Profissionais</option>
+</select>
+
+<button class="primary-btn" onclick="nextStep(3)">
+Continuar →
+</button>
+
+</div>
+
+<!-- PASSO 3 -->
+
+<div id="step3" class="setup-step">
+
+<h2>🎓 Escolhe o teu curso</h2>
+
+<select id="course">
+<option value="">Primeiro escolhe o nível</option>
+</select>
+
+<button class="primary-btn" onclick="nextStep(4)">
+Continuar →
+</button>
+
+</div>
+
+<!-- PASSO 4 -->
+
+<div id="step4" class="setup-step">
+
+<h2>📚 Escolhe as tuas disciplinas</h2>
+
+<p class="subtitle">
+Podes escolher várias disciplinas.
+</p>
+
+<div id="disciplineSelection" class="discipline-grid">
+
+<div class="discipline">
+<input type="checkbox" value="Matemática">
+Matemática
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="Português">
+Português
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="Inglês">
+Inglês
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="Física">
+Física
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="Química">
+Química
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="Biologia">
+Biologia
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="História">
+História
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="Geografia">
+Geografia
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="Informática">
+Informática
+</div>
+
+<div class="discipline">
+<input type="checkbox" value="Economia">
+Economia
+</div>
+
+</div>
+
+<button class="primary-btn" onclick="finishSetup()">
+🚀 Entrar no StudyAIz
+</button>
+
+</div>
+
+</div>
+    </section>
