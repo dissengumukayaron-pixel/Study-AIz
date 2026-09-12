@@ -437,3 +437,128 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+/* =========================
+   BOTÃO CONTINUAR
+========================= */
+
+function continuar() {
+
+    const inicio =
+        document.getElementById("inicio");
+
+    const configuracao =
+        document.getElementById("configuracao");
+
+    const tutor =
+        document.getElementById("tutor");
+
+    if (inicio) {
+        inicio.style.display = "none";
+    }
+
+    if (configuracao) {
+        configuracao.style.display = "block";
+    }
+
+    if (tutor) {
+        tutor.style.display = "none";
+    }
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+function abrirMenu() {
+
+    const menu =
+        document.getElementById("menu");
+
+    if (!menu) {
+        console.warn("Elemento #menu não encontrado.");
+        return;
+    }
+
+    if (
+        menu.style.display === "none" ||
+        menu.style.display === ""
+    ) {
+        menu.style.display = "block";
+    } else {
+        menu.style.display = "none";
+    }
+}
+
+
+/* =========================
+   FECHAR MENU
+========================= */
+
+function fecharMenu() {
+
+    const menu =
+        document.getElementById("menu");
+
+    if (menu) {
+        menu.style.display = "none";
+    }
+}
+
+
+/* =========================
+   VOLTAR AO INÍCIO
+========================= */
+
+function voltarInicio() {
+
+    const inicio =
+        document.getElementById("inicio");
+
+    const configuracao =
+        document.getElementById("configuracao");
+
+    const teste =
+        document.getElementById("teste");
+
+    const tutor =
+        document.getElementById("tutor");
+
+    if (inicio) inicio.style.display = "block";
+    if (configuracao) configuracao.style.display = "none";
+    if (teste) teste.innerHTML = "";
+    if (tutor) tutor.style.display = "none";
+
+    fecharMenu();
+}
+
+
+/* =========================
+   QUANDO A PÁGINA CARREGAR
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("StudyAIz carregado com sucesso! 🤖");
+
+    const botaoContinuar =
+        document.getElementById("continuar");
+
+    if (botaoContinuar) {
+        botaoContinuar.addEventListener(
+            "click",
+            continuar
+        );
+    }
+
+    const botaoMenu =
+        document.getElementById("menuBtn");
+
+    if (botaoMenu) {
+        botaoMenu.addEventListener(
+            "click",
+            abrirMenu
+        );
+    }
+
+});
