@@ -936,4 +936,17 @@ function showQuestion() {
 
         button.textContent = option;
 
-        b
+        button.onclick = function() {
+    if (option === question.correta) {
+        testScore++;
+    }
+
+    testIndex++;
+    mostrarPergunta();
+};
+
+options.appendChild(button);
+});
+
+area.appendChild(options);
+}
