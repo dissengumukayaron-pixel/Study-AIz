@@ -158,13 +158,8 @@
             transform: translateY(-1px);
         }
 
-        #universidade {
+        .hidden {
             display: none;
-            background: #f8faff;
-            border: 1px solid #e3e9f5;
-            padding: 20px;
-            border-radius: 17px;
-            margin-top: 15px;
         }
 
         .study-area,
@@ -187,6 +182,27 @@
             border-radius: 15px;
             margin-top: 20px;
             line-height: 1.7;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            background: #f8faff;
+            padding: 23px;
+            border-radius: 18px;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+        }
+
+        .feature p {
+            color: #667085;
+            line-height: 1.5;
         }
 
         .pergunta {
@@ -239,27 +255,6 @@
             margin-bottom: 5px;
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 18px;
-        }
-
-        .feature {
-            background: #f8faff;
-            padding: 23px;
-            border-radius: 18px;
-        }
-
-        .feature-icon {
-            font-size: 32px;
-        }
-
-        .feature p {
-            color: #667085;
-            line-height: 1.5;
-        }
-
         footer {
             text-align: center;
             color: #667085;
@@ -291,10 +286,6 @@
             .estatisticas {
                 grid-template-columns: 1fr;
             }
-
-            .topbar {
-                align-items: flex-start;
-            }
         }
     </style>
 </head>
@@ -304,16 +295,26 @@
 <header>
 
     <div class="topbar">
+
         <div class="logo">📚 StudyAIz</div>
-        <div class="badge">🤖 Tutor inteligente</div>
+
+        <div class="badge" id="badge">
+            🤖 Tutor inteligente
+        </div>
+
     </div>
 
     <div class="hero">
-        <h1>Aprende sem limites.</h1>
-        <p>
+
+        <h1 id="tituloHero">
+            Aprende sem limites.
+        </h1>
+
+        <p id="subtituloHero">
             Um assistente inteligente para estudantes de qualquer país,
             nível de ensino e área de estudo.
         </p>
+
     </div>
 
 </header>
@@ -323,34 +324,17 @@
 
     <div class="nav-box">
 
-        <button onclick="mostrarAba('inicio')">
+        <button onclick="mostrarAba('inicio')" id="btnInicio">
             🏠 Início
         </button>
 
-        <button onclick="mostrarAba('estudo')">
+        <button onclick="mostrarAba('estudo')" id="btnAprender">
             📖 Aprender
         </button>
 
-        <button onclick="mostrarAba('testes')">
+        <button onclick="mostrarAba('testes')" id="btnTestes">
             📝 Testes
         </button>
 
-    </div>
-
-</div>
-
-
-<main>
-
-<section id="inicio">
-
-    <div class="card">
-
-        <div class="section-title">
-            <h2>🎓 Começa a aprender</h2>
-
-            <p>
-                Diz ao StudyAIz onde estudas e o que queres aprender.
-            </p>
-        </                                 
+    </div>                               
                 
