@@ -4,337 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyAIz - Aprende sem limites</title>
+    <title>StudyAIz - Assistente de Estudos</title>
 
     <style>
         * {
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f5f7fb;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
             color: #172033;
         }
 
-        header {
-            background:
-                radial-gradient(circle at 85% 20%, rgba(99,102,241,.45), transparent 30%),
-                linear-gradient(135deg, #061735, #123b83 55%, #2563eb);
-            color: white;
-            padding: 25px 20px 75px;
+        .container {
+            width: 92%;
+            max-width: 850px;
+            margin: 40px auto;
         }
 
-        .topbar {
-            max-width: 1100px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .logo {
-            font-size: 27px;
+            font-size: 42px;
             font-weight: bold;
+            color: #4f46e5;
         }
 
-        .badge {
-            background: rgba(255,255,255,.12);
-            border: 1px solid rgba(255,255,255,.2);
-            padding: 9px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-        }
-
-        .hero {
-            max-width: 850px;
-            margin: 60px auto 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin: 0 0 18px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            line-height: 1.6;
-            opacity: .9;
-        }
-
-        .nav {
-            max-width: 1100px;
-            margin: -28px auto 25px;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .nav-box {
-            background: white;
-            border-radius: 18px;
-            padding: 10px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            box-shadow: 0 10px 30px rgba(15,23,42,.1);
-        }
-
-        .nav-box button {
-            margin: 0;
-            padding: 13px;
-            background: white;
-            color: #344054;
-            box-shadow: none;
-        }
-
-        .nav-box button:hover {
-            background: #eef4ff;
-            color: #2563eb;
-            transform: none;
-        }
-
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 20px 50px;
+        .subtitle {
+            color: #64748b;
+            font-size: 17px;
         }
 
         .card {
             background: white;
-            border-radius: 24px;
             padding: 30px;
-            margin-bottom: 24px;
-            box-shadow: 0 12px 40px rgba(15,23,42,.08);
-            border: 1px solid #edf0f5;
+            border-radius: 22px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
         }
 
-        .section-title h2 {
-            margin: 0 0 8px;
-            color: #102a56;
-        }
-
-        .section-title p {
-            color: #667085;
+        h2 {
+            margin-top: 0;
+            color: #1e293b;
         }
 
         label {
             display: block;
             font-weight: bold;
-            margin: 20px 0 8px;
-            color: #344054;
+            margin-top: 18px;
+            margin-bottom: 8px;
         }
 
         select,
-        input {
+        input,
+        textarea,
+        button {
             width: 100%;
-            padding: 16px;
-            border: 1px solid #d0d5dd;
-            border-radius: 14px;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
             font-size: 16px;
+        }
+
+        select,
+        input,
+        textarea {
             background: white;
-            color: #172033;
         }
 
         button {
-            width: 100%;
-            padding: 16px;
-            margin-top: 18px;
+            margin-top: 22px;
             border: none;
-            border-radius: 14px;
-            background: linear-gradient(135deg,#2563eb,#4f46e5);
+            background: #4f46e5;
             color: white;
-            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
         }
 
         button:hover {
-            transform: translateY(-1px);
+            background: #4338ca;
         }
 
         .hidden {
             display: none;
         }
 
-        .study-area,
-        .testes-area {
-            display: none;
-        }
-
-        .topic-card {
-            background: #f8faff;
-            border: 1px solid #e4e7ec;
-            border-radius: 18px;
-            padding: 20px;
-            margin-top: 18px;
-        }
-
-        .resposta {
-            background: #eff6ff;
-            border-left: 5px solid #2563eb;
-            padding: 20px;
-            border-radius: 15px;
+        .welcome {
+            background: #eef2ff;
+            padding: 15px;
+            border-radius: 12px;
             margin-top: 20px;
-            line-height: 1.7;
         }
 
-        .features {
+        .materias {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .feature {
-            background: #f8faff;
-            padding: 23px;
-            border-radius: 18px;
-        }
-
-        .feature-icon {
-            font-size: 32px;
-        }
-
-        .feature p {
-            color: #667085;
-            line-height: 1.5;
-        }
-
-        .pergunta {
-            background: #f8fafc;
-            padding: 23px;
-            border-radius: 18px;
-            border: 1px solid #e4e7ec;
-            margin-top: 20px;
-        }
-
-        .opcao {
-            background: white;
-            color: #172033;
-            border: 1px solid #d0d5dd;
-        }
-
-        .opcao:hover {
-            background: #eef4ff;
-        }
-
-        .resultado {
+        .materia {
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            cursor: pointer;
             text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg,#eff6ff,#f5f3ff);
-            border-radius: 22px;
-        }
-
-        .nota {
-            font-size: 60px;
             font-weight: bold;
-            color: #2563eb;
         }
 
-        .estatisticas {
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 12px;
-            margin-top: 25px;
+        .materia:hover {
+            background: #e0e7ff;
         }
 
-        .estatistica {
-            padding: 18px;
-            border-radius: 16px;
-            background: white;
-        }
-
-        .estatistica strong {
-            display: block;
-            font-size: 25px;
-            margin-bottom: 5px;
-        }
-
-        footer {
-            text-align: center;
-            color: #667085;
-            padding: 30px;
-        }
-
-        @media(max-width:700px) {
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .card {
-                padding: 22px;
-            }
-
-            .nav-box {
-                grid-template-columns: 1fr;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .estatisticas {
-                grid-template-columns: 1fr;
-            }
+        #resposta {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            min-height: 60px;
         }
     </style>
 </head>
 
 <body>
 
-<header>
+<div class="container">
 
-    <div class="topbar">
-
+    <div class="header">
         <div class="logo">📚 StudyAIz</div>
-
-        <div class="badge" id="badge">
-            🤖 Tutor inteligente
+        <div class="subtitle">
+            O teu assistente inteligente de estudos
         </div>
-
     </div>
 
-    <div class="hero">
+    <!-- CONFIGURAÇÃO -->
+    <div class="card">
 
-        <h1 id="tituloHero">
-            Aprende sem limites.
-        </h1>
+        <h2>🌍 Vamos personalizar os teus estudos</h2>
 
-        <p id="subtituloHero">
-            Um assistente inteligente para estudantes de qualquer país,
-            nível de ensino e área de estudo.
-        </p>
+        <label for="pais">País</label>
 
-    </div>
-
-</header>
-
-
-<div class="nav">
-
-    <div class="nav-box">
-
-        <button onclick="mostrarAba('inicio')" id="btnInicio">
-            🏠 Início
-        </button>
-
-        <button onclick="mostrarAba('estudo')" id="btnAprender">
-            📖 Aprender
-        </button>
-
-        <button onclick="mostrarAba('testes')" id="btnTestes">
-            📝 Testes
-        </button>
-
-    </div>                               
+        <select id="pais">
+            <option value="">-- Escolhe o teu país --</option>
+            <option value="Angola">🇦🇴 Angola</option>
+            <option value="Portugal">🇵🇹 Portugal</option>
+            <option value="Brasil">🇧🇷                              
                 
