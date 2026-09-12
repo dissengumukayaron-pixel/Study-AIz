@@ -6,6 +6,9 @@
 
 <title>StudyAIz - Assistente de Estudos</title>
 
+<!-- Biblioteca 3D -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <style>
 * {
     box-sizing: border-box;
@@ -14,250 +17,226 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f3f6ff;
-    color: #20283a;
+    background: linear-gradient(135deg, #eef2ff, #f8faff);
+    color: #1f2937;
 }
 
-.header {
+header {
+    background: linear-gradient(135deg, #5b21b6, #2563eb);
+    color: white;
+    padding: 20px;
     text-align: center;
-    padding: 30px 18px 15px;
 }
 
 .logo {
-    font-size: 55px;
-}
-
-.header h1 {
-    margin: 5px 0;
-    font-size: 46px;
-    color: #5146d8;
-}
-
-.header p {
-    margin: 8px 0;
-    color: #657089;
-    font-size: 19px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .container {
-    max-width: 760px;
-    margin: 20px auto 70px;
-    padding: 0 18px;
+    width: 92%;
+    max-width: 1000px;
+    margin: 30px auto;
 }
 
 .card {
     background: white;
-    border-radius: 30px;
-    padding: 30px;
-    box-shadow: 0 12px 35px rgba(40,50,90,.09);
+    padding: 28px;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    margin-bottom: 25px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1, h2 {
+    color: #4c1d95;
 }
 
 .hero {
     width: 100%;
-    border-radius: 24px;
-    margin-bottom: 25px;
+    max-width: 500px;
     display: block;
-}
-
-.step {
-    color: #5146d8;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-h2 {
-    font-size: 30px;
-    margin: 8px 0 20px;
-}
-
-label {
-    display: block;
-    font-size: 17px;
-    font-weight: bold;
-    margin: 18px 0 8px;
-}
-
-select,
-button {
-    width: 100%;
-    padding: 16px;
-    border-radius: 15px;
-    font-size: 17px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
 }
 
 select {
-    border: 1px solid #ccd2df;
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    margin: 10px 0 20px;
     background: white;
 }
 
 button {
-    margin-top: 20px;
     border: none;
-    background: #5146d8;
+    padding: 13px 22px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6d28d9, #2563eb);
     color: white;
-    font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
+    margin: 5px;
 }
 
 button:hover {
-    background: #4035c4;
+    opacity: .9;
+    transform: translateY(-1px);
 }
 
 .back {
-    background: #e9ecf5;
-    color: #30384b;
-}
-
-.hidden {
-    display: none;
+    background: #6b7280;
 }
 
 .subjects {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
 }
 
 .subject {
-    border: 1px solid #d5d9e4;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    border: 2px solid #e5e7eb;
     border-radius: 14px;
-    padding: 14px;
-    background: white;
+    cursor: pointer;
+}
+
+.subject:hover {
+    border-color: #7c3aed;
+    background: #f5f3ff;
 }
 
 .subject input {
-    width: auto;
-    margin-right: 7px;
+    width: 18px;
+    height: 18px;
 }
 
-.summary {
-    background: #f3f5ff;
-    padding: 18px;
-    border-radius: 16px;
-    line-height: 1.5;
+.success {
+    background: #ecfdf5;
+    color: #065f46;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
 }
 
-.welcome {
+/* LABORATÓRIO */
+
+.lab-title {
     text-align: center;
+    font-size: 32px;
 }
 
-@media (max-width: 600px) {
+.lab-description {
+    text-align: center;
+    color: #6b7280;
+}
 
-    .header h1 {
-        font-size: 40px;
-    }
+.lab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
 
-    .card {
-        padding: 23px 18px;
-    }
+.lab-card {
+    background: linear-gradient(145deg, #ffffff, #f1f5ff);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+    cursor: pointer;
+    transition: .2s;
+}
 
-    .subjects {
-        grid-template-columns: 1fr;
-    }
+.lab-card:hover {
+    transform: translateY(-5px);
+    border-color: #7c3aed;
+}
+
+.lab-icon {
+    font-size: 50px;
+}
+
+#canvas3d {
+    width: 100%;
+    height: 430px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #050816;
+    margin-top: 20px;
+    position: relative;
+}
+
+.controls {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.info-box {
+    padding: 18px;
+    background: #f5f3ff;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #6b7280;
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
-
-    <div class="logo">📚</div>
-
-    <h1>StudyAIz</h1>
-
-    <p>
-        O teu assistente inteligente de estudos
-    </p>
-
+<header>
+    <div class="logo">📚 StudyAIz</div>
+    <div>O teu assistente inteligente de estudos</div>
 </header>
 
+<div class="container">
 
-<main class="container">
-
-
-<!-- ETAPA 1 -->
+<!-- ================= PASSO 1 ================= -->
 
 <section id="step1" class="card">
 
-    <img
-        class="hero"
-        src="studyaiz-visual.png"
-        alt="Estudante a estudar com o StudyAIz"
-    >
+    <img src="studyaiz-visual.png"
+         class="hero"
+         alt="StudyAIz">
 
-    <div class="step">
-        Etapa 1 de 4
-    </div>
+    <h1>🌍 Bem-vindo ao StudyAIz</h1>
 
-    <h2>
-        🌍 Vamos personalizar os teus estudos
-    </h2>
+    <p>
+        Primeiro, escolha o teu país para adaptarmos
+        a experiência de aprendizagem.
+    </p>
 
-    <label for="country">
-        País
-    </label>
+    <label><strong>País</strong></label>
 
     <select id="country">
-
-        <option value="">
-            Seleciona o teu país
-        </option>
-
-        <option>
-            🇦🇴 Angola
-        </option>
-
-        <option>
-            🇵🇹 Portugal
-        </option>
-
-        <option>
-            🇧🇷 Brasil
-        </option>
-
-        <option>
-            🇲🇿 Moçambique
-        </option>
-
-        <option>
-            🇨🇻 Cabo Verde
-        </option>
-
-        <option>
-            🇬🇼 Guiné-Bissau
-        </option>
-
-        <option>
-            🇸🇹 São Tomé e Príncipe
-        </option>
-
-        <option>
-            🇹🇱 Timor-Leste
-        </option>
-
-        <option>
-            🇺🇸 Estados Unidos
-        </option>
-
-        <option>
-            🇬🇧 Reino Unido
-        </option>
-
-        <option>
-            🇫🇷 França
-        </option>
-
-        <option>
-            🇪🇸 Espanha
-        </option>
-
-        <option>
-            🌎 Outro
-        </option>
-
+        <option value="">-- Escolha o país --</option>
+        <option value="Angola">🇦🇴 Angola</option>
+        <option value="Portugal">🇵🇹 Portugal</option>
+        <option value="Brasil">🇧🇷 Brasil</option>
+        <option value="Moçambique">🇲🇿 Moçambique</option>
+        <option value="Cabo Verde">🇨🇻 Cabo Verde</option>
+        <option value="Guiné-Bissau">🇬🇼 Guiné-Bissau</option>
+        <option value="São Tomé e Príncipe">🇸🇹 São Tomé e Príncipe</option>
+        <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+        <option value="Reino Unido">🇬🇧 Reino Unido</option>
+        <option value="França">🇫🇷 França</option>
+        <option value="Espanha">🇪🇸 Espanha</option>
+        <option value="Outro">🌎 Outro</option>
     </select>
-
 
     <button onclick="nextStep(1)">
         Continuar →
@@ -266,77 +245,53 @@ button:hover {
 </section>
 
 
-
-<!-- ETAPA 2 -->
+<!-- ================= PASSO 2 ================= -->
 
 <section id="step2" class="card hidden">
 
-    <div class="step">
-        Etapa 2 de 4
-    </div>
+    <h2>🎓 Nível de ensino</h2>
 
-    <h2>
-        🎓 Qual é o teu nível de ensino?
-    </h2>
+    <p>
+        Escolha o teu nível de ensino.
+    </p>
 
-
-    <label for="level">
-        Nível de ensino
-    </label>
-
-    <select id="level">
+    <select id="level" onchange="updateGrades()">
 
         <option value="">
-            Seleciona o nível
+            -- Escolha o nível --
         </option>
 
-        <option>
+        <option value="basico">
             Ensino Básico
         </option>
 
-        <option>
+        <option value="secundario">
             Ensino Secundário
         </option>
 
-        <option>
+        <option value="medio">
             Ensino Médio
         </option>
 
-        <option>
-            Ensino Profissional
-        </option>
-
-        <option>
+        <option value="universidade">
             Universidade
         </option>
 
-        <option>
-            Outro
-        </option>
-
     </select>
 
-
-    <label for="grade">
-        Classe / Ano
-    </label>
+    <label><strong>Classe / Ano</strong></label>
 
     <select id="grade">
-
         <option value="">
-            Seleciona a classe / ano
+            -- Primeiro escolha o nível --
         </option>
-
     </select>
 
+    <br>
 
-    <button
-        class="back"
-        onclick="previousStep(2)"
-    >
+    <button class="back" onclick="previousStep(2)">
         ← Voltar
     </button>
-
 
     <button onclick="nextStep(2)">
         Continuar →
@@ -345,55 +300,8 @@ button:hover {
 </section>
 
 
-
-<!-- ETAPA 3 -->
+<!-- ================= PASSO 3 ================= -->
 
 <section id="step3" class="card hidden">
 
-    <div class="step">
-        Etapa 3 de 4
-    </div>
-
-    <h2>
-        📚 Escolhe as tuas disciplinas
-    </h2>
-
-    <p>
-        Seleciona uma ou mais disciplinas.
-    </p>
-
-
-    <div class="subjects">
-
-
-        <label class="subject">
-            <input
-                type="checkbox"
-                value="Matemática"
-            >
-            🧮 Matemática
-        </label>
-
-
-        <label class="subject">
-            <input
-                type="checkbox"
-                value="Português"
-            >
-            📖 Português
-        </label>
-
-
-        <label class="subject">
-            <input
-                type="checkbox"
-                value="Inglês"
-            >
-            🇬🇧 Inglês
-        </label>
-
-
-        <label class="subject">
-            <input
-                                           
-                
+    <w
