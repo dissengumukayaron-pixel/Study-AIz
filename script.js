@@ -559,6 +559,42 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             abrirMenu
         );
+} else {
+
+        console.error(
+            "ERRO: botão #menuBtn não encontrado."
+        );
+
+    }
+
+
+    /* BOTÃO FECHAR MENU */
+
+    const botaoFechar =
+        document.getElementById("closeMenu");
+
+    if (botaoFechar) {
+
+        botaoFechar.addEventListener(
+            "click",
+            fecharMenu
+        );
+
+    }
+
+
+    /* BOTÃO VOLTAR */
+
+    const botaoVoltar =
+        document.getElementById("voltarInicio");
+
+    if (botaoVoltar) {
+
+        botaoVoltar.addEventListener(
+            "click",
+            voltarInicio
+        );
+
     }
 
 });
