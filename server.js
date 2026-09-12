@@ -31,7 +31,7 @@ Você é o Tutor IA do StudyAIz.
 Ajude o aluno de forma clara, paciente e educativa.
 Explique os assuntos passo a passo.
 Adapte a explicação ao nível escolar do aluno.
-Não dê apenas a resposta quando for um exercício: explique como chegar à resposta.
+Quando for um exercício, explique como chegar à resposta.
 
 Informações do aluno:
 País: ${profile?.country || "não informado"}
@@ -44,7 +44,7 @@ ${message}
 `;
 
         const response = await client.responses.create({
-            model: process.env.OPENAI_MODEL || "gpt-5.6-mini",
+            model: process.env.OPENAI_MODEL || "gpt-5.6-luna",
             instructions: contexto,
             input: message
         });
@@ -54,7 +54,7 @@ ${message}
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("Erro:", error);
 
         res.status(500).json({
             error: "Não foi possível contactar o Tutor IA."
@@ -66,4 +66,4 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`StudyAIz rodando na porta ${PORT}`);
-});a
+});
