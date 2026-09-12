@@ -4,488 +4,428 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudyAIz — Assistente de Estudos</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/controls/OrbitControls.js"></script>
+<title>StudyAIz - Seu Tutor Inteligente</title>
 
 <style>
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#f4f7ff;
-    color:#172033;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6fb;
+    color: #182033;
 }
 
 /* ================= MENU ================= */
 
-.menu-btn{
-    position:fixed;
-    top:18px;
-    left:18px;
-    z-index:1000;
-    width:48px;
-    height:48px;
-    border:0;
-    border-radius:14px;
-    background:#5b4df5;
-    color:white;
-    font-size:25px;
-    cursor:pointer;
-    box-shadow:0 8px 25px #5b4df544;
+.menu-btn {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 1000;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 14px;
+    background: #5b45e8;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
 }
 
-.sidebar{
-    position:fixed;
-    top:0;
-    left:-290px;
-    width:280px;
-    height:100vh;
-    background:white;
-    z-index:999;
-    padding:90px 18px 20px;
-    box-shadow:10px 0 35px #00000018;
-    transition:.3s;
-    overflow-y:auto;
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -290px;
+    width: 280px;
+    height: 100%;
+    background: white;
+    z-index: 999;
+    padding: 25px 18px;
+    box-shadow: 5px 0 25px rgba(0,0,0,.12);
+    transition: .3s;
+    overflow-y: auto;
 }
 
-.sidebar.open{
-    left:0;
+.sidebar.open {
+    left: 0;
 }
 
-.logo{
-    font-size:24px;
-    font-weight:bold;
-    color:#5b4df5;
-    margin-bottom:25px;
-    text-align:center;
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #5b45e8;
+    margin: 10px 10px 25px;
 }
 
-.menu-item{
-    width:100%;
-    border:0;
-    background:none;
-    padding:15px;
-    margin:5px 0;
-    border-radius:13px;
-    text-align:left;
-    font-size:16px;
-    cursor:pointer;
-    color:#273047;
+.menu-item {
+    width: 100%;
+    padding: 14px;
+    margin: 5px 0;
+    border: none;
+    background: transparent;
+    text-align: left;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.menu-item:hover{
-    background:#f0efff;
-    color:#5b4df5;
+.menu-item:hover {
+    background: #f0edff;
+    color: #5b45e8;
 }
 
-.overlay{
-    position:fixed;
-    inset:0;
-    background:#00000055;
-    z-index:998;
-    display:none;
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.35);
+    z-index: 998;
 }
 
-.overlay.show{
-    display:block;
+.overlay.show {
+    display: block;
 }
 
 /* ================= GERAL ================= */
 
-main{
-    min-height:100vh;
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 90px 20px 40px;
 }
 
-.screen{
-    display:none;
-    padding:90px 20px 40px;
-    max-width:1150px;
-    margin:auto;
+.screen {
+    display: none;
 }
 
-.screen.active{
-    display:block;
+.screen.active {
+    display: block;
 }
 
-.hero{
-    background:linear-gradient(135deg,#5b4df5,#7769ff);
-    color:white;
-    border-radius:30px;
-    padding:40px;
-    margin-bottom:25px;
-    box-shadow:0 20px 45px #5b4df533;
+.card {
+    background: white;
+    border-radius: 22px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 30px rgba(30,30,80,.08);
 }
 
-.hero h1{
-    margin:0 0 12px;
-    font-size:38px;
+h1 {
+    font-size: 34px;
+    margin-top: 0;
 }
 
-.hero p{
-    font-size:18px;
-    opacity:.92;
+h2 {
+    font-size: 25px;
 }
 
-.card{
-    background:white;
-    border-radius:22px;
-    padding:25px;
-    margin-bottom:20px;
-    box-shadow:0 8px 30px #17203310;
+.subtitle {
+    color: #687089;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
+.btn {
+    border: none;
+    border-radius: 13px;
+    padding: 14px 22px;
+    background: #5b45e8;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
-.action-card{
-    background:white;
-    border-radius:20px;
-    padding:25px;
-    cursor:pointer;
-    box-shadow:0 8px 25px #17203312;
-    transition:.2s;
+.btn:hover {
+    opacity: .9;
 }
 
-.action-card:hover{
-    transform:translateY(-4px);
+.btn.secondary {
+    background: #e9e7f8;
+    color: #40358e;
 }
 
-.action-icon{
-    font-size:35px;
-    margin-bottom:12px;
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0 16px;
+    border: 1px solid #d9dce8;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
 }
 
-.btn{
-    border:0;
-    padding:13px 20px;
-    border-radius:12px;
-    background:#5b4df5;
-    color:white;
-    font-size:15px;
-    cursor:pointer;
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #5b45e8;
 }
 
-.btn.secondary{
-    background:#ecebff;
-    color:#5145d8;
-}
-
-select{
-    width:100%;
-    padding:14px;
-    border:1px solid #dfe3f0;
-    border-radius:12px;
-    font-size:16px;
-    background:white;
-    margin:8px 0 18px;
+.hidden {
+    display: none !important;
 }
 
 /* ================= ONBOARDING ================= */
 
-#onboarding{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:25px;
+.welcome {
+    text-align: center;
+    max-width: 700px;
+    margin: 30px auto;
 }
 
-.onboarding-card{
-    width:100%;
-    max-width:600px;
-    background:white;
-    border-radius:28px;
-    padding:35px;
-    box-shadow:0 15px 50px #17203318;
+.welcome-icon {
+    font-size: 70px;
+    margin-bottom: 10px;
 }
 
-.onboarding-card h1{
-    color:#5b4df5;
+.step {
+    display: none;
 }
 
-.step{
-    display:none;
+.step.active {
+    display: block;
 }
 
-.step.active{
-    display:block;
+.step-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
 }
 
-.progress-dots{
-    display:flex;
-    gap:8px;
-    margin-bottom:25px;
+/* ================= DASHBOARD ================= */
+
+.hero {
+    background: linear-gradient(135deg, #5b45e8, #7868f5);
+    color: white;
+    border-radius: 25px;
+    padding: 35px;
+    margin-bottom: 25px;
 }
 
-.dot{
-    height:7px;
-    flex:1;
-    background:#e3e5f0;
-    border-radius:20px;
+.hero h1 {
+    margin-bottom: 8px;
 }
 
-.dot.active{
-    background:#5b4df5;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 18px;
 }
 
-.nav-buttons{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    margin-top:15px;
+.feature {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow: 0 6px 25px rgba(0,0,0,.06);
+}
+
+.feature-icon {
+    font-size: 40px;
 }
 
 /* ================= LIVRO ================= */
 
-.book-layout{
-    display:grid;
-    grid-template-columns:230px 1fr;
-    gap:20px;
+.book {
+    max-width: 850px;
+    margin: auto;
+    background: #fffdf5;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    line-height: 1.8;
 }
 
-.chapters{
-    background:white;
-    padding:18px;
-    border-radius:20px;
-    height:max-content;
+.book h2 {
+    color: #4634a9;
 }
 
-.chapter-btn{
-    display:block;
-    width:100%;
-    text-align:left;
-    border:0;
-    background:#f4f5fb;
-    padding:12px;
-    margin-bottom:8px;
-    border-radius:10px;
-    cursor:pointer;
+.book-example {
+    background: #f0edff;
+    border-left: 5px solid #5b45e8;
+    padding: 18px;
+    margin: 20px 0;
 }
 
-.chapter-btn.active{
-    background:#5b4df5;
-    color:white;
+.chapter-btn {
+    border: none;
+    background: #f0edff;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
 }
 
-.book{
-    background:#fffdf7;
-    min-height:550px;
-    border-radius:8px 22px 22px 8px;
-    padding:45px;
-    box-shadow:0 12px 40px #17203318;
-    border-left:8px solid #e9e0c9;
+/* ================= IA ================= */
+
+.ai-container {
+    max-width: 850px;
+    margin: auto;
 }
 
-.book h2{
-    font-family:Georgia,serif;
-    font-size:32px;
+.chat-box {
+    height: 430px;
+    overflow-y: auto;
+    background: #f7f8fc;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
 }
 
-.book h3{
-    font-family:Georgia,serif;
-    color:#5044d6;
+.message {
+    max-width: 80%;
+    padding: 14px 17px;
+    border-radius: 17px;
+    margin: 10px 0;
+    line-height: 1.5;
 }
 
-.book p,
-.book li{
-    font-family:Georgia,serif;
-    font-size:18px;
-    line-height:1.75;
+.message.ai {
+    background: white;
+    border: 1px solid #e2e4ed;
 }
 
-.example{
-    background:#f0efff;
-    padding:18px;
-    border-left:5px solid #5b4df5;
-    border-radius:10px;
-    margin:20px 0;
+.message.user {
+    background: #5b45e8;
+    color: white;
+    margin-left: auto;
 }
 
-.summary{
-    background:#eefaf3;
-    padding:18px;
-    border-radius:14px;
+.ai-input {
+    display: flex;
+    gap: 10px;
 }
 
-/* ================= 3D ================= */
-
-.lab-header{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    align-items:center;
-    flex-wrap:wrap;
+.ai-input input {
+    margin: 0;
 }
 
-.lab-controls{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+.ai-input button {
+    border: none;
+    background: #5b45e8;
+    color: white;
+    border-radius: 12px;
+    padding: 0 22px;
+    cursor: pointer;
 }
 
-.lab-controls button{
-    border:0;
-    background:#ecebff;
-    color:#5145d8;
-    padding:10px 14px;
-    border-radius:10px;
-    cursor:pointer;
+/* ================= TESTES ================= */
+
+.option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #ddd;
+    background: white;
+    padding: 15px;
+    margin: 9px 0;
+    border-radius: 12px;
+    cursor: pointer;
 }
 
-#threeContainer{
-    width:100%;
-    height:560px;
-    background:#070b1c;
-    border-radius:22px;
-    overflow:hidden;
-    position:relative;
-    margin-top:20px;
+.option:hover {
+    background: #f0edff;
 }
 
-#threeContainer canvas{
-    width:100%!important;
-    height:100%!important;
-}
-
-.info-panel{
-    position:absolute;
-    top:20px;
-    right:20px;
-    width:240px;
-    background:#ffffffdd;
-    backdrop-filter:blur(10px);
-    padding:18px;
-    border-radius:15px;
-    display:none;
-}
-
-.info-panel.show{
-    display:block;
-}
-
-/* ================= TESTE ================= */
-
-.option{
-    display:block;
-    width:100%;
-    text-align:left;
-    border:2px solid #e1e4ef;
-    background:white;
-    padding:15px;
-    border-radius:12px;
-    margin:10px 0;
-    cursor:pointer;
-}
-
-.option:hover{
-    border-color:#5b4df5;
-}
-
-.option.correct{
-    border-color:#27ae60;
-    background:#eaf9f0;
-}
-
-.option.wrong{
-    border-color:#e74c3c;
-    background:#fff0ee;
-}
-
-.result{
-    font-size:20px;
-    font-weight:bold;
-    margin-top:20px;
+.result {
+    padding: 18px;
+    border-radius: 14px;
+    margin-top: 15px;
+    background: #f0edff;
 }
 
 /* ================= PROGRESSO ================= */
 
-.progress-row{
-    margin:20px 0;
+.progress-card {
+    margin: 15px 0;
 }
 
-.progress-title{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:8px;
+.progress-bar {
+    width: 100%;
+    height: 14px;
+    background: #e5e6ef;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.progress-bar{
-    height:13px;
-    background:#e5e7f0;
-    border-radius:20px;
-    overflow:hidden;
+.progress-fill {
+    height: 100%;
+    background: #5b45e8;
+    width: 0%;
+    transition: .4s;
 }
 
-.progress-fill{
-    height:100%;
-    background:#5b4df5;
-    border-radius:20px;
+.mastery {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 12px;
 }
 
-.mastery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
+.green {
+    background: #dff7e8;
+    color: #16733c;
 }
 
-.mastery-card{
-    padding:20px;
-    border-radius:18px;
-    background:#f7f8fc;
+.yellow {
+    background: #fff2c7;
+    color: #806000;
 }
 
-.mastery-card strong{
-    display:block;
-    font-size:20px;
-    margin-bottom:8px;
+.red {
+    background: #ffe0e0;
+    color: #9d2525;
 }
 
-.tip{
-    background:#fff8df;
-    border-left:5px solid #f2b705;
-    padding:18px;
-    border-radius:12px;
-    margin-top:15px;
+/* ================= 3D ================= */
+
+#threeContainer {
+    width: 100%;
+    height: 500px;
+    background: #101329;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.three-controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.three-controls button {
+    border: none;
+    background: #5b45e8;
+    color: white;
+    padding: 11px 15px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 /* ================= RESPONSIVO ================= */
 
-@media(max-width:700px){
+@media(max-width:600px) {
 
-    .screen{
-        padding:85px 14px 30px;
+    main {
+        padding: 80px 12px 30px;
     }
 
-    .hero{
-        padding:25px;
+    h1 {
+        font-size: 27px;
     }
 
-    .hero h1{
-        font-size:29px;
+    .card {
+        padding: 20px;
     }
 
-    .book-layout{
-        grid-template-columns:1fr;
+    .book {
+        padding: 22px;
     }
 
-    .book{
-        padding:25px;
-    }
-
-    .book h2{
-        font-size:26px;
-    }
-
-    #threeContainer{
-        height:430px;
+    .ai-input button {
+        padding: 0 15px;
     }
 }
 </style>
@@ -494,15 +434,22 @@ select{
 <body>
 
 <!-- MENU -->
+
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <aside class="sidebar" id="sidebar">
 
     <div class="logo">📚 StudyAIz</div>
 
-    <button class="menu-item" onclick="showScreen('home')">🏠 Início</button>
+    <button class="menu-item" onclick="showScreen('home')">
+        🏠 Início
+    </button>
+
+    <button class="menu-item" onclick="showScreen('ai')">
+        🤖 Tutor IA
+    </button>
 
     <button class="menu-item" onclick="showScreen('theory')">
         📖 Teoria / Livro
@@ -531,215 +478,255 @@ select{
 </aside>
 
 
-<!-- ================= ONBOARDING ================= -->
+<main>
 
-<section id="onboarding">
+<!-- ================= CONFIGURAÇÃO ================= -->
 
-<div class="onboarding-card">
+<section id="setup" class="screen active">
 
-    <div class="progress-dots">
-        <div class="dot active" id="dot1"></div>
-        <div class="dot" id="dot2"></div>
-        <div class="dot" id="dot3"></div>
-        <div class="dot" id="dot4"></div>
-    </div>
+    <div class="welcome">
 
-    <!-- PASSO 1 -->
+        <div class="welcome-icon">🎓</div>
 
-    <div class="step active" id="step1">
+        <h1>Bem-vindo ao StudyAIz</h1>
 
-        <h1>🌍 Bem-vindo ao StudyAIz</h1>
-
-        <p>Primeiro, escolha o teu país.</p>
-
-        <select id="country">
-            <option value="">Seleciona o país</option>
-            <option>Angola</option>
-            <option>Portugal</option>
-            <option>Brasil</option>
-            <option>Moçambique</option>
-            <option>Cabo Verde</option>
-            <option>Guiné-Bissau</option>
-            <option>São Tomé e Príncipe</option>
-            <option>Estados Unidos</option>
-            <option>Reino Unido</option>
-            <option>França</option>
-            <option>Espanha</option>
-            <option>Outro</option>
-        </select>
-
-        <button class="btn" onclick="nextStep(1)">
-            Continuar →
-        </button>
+        <p class="subtitle">
+            O teu assistente inteligente para aprender melhor.
+        </p>
 
     </div>
 
+    <div class="card">
 
-    <!-- PASSO 2 -->
+        <!-- PASSO 1 -->
 
-    <div class="step" id="step2">
+        <div class="step active" id="step1">
 
-        <h1>🎓 Nível de ensino</h1>
+            <h2>🌍 Qual é o teu país?</h2>
 
-        <p>Escolhe o teu nível.</p>
+            <select id="country">
 
-        <select id="level">
-            <option value="">Seleciona</option>
-            <option>Ensino Básico</option>
-            <option>Ensino Fundamental</option>
-            <option>Ensino Médio</option>
-            <option>Ensino Secundário</option>
-            <option>Ensino Superior</option>
-        </select>
+                <option value="">Escolhe o teu país</option>
 
-        <div class="nav-buttons">
+                <option>Angola</option>
+                <option>Portugal</option>
+                <option>Brasil</option>
+                <option>Moçambique</option>
+                <option>Cabo Verde</option>
+                <option>Guiné-Bissau</option>
+                <option>São Tomé e Príncipe</option>
+                <option>Estados Unidos</option>
+                <option>Reino Unido</option>
+                <option>França</option>
+                <option>Espanha</option>
+                <option>Alemanha</option>
 
-            <button class="btn secondary" onclick="prevStep(2)">
-                ← Voltar
-            </button>
+            </select>
 
-            <button class="btn" onclick="nextStep(2)">
+            <button class="btn" onclick="nextStep(1)">
                 Continuar →
             </button>
 
         </div>
 
-    </div>
+
+        <!-- PASSO 2 -->
+
+        <div class="step" id="step2">
+
+            <h2>🎓 Qual é o teu nível?</h2>
+
+            <select id="level">
+
+                <option value="">Escolhe o nível</option>
+
+                <option>Ensino Básico</option>
+                <option>Ensino Fundamental</option>
+                <option>Ensino Médio</option>
+                <option>Ensino Secundário</option>
+
+            </select>
+
+            <div class="step-buttons">
+
+                <button class="btn secondary" onclick="prevStep(2)">
+                    ← Voltar
+                </button>
+
+                <button class="btn" onclick="nextStep(2)">
+                    Continuar →
+                </button>
+
+            </div>
+
+        </div>
 
 
-    <!-- PASSO 3 -->
+        <!-- PASSO 3 -->
 
-    <div class="step" id="step3">
+        <div class="step" id="step3">
 
-        <h1>📚 Classe / Ano</h1>
+            <h2>📚 Qual é a tua classe?</h2>
 
-        <p>Escolhe a tua classe ou ano.</p>
+            <select id="grade">
 
-        <select id="grade">
+                <option value="">Escolhe a classe</option>
 
-            <option value="">Seleciona</option>
+                <option>1ª classe</option>
+                <option>2ª classe</option>
+                <option>3ª classe</option>
+                <option>4ª classe</option>
+                <option>5ª classe</option>
+                <option>6ª classe</option>
+                <option>7ª classe</option>
+                <option>8ª classe</option>
+                <option>9ª classe</option>
+                <option>10ª classe</option>
+                <option>11ª classe</option>
+                <option>12ª classe</option>
+                <option>13ª classe</option>
 
-            <option>1ª Classe</option>
-            <option>2ª Classe</option>
-            <option>3ª Classe</option>
-            <option>4ª Classe</option>
-            <option>5ª Classe</option>
-            <option>6ª Classe</option>
-            <option>7ª Classe</option>
-            <option>8ª Classe</option>
-            <option>9ª Classe</option>
-            <option>10ª Classe</option>
-            <option>11ª Classe</option>
-            <option>12ª Classe</option>
+            </select>
 
-        </select>
+            <div class="step-buttons">
 
-        <div class="nav-buttons">
+                <button class="btn secondary" onclick="prevStep(3)">
+                    ← Voltar
+                </button>
 
-            <button class="btn secondary" onclick="prevStep(3)">
-                ← Voltar
-            </button>
+                <button class="btn" onclick="nextStep(3)">
+                    Continuar →
+                </button>
 
-            <button class="btn" onclick="nextStep(3)">
-                Continuar →
-            </button>
+            </div>
+
+        </div>
+
+
+        <!-- PASSO 4 -->
+
+        <div class="step" id="step4">
+
+            <h2>🌐 Qual idioma preferes?</h2>
+
+            <select id="language">
+
+                <option value="">Escolhe o idioma</option>
+
+                <option>Português</option>
+                <option>English</option>
+                <option>Español</option>
+                <option>Français</option>
+
+            </select>
+
+            <div class="step-buttons">
+
+                <button class="btn secondary" onclick="prevStep(4)">
+                    ← Voltar
+                </button>
+
+                <button class="btn" onclick="finishSetup()">
+                    🚀 Começar a estudar
+                </button>
+
+            </div>
 
         </div>
 
     </div>
-
-
-    <!-- PASSO 4 -->
-
-    <div class="step" id="step4">
-
-        <h1>🌐 Idioma</h1>
-
-        <p>Escolhe o idioma da plataforma.</p>
-
-        <select id="language">
-
-            <option>Português</option>
-            <option>English</option>
-            <option>Français</option>
-            <option>Español</option>
-
-        </select>
-
-        <div class="nav-buttons">
-
-            <button class="btn secondary" onclick="prevStep(4)">
-                ← Voltar
-            </button>
-
-            <button class="btn" onclick="finishSetup()">
-                🚀 Entrar no StudyAIz
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
 
 </section>
 
 
-<main id="app" style="display:none">
-
-
 <!-- ================= INÍCIO ================= -->
 
-<section class="screen active" id="home">
+<section id="home" class="screen">
 
     <div class="hero">
 
-        <h1>Olá, estudante! 👋</h1>
+        <h1 id="welcomeName">Olá, estudante! 👋</h1>
 
-        <p>
-            O StudyAIz acompanha o teu aprendizado e ajuda-te a descobrir
-            aquilo que já dominas e aquilo que precisas melhorar.
+        <p id="profileText">
+            Vamos continuar a aprender?
         </p>
 
     </div>
 
     <div class="grid">
 
-        <div class="action-card" onclick="showScreen('theory')">
-            <div class="action-icon">📖</div>
-            <h2>Teoria</h2>
-            <p>Aprende através de conteúdos organizados como um livro.</p>
+        <div class="feature" onclick="showScreen('ai')">
+            <div class="feature-icon">🤖</div>
+            <h2>Tutor IA</h2>
+            <p>Pergunta qualquer coisa sobre os teus estudos.</p>
         </div>
 
-        <div class="action-card" onclick="showScreen('lab')">
-            <div class="action-icon">🧪</div>
+        <div class="feature" onclick="showScreen('theory')">
+            <div class="feature-icon">📖</div>
+            <h2>Teoria</h2>
+            <p>Aprende através de capítulos organizados como um livro.</p>
+        </div>
+
+        <div class="feature" onclick="showScreen('lab')">
+            <div class="feature-icon">🧪</div>
             <h2>Laboratório 3D</h2>
             <p>Explora conceitos através de modelos interativos.</p>
         </div>
 
-        <div class="action-card" onclick="showScreen('tests')">
-            <div class="action-icon">📝</div>
+        <div class="feature" onclick="showScreen('tests')">
+            <div class="feature-icon">📝</div>
             <h2>Testes</h2>
-            <p>Verifica quanto aprendeste.</p>
+            <p>Testa os teus conhecimentos.</p>
         </div>
 
-        <div class="action-card" onclick="showScreen('progress')">
-            <div class="action-icon">🧠</div>
-            <h2>O que eu domino?</h2>
-            <p>Descobre os teus pontos fortes e o que precisas praticar.</p>
+        <div class="feature" onclick="showScreen('progress')">
+            <div class="feature-icon">📊</div>
+            <h2>Progresso</h2>
+            <p>Descobre o que já dominas e o que precisas estudar.</p>
         </div>
 
     </div>
 
-    <div class="card">
+</section>
 
-        <h2>💡 Dica do StudyAIz</h2>
 
-        <p>
-            Não precisas estudar tudo ao mesmo tempo.
-            Aprende um assunto, pratica, faz um teste e deixa o StudyAIz
-            indicar o próximo assunto recomendado.
+<!-- ================= IA ================= -->
+
+<section id="ai" class="screen">
+
+    <div class="card ai-container">
+
+        <h1>🤖 Tutor IA</h1>
+
+        <p class="subtitle">
+            O teu professor virtual está aqui para ajudar.
         </p>
+
+        <div class="chat-box" id="chatBox">
+
+            <div class="message ai">
+                👋 Olá! Sou o Tutor IA do StudyAIz.
+                <br><br>
+                Podes perguntar-me sobre Matemática, Ciências,
+                História, Português ou qualquer outra disciplina.
+            </div>
+
+        </div>
+
+        <div class="ai-input">
+
+            <input
+                id="aiInput"
+                type="text"
+                placeholder="Escreve a tua pergunta..."
+                onkeydown="if(event.key==='Enter') sendAI()"
+            >
+
+            <button onclick="sendAI()">
+                Enviar
+            </button>
+
+        </div>
 
     </div>
 
@@ -748,117 +735,69 @@ select{
 
 <!-- ================= TEORIA ================= -->
 
-<section class="screen" id="theory">
+<section id="theory" class="screen">
 
-    <h1>📖 Teoria</h1>
+    <div class="card">
 
-    <p>Aprende como se estivesses a ler um livro digital.</p>
+        <h1>📖 Biblioteca de Teoria</h1>
 
-    <div class="book-layout">
+        <p class="subtitle">
+            Aprende no teu próprio ritmo.
+        </p>
 
-        <div class="chapters">
+        <button class="chapter-btn" onclick="loadChapter('fractions')">
+            📕 Frações
+        </button>
 
-            <h3>Capítulos</h3>
+        <button class="chapter-btn" onclick="loadChapter('equations')">
+            📗 Equações
+        </button>
 
-            <button class="chapter-btn active"
-                    onclick="loadChapter(1)">
-                Capítulo 1 — Frações
-            </button>
+        <button class="chapter-btn" onclick="loadChapter('geometry')">
+            📘 Geometria
+        </button>
 
-            <button class="chapter-btn"
-                    onclick="loadChapter(2)">
-                Capítulo 2 — Equações
-            </button>
+        <button class="chapter-btn" onclick="loadChapter('science')">
+            📙 Ciências
+        </button>
 
-            <button class="chapter-btn"
-                    onclick="loadChapter(3)">
-                Capítulo 3 — Geometria
-            </button>
+    </div>
 
-        </div>
+    <div id="bookContent" class="book">
 
+        <h2>📖 Escolhe um capítulo</h2>
 
-        <article class="book" id="bookContent">
-
-            <h2>Frações</h2>
-
-            <p>
-                Uma fração representa uma quantidade dividida em partes
-                iguais. Ela possui um numerador e um denominador.
-            </p>
-
-            <div class="example">
-
-                <h3>📌 Exemplo</h3>
-
-                <p>
-                    Na fração 3/4, o número 3 é o numerador e o número 4
-                    é o denominador.
-                </p>
-
-            </div>
-
-            <h3>Como interpretar?</h3>
-
-            <p>
-                O denominador indica em quantas partes iguais o todo foi
-                dividido. O numerador indica quantas dessas partes estamos
-                considerando.
-            </p>
-
-            <div class="summary">
-
-                <h3>🧠 Resumo</h3>
-
-                <ul>
-                    <li>Numerador = partes consideradas.</li>
-                    <li>Denominador = partes iguais do todo.</li>
-                    <li>Frações podem representar quantidades menores ou maiores que 1.</li>
-                </ul>
-
-            </div>
-
-        </article>
+        <p>
+            Aqui aparecerão explicações, exemplos,
+            exercícios e resumos.
+        </p>
 
     </div>
 
 </section>
 
 
-<!-- ================= LABORATÓRIO ================= -->
+<!-- ================= LABORATÓRIO 3D ================= -->
 
-<section class="screen" id="lab">
+<section id="lab" class="screen">
 
-    <div class="lab-header">
+    <div class="card">
 
-        <div>
-            <h1>🧪 Laboratório 3D</h1>
-            <p>Explora modelos científicos e matemáticos.</p>
-        </div>
+        <h1>🧪 Laboratório 3D</h1>
 
-        <div class="lab-controls">
+        <p class="subtitle">
+            Explora conceitos em três dimensões.
+        </p>
 
-            <button onclick="createSolarSystem()">🌌 Sistema Solar</button>
+        <div id="threeContainer"></div>
 
-            <button onclick="createMolecule()">⚗️ Molécula</button>
+        <div class="three-controls">
 
-            <button onclick="createCell()">🧬 Célula</button>
+            <button onclick="createCube()">🧊 Cubo</button>
 
-            <button onclick="createGeometry()">📐 Geometria</button>
+            <button onclick="createSphere()">🔵 Esfera</button>
 
-        </div>
-
-    </div>
-
-    <div id="threeContainer">
-
-        <div class="info-panel" id="planetInfo">
-
-            <h3 id="infoTitle">Sistema Solar</h3>
-
-            <p id="infoText">
-                Seleciona um objeto para saber mais.
-            </p>
+            <button onclick="createSolarSystem()">🌍 Sistema Solar</button>
 
         </div>
 
@@ -869,23 +808,17 @@ select{
 
 <!-- ================= TESTES ================= -->
 
-<section class="screen" id="tests">
-
-    <h1>📝 Testes</h1>
+<section id="tests" class="screen">
 
     <div class="card">
 
-        <h2 id="questionText">
-            Quanto é 3/4 de 20?
-        </h2>
+        <h1>📝 Teste de Matemática</h1>
+
+        <p id="questionText"></p>
 
         <div id="options"></div>
 
-        <button class="btn" onclick="nextQuestion()">
-            Próxima questão →
-        </button>
-
-        <div class="result" id="testResult"></div>
+        <div id="testResult"></div>
 
     </div>
 
@@ -894,91 +827,17 @@ select{
 
 <!-- ================= PROGRESSO ================= -->
 
-<section class="screen" id="progress">
-
-    <h1>📊 Meu progresso</h1>
+<section id="progress" class="screen">
 
     <div class="card">
 
-        <h2>🧠 O teu domínio</h2>
+        <h1>📊 Meu progresso</h1>
 
-        <div class="mastery">
+        <p class="subtitle">
+            O StudyAIz acompanha o que já dominas.
+        </p>
 
-            <div class="mastery-card">
-
-                <strong>🟢 Frações</strong>
-
-                <p>92% de domínio</p>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:92%"></div>
-                </div>
-
-                <p>Excelente! Continua praticando.</p>
-
-            </div>
-
-
-            <div class="mastery-card">
-
-                <strong>🟡 Equações</strong>
-
-                <p>64% de domínio</p>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:64%"></div>
-                </div>
-
-                <p>Precisas de mais prática.</p>
-
-            </div>
-
-
-            <div class="mastery-card">
-
-                <strong>🔴 Geometria</strong>
-
-                <p>38% de domínio</p>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:38%"></div>
-                </div>
-
-                <p>Recomendamos rever a teoria.</p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>💡 Recomendações</h2>
-
-        <div class="tip">
-
-            <strong>🎯 O que estudar agora?</strong>
-
-            <p>
-                O teu desempenho mostra que precisas melhorar Geometria.
-                Começa pelo capítulo sobre formas geométricas e depois
-                faz um teste.
-            </p>
-
-        </div>
-
-        <div class="tip">
-
-            <strong>📚 Próximo passo</strong>
-
-            <p>
-                Depois de Geometria, pratica Equações para aumentar o teu
-                nível de domínio.
-            </p>
-
-        </div>
+        <div id="progressContent"></div>
 
     </div>
 
@@ -987,34 +846,44 @@ select{
 
 <!-- ================= DISCIPLINAS ================= -->
 
-<section class="screen" id="subjects">
+<section id="subjects" class="screen">
 
-    <h1>📚 Minhas disciplinas</h1>
+    <div class="card">
 
-    <div class="grid">
+        <h1>📚 Minhas disciplinas</h1>
 
-        <div class="action-card">
-            <div class="action-icon">🔢</div>
-            <h2>Matemática</h2>
-            <p>Frações, equações, geometria e muito mais.</p>
-        </div>
+        <div class="grid">
 
-        <div class="action-card">
-            <div class="action-icon">🧬</div>
-            <h2>Biologia</h2>
-            <p>Células, corpo humano, genética e ecologia.</p>
-        </div>
+            <div class="feature">
+                📐
+                <h2>Matemática</h2>
+            </div>
 
-        <div class="action-card">
-            <div class="action-icon">⚗️</div>
-            <h2>Química</h2>
-            <p>Átomos, moléculas, elementos e reações.</p>
-        </div>
+            <div class="feature">
+                🔬
+                <h2>Ciências</h2>
+            </div>
 
-        <div class="action-card">
-            <div class="action-icon">🌍</div>
-            <h2>Geografia</h2>
-            <p>Planeta, clima, mapas e população.</p>
+            <div class="feature">
+                📜
+                <h2>História</h2>
+            </div>
+
+            <div class="feature">
+                📝
+                <h2>Português</h2>
+            </div>
+
+            <div class="feature">
+                🌍
+                <h2>Geografia</h2>
+            </div>
+
+            <div class="feature">
+                🇬🇧
+                <h2>Inglês</h2>
+            </div>
+
         </div>
 
     </div>
@@ -1024,100 +893,127 @@ select{
 
 <!-- ================= CONFIGURAÇÕES ================= -->
 
-<section class="screen" id="settings">
-
-    <h1>⚙️ Configurações</h1>
+<section id="settings" class="screen">
 
     <div class="card">
 
-        <h2>Perfil de aprendizagem</h2>
+        <h1>⚙️ Configurações</h1>
 
-        <p id="profileInfo">
-            As tuas informações aparecerão aqui.
+        <p>
+            País:
+            <strong id="settingsCountry">-</strong>
+        </p>
+
+        <p>
+            Nível:
+            <strong id="settingsLevel">-</strong>
+        </p>
+
+        <p>
+            Classe:
+            <strong id="settingsGrade">-</strong>
+        </p>
+
+        <p>
+            Idioma:
+            <strong id="settingsLanguage">-</strong>
         </p>
 
         <button class="btn secondary" onclick="resetApp()">
             Reiniciar configuração
         </button>
 
-        </div>
+    </div>
 
 </section>
 
 </main>
 
+
+<!-- THREE.JS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <script>
 
-/* ================= MENU ================= */
+/* =====================================================
+   NAVEGAÇÃO
+===================================================== */
 
-function toggleMenu(){
+function toggleMenu() {
 
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
+    document.getElementById("sidebar").classList.toggle("open");
 
-    sidebar.classList.toggle("open");
-    overlay.classList.toggle("show");
+    document.getElementById("overlay").classList.toggle("show");
+}
+
+function closeMenu() {
+
+    document.getElementById("sidebar").classList.remove("open");
+
+    document.getElementById("overlay").classList.remove("show");
 }
 
 
-/* ================= NAVEGAÇÃO ================= */
+function showScreen(id) {
 
-function showScreen(id){
-
-    document.querySelectorAll(".screen").forEach(function(screen){
+    document.querySelectorAll(".screen").forEach(function(screen) {
         screen.classList.remove("active");
     });
 
-    const screen = document.getElementById(id);
+    const target = document.getElementById(id);
 
-    if(screen){
-        screen.classList.add("active");
+    if(target) {
+        target.classList.add("active");
     }
 
-    toggleMenu();
+    closeMenu();
 
+    if(id === "progress") {
+        renderProgress();
+    }
+
+    if(id === "tests") {
+        loadQuestion();
+    }
+
+    if(id === "lab") {
+
+        setTimeout(function() {
+
+            if(!scene) {
+                init3D();
+            }
+
+        }, 100);
+
+    }
 }
 
 
-/* ================= ONBOARDING ================= */
+/* =====================================================
+   ONBOARDING
+===================================================== */
 
-let currentStep = 1;
+function showStep(number) {
 
-
-function showStep(step){
-
-    document.querySelectorAll(".step").forEach(function(item){
-        item.classList.remove("active");
+    document.querySelectorAll(".step").forEach(function(step) {
+        step.classList.remove("active");
     });
 
-    const selected = document.getElementById("step" + step);
+    const step = document.getElementById("step" + number);
 
-    if(selected){
-        selected.classList.add("active");
-    }
-
-    currentStep = step;
-
-    for(let i = 1; i <= 4; i++){
-
-        const dot = document.getElementById("dot" + i);
-
-        if(dot){
-            dot.classList.toggle("active", i <= step);
-        }
-
+    if(step) {
+        step.classList.add("active");
     }
 }
 
 
-function nextStep(step){
+function nextStep(current) {
 
-    if(step === 1){
+    if(current === 1) {
 
-        const country =
-            document.getElementById("country").value;
-
-        if(country === ""){
+        if(document.getElementById("country").value === "") {
 
             alert("Escolhe o teu país primeiro.");
 
@@ -1125,13 +1021,9 @@ function nextStep(step){
         }
     }
 
+    if(current === 2) {
 
-    if(step === 2){
-
-        const level =
-            document.getElementById("level").value;
-
-        if(level === ""){
+        if(document.getElementById("level").value === "") {
 
             alert("Escolhe o teu nível de ensino.");
 
@@ -1139,469 +1031,47 @@ function nextStep(step){
         }
     }
 
+    if(current === 3) {
 
-    if(step === 3){
+        if(document.getElementById("grade").value === "") {
 
-        const grade =
-            document.getElementById("grade").value;
-
-        if(grade === ""){
-
-            alert("Escolhe a tua classe ou ano.");
+            alert("Escolhe a tua classe.");
 
             return;
         }
     }
 
-
-    showStep(step + 1);
+    showStep(current + 1);
 }
 
 
-function prevStep(step){
+function prevStep(current) {
 
-    showStep(step - 1);
-
+    showStep(current - 1);
 }
 
 
-/* ================= FINALIZAR ================= */
+function finishSetup() {
 
-function finishSetup(){
+    const country = document.getElementById("country").value;
+    const level = document.getElementById("level").value;
+    const grade = document.getElementById("grade").value;
+    const language = document.getElementById("language").value;
 
-    const country =
-        document.getElementById("country").value;
+    if(!language) {
 
-    const level =
-        document.getElementById("level").value;
-
-    const grade =
-        document.getElementById("grade").value;
-
-    const language =
-        document.getElementById("language").value;
-
-
-    if(
-        country === "" ||
-        level === "" ||
-        grade === "" ||
-        language === ""
-    ){
-
-        alert("Preenche todas as opções.");
+        alert("Escolhe o idioma.");
 
         return;
     }
 
-
     const profile = {
-
-        country: country,
-        level: level,
-        grade: grade,
-        language: language
-
+        country,
+        level,
+        grade,
+        language
     };
-
 
     localStorage.setItem(
         "studyaizProfile",
-        JSON.stringify(profile)
-    );
-
-
-    document.getElementById(
-        "onboarding"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "app"
-    ).style.display = "block";
-
-
-    updateProfile();
-
-}
-
-
-/* ================= PERFIL ================= */
-
-function updateProfile(){
-
-    const saved =
-        localStorage.getItem("studyaizProfile");
-
-    if(!saved) return;
-
-
-    const profile =
-        JSON.parse(saved);
-
-
-    const info =
-        document.getElementById("profileInfo");
-
-
-    if(info){
-
-        info.innerHTML =
-        "🌍 País: <strong>" + profile.country +
-        "</strong><br><br>" +
-
-        "🎓 Nível: <strong>" + profile.level +
-        "</strong><br><br>" +
-
-        "📚 Classe/Ano: <strong>" + profile.grade +
-        "</strong><br><br>" +
-
-        "🌐 Idioma: <strong>" + profile.language +
-        "</strong>";
-
-    }
-
-}
-
-
-/* ================= REINICIAR ================= */
-
-function resetApp(){
-
-    localStorage.removeItem(
-        "studyaizProfile"
-    );
-
-    location.reload();
-
-}
-
-
-/* ================= TESTES ================= */
-
-const questions = [
-
-    {
-        q: "Quanto é 3/4 de 20?",
-        options: ["10", "12", "15", "18"],
-        answer: "15"
-    },
-
-    {
-        q: "Se x + 5 = 12, quanto vale x?",
-        options: ["5", "6", "7", "8"],
-        answer: "7"
-    },
-
-    {
-        q: "Quantas faces possui um cubo?",
-        options: ["4", "6", "8", "12"],
-        answer: "6"
-    }
-
-];
-
-
-let questionIndex = 0;
-let score = 0;
-let answered = false;
-
-
-function loadQuestion(){
-
-    const question =
-        questions[questionIndex];
-
-
-    document.getElementById(
-        "questionText"
-    ).textContent = question.q;
-
-
-    const options =
-        document.getElementById("options");
-
-
-    options.innerHTML = "";
-
-
-    question.options.forEach(function(option){
-
-        const button =
-            document.createElement("button");
-
-
-        button.className = "option";
-
-        button.textContent = option;
-
-
-        button.onclick = function(){
-
-            answerQuestion(
-                button,
-                option
-            );
-
-        };
-
-
-        options.appendChild(button);
-
-    });
-
-}
-
-
-function answerQuestion(button, answer){
-
-    if(answered) return;
-
-    answered = true;
-
-
-    const question =
-        questions[questionIndex];
-
-
-    if(answer === question.answer){
-
-        button.classList.add("correct");
-
-        score++;
-
-        document.getElementById(
-            "testResult"
-        ).textContent =
-            "✅ Muito bem! Resposta correta.";
-
-    }
-    else{
-
-        button.classList.add("wrong");
-
-        document.getElementById(
-            "testResult"
-        ).textContent =
-            "❌ Ainda não. Revê a teoria deste assunto.";
-
-    }
-
-}
-
-
-function nextQuestion(){
-
-    if(!answered){
-
-        alert(
-            "Responde primeiro à questão."
-        );
-
-        return;
-    }
-
-
-    questionIndex++;
-
-
-    if(questionIndex >= questions.length){
-
-        document.getElementById(
-            "questionText"
-        ).textContent =
-            "🎉 Teste terminado!";
-
-
-        document.getElementById(
-            "options"
-        ).innerHTML = "";
-
-
-        document.getElementById(
-            "testResult"
-        ).textContent =
-            "Resultado: " +
-            score +
-            "/" +
-            questions.length;
-
-
-        return;
-
-    }
-
-
-    answered = false;
-
-
-    document.getElementById(
-        "testResult"
-    ).textContent = "";
-
-
-    loadQuestion();
-
-}
-
-
-/* ================= TEORIA ================= */
-
-function loadChapter(number){
-
-    const book =
-        document.getElementById("bookContent");
-
-
-    if(number === 1){
-
-        book.innerHTML = `
-
-            <h2>Frações</h2>
-
-            <p>
-                Uma fração representa uma quantidade dividida
-                em partes iguais.
-            </p>
-
-            <div class="example">
-
-                <h3>📌 Exemplo</h3>
-
-                <p>
-                    Em 3/4, o 3 é o numerador e o 4 é o denominador.
-                </p>
-
-            </div>
-
-            <h3>🧠 Resumo</h3>
-
-            <div class="summary">
-
-                <ul>
-                    <li>Numerador = partes consideradas.</li>
-                    <li>Denominador = partes iguais.</li>
-                </ul>
-
-            </div>
-
-        `;
-
-    }
-
-
-    if(number === 2){
-
-        book.innerHTML = `
-
-            <h2>Equações</h2>
-
-            <p>
-                Uma equação é uma igualdade matemática que
-                contém uma ou mais incógnitas.
-            </p>
-
-            <div class="example">
-
-                <h3>📌 Exemplo</h3>
-
-                <p>
-                    x + 5 = 12
-                </p>
-
-            </div>
-
-            <h3>🧠 Resumo</h3>
-
-            <div class="summary">
-
-                <p>
-                    O objetivo é descobrir o valor da incógnita
-                    que torna a igualdade verdadeira.
-                </p>
-
-            </div>
-
-        `;
-
-    }
-
-
-    if(number === 3){
-
-        book.innerHTML = `
-
-            <h2>Geometria</h2>
-
-            <p>
-                A geometria estuda formas, tamanhos, posições
-                e propriedades das figuras.
-            </p>
-
-            <div class="example">
-
-                <h3>📌 Exemplo</h3>
-
-                <p>
-                    Um cubo possui 6 faces, 12 arestas e
-                    8 vértices.
-                </p>
-
-            </div>
-
-            <h3>🧠 Resumo</h3>
-
-            <div class="summary">
-
-                <p>
-                    Área mede uma superfície e volume mede
-                    o espaço ocupado por um sólido.
-                </p>
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* ================= INICIALIZAÇÃO ================= */
-
-window.addEventListener(
-    "DOMContentLoaded",
-    function(){
-
-        const saved =
-            localStorage.getItem(
-                "studyaizProfile"
-            );
-
-
-        if(saved){
-
-            document.getElementById(
-                "onboarding"
-            ).style.display = "none";
-
-
-            document.getElementById(
-                "app"
-            ).style.display = "block";
-
-
-            updateProfile();
-
-        }
-
-
-        loadQuestion();
-
-    }
-);
-
-</script>
-
-</body>
-</html>
+        JSON.strin
