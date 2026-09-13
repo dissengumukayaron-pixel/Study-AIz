@@ -2306,7 +2306,109 @@ window.addEventListener(
 
     }
 );
+/* =========================
+   ESTUDOS
+========================= */
 
+const estudarButton =
+    document.getElementById("estudarButton");
+
+if (estudarButton) {
+
+    estudarButton.addEventListener(
+        "click",
+        iniciarEstudo
+    );
+
+}
+
+function iniciarEstudo() {
+
+    const disciplina =
+        document.getElementById("estudoDisciplina")
+        .value
+        .trim();
+
+    const tema =
+        document.getElementById("estudoTema")
+        .value
+        .trim();
+
+    const resultado =
+        document.getElementById("resultadoEstudo");
+
+    const titulo =
+        document.getElementById("tituloEstudo");
+
+    const conteudo =
+        document.getElementById("conteudoEstudo");
+
+
+    if (!disciplina) {
+
+        alert("📖 Digite uma disciplina ou área.");
+
+        return;
+
+    }
+
+
+    if (!tema) {
+
+        alert("🔎 Digite o tema que deseja aprender.");
+
+        return;
+
+    }
+
+
+    titulo.textContent =
+        "📖 " + tema;
+
+
+    conteudo.innerHTML = `
+        <p>
+            <strong>Disciplina:</strong> ${escaparHTML(disciplina)}
+        </p>
+
+        <br>
+
+        <p>
+            <strong>🎯 Tema:</strong> ${escaparHTML(tema)}
+        </p>
+
+        <br>
+
+        <h3>🧠 Vamos aprender</h3>
+
+        <p>
+            O StudyAIz preparou este espaço para você
+            estudar <strong>${escaparHTML(tema)}</strong>
+            dentro da área de
+            <strong>${escaparHTML(disciplina)}</strong>.
+        </p>
+
+        <br>
+
+        <h3>💡 Próximo passo</h3>
+
+        <p>
+            Aqui será apresentada uma explicação completa,
+            exemplos, exercícios e dicas adaptadas ao seu
+            nível de aprendizagem.
+        </p>
+    `;
+
+
+    resultado.style.display = "block";
+
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
 </script>
 <script src="script.js"></script>
 </body>
