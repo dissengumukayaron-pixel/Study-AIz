@@ -1765,49 +1765,7 @@ async function perguntarTutor() {
     }
 }
 
-        const pergunta =
-            tutorQuestion.value.trim();
-
-
-        if (!pergunta) {
-
-            tutorResponse.style.display = "block";
-
-            tutorResponse.textContent =
-                "Escreva sua pergunta para o Tutor IA.";
-
-            return;
-
-        }
-
-
-        tutorResponse.style.display = "block";
-
-        tutorResponse.innerHTML = `
-            <strong style="color:white;">
-                🤖 Tutor IA
-            </strong>
-
-            <br><br>
-
-            Sua pergunta foi recebida:
-
-            <br><br>
-
-            <strong style="color:#9db2ff;">
-                ${escaparHTML(pergunta)}
-            </strong>
-
-            <br><br>
-
-            <span style="color:#8792ac;">
-                A ligação com a inteligência artificial
-                será ativada no próximo passo.
-            </span>
-        `;
-
-    }
-
+        
 
 
     function escaparHTML(texto) {
