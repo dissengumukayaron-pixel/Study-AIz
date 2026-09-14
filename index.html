@@ -1693,7 +1693,77 @@
     }
 
 
-    function perguntarTutor() {
+async function perguntarTutor() {
+
+    const pergunta = tutorQuestion.value.trim();
+
+    if (!pergunta) {
+        tutorResponse.style.display = "block";
+        tutorResponse.textContent =
+            "Escreva sua pergunta para o Tutor IA.";
+        return;
+    }
+
+    tutorResponse.style.display = "block";
+    tutorResponse.innerHTML = `
+        <strong style="color:white;">
+            🤖 Tutor IA
+        </strong>
+
+        <br><br>
+
+        A pensar na resposta...
+    `;
+
+    try {
+
+        const resposta = await fetch("/api/chat", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                message: pergunta
+            })
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            throw new Error(
+                dados.error || "Erro no servidor."
+            );
+        }
+
+        tutorResponse.innerHTML = `
+            <strong style="color:white;">
+                🤖 Tutor IA
+            </strong>
+
+            <br><br>
+
+            ${escaparHTML(
+                dados.reply || dados.response || "Sem resposta."
+            )}
+        `;
+
+    } catch (erro) {
+
+        console.error("Erro Tutor IA:", erro);
+
+        tutorResponse.innerHTML = `
+            <strong style="color:white;">
+                🤖 Tutor IA
+            </strong>
+
+            <br><br>
+
+            ❌ Não foi possível ligar ao Tutor IA.
+        `;
+    }
+}
 
         const pergunta =
             tutorQuestion.value.trim();
