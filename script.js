@@ -142,5 +142,84 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     }
+    // ========================================
+    // Tutor IA — Perguntas do aluno
+    // ========================================
 
+    const sendButton = document.getElementById("sendBtn");
+    const questionInput = document.getElementById("questionInput");
+    const tutorResponse = document.getElementById("tutorResponse");
+
+    if (sendButton && questionInput) {
+
+        sendButton.addEventListener("click", async () => {
+
+            const question = questionInput.value.trim();
+
+            if (!question) {
+                alert("Escreva uma pergunta para o Tutor IA.");
+                return;
+            }
+
+            if (tutorResponse) {
+                tutorResponse.innerHTML = "🤖 O Tutor IA está a pensar...";
+            }
+
+            sendButton.disabled = true;
+
+            try {
+
+                const configuracao =
+                    JSON.parse(
+                        localStorage.getItem("studyAIzSetup") || "{}"
+                    );
+
+                const resposta = await fetch("/api/chat", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        message: question,
+                        profile: configuracao
+                    })
+
+                });
+
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(
+                        dados.error || "Erro ao comunicar com a IA."
+                    );
+                }
+
+                if (tutorResponse) {
+                    tutorResponse.innerHTML =
+                        dados.reply ||
+                        dados.response ||
+                        "Não foi possível obter uma resposta.";
+                }
+
+            } catch (erro) {
+
+                console.error("Erro Tutor IA:", erro);
+
+                if (tutorResponse) {
+                    tutorResponse.innerHTML =
+                        "❌ Não foi possível contactar o Tutor IA. Verifica se o servidor está ligado.";
+                }
+
+            } finally {
+
+                sendButton.disabled = false;
+
+            }
+
+        });
+
+    }
 });
