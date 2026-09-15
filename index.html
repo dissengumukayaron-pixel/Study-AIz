@@ -1728,8 +1728,9 @@ const configuracao =
             },
 
             body: JSON.stringify({
-                message: pergunta
-            })
+    message: pergunta,
+    profile: configuracao
+})
         });
 
         const dados = await resposta.json();
