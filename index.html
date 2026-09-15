@@ -1716,7 +1716,10 @@ async function perguntarTutor() {
     `;
 
     try {
-
+const configuracao =
+    JSON.parse(
+        localStorage.getItem("studyAIzSetup") || "{}"
+    );
         const resposta = await fetch("/api/chat", {
             method: "POST",
 
