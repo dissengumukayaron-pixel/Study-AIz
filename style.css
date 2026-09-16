@@ -1,1 +1,25 @@
+/* ========================================
+   Study-AIz — Design inicial
+   ======================================== */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at top right, #4731a8 0%, transparent 35%),
+        radial-gradient(circle at bottom left, #123c8c 0%, transparent 40%),
+        #071225;
+    color: white;
+}
+
+#app {
+    min-height: 100vh;
+    width: 100%;
+    padding: 24px;
+}
