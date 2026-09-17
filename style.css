@@ -486,3 +486,246 @@ footer {
     object-fit: cover;
     display: block;
 }
+/* ========================================
+   STUDYAIZ — TELA CRIAR CONTA
+======================================== */
+
+.account-screen {
+    display: none;
+    min-height: 100vh;
+    padding: 40px 20px;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at top left, rgba(70, 80, 255, 0.25), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(150, 60, 255, 0.25), transparent 40%),
+        #050816;
+}
+
+.account-screen.active {
+    display: flex;
+}
+
+.account-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 40px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 28px;
+
+    background: rgba(15, 20, 45, 0.85);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45),
+        0 0 50px rgba(80, 80, 255, 0.12);
+
+    backdrop-filter: blur(20px);
+}
+
+.account-mascot {
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 42px;
+
+    border-radius: 24px;
+
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #9333ea
+    );
+
+    box-shadow:
+        0 0 30px rgba(99, 102, 241, 0.5);
+}
+
+.account-badge {
+    display: block;
+
+    text-align: center;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+
+    color: #8b9cff;
+
+    margin-bottom: 8px;
+}
+
+.account-card h2 {
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 34px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #9fa8ff,
+        #d09cff
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.account-card > p {
+    margin: 12px 0 30px;
+
+    text-align: center;
+
+    color: #aab2d5;
+
+    line-height: 1.6;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #e4e7ff;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 15px 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: white;
+
+    font-size: 15px;
+
+    transition: 0.25s;
+}
+
+.input-group input::placeholder {
+    color: #747c9f;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #777cff;
+
+    box-shadow:
+        0 0 0 3px rgba(119, 124, 255, 0.12),
+        0 0 25px rgba(119, 124, 255, 0.12);
+}
+
+.input-group select option {
+    background: #11162f;
+    color: white;
+}
+
+.account-card .primary-button {
+    width: 100%;
+    margin-top: 8px;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #9333ea
+    );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(99, 70, 255, 0.3);
+
+    transition: 0.25s;
+}
+
+.account-card .primary-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 35px rgba(99, 70, 255, 0.45);
+}
+
+.back-button {
+    display: block;
+
+    margin: 20px auto 0;
+
+    padding: 10px 18px;
+
+    border: none;
+    background: transparent;
+
+    color: #9da6d5;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    color: white;
+}
+
+
+/* ========================================
+   RESPONSIVO
+======================================== */
+
+@media (max-width: 600px) {
+
+    .account-screen {
+        padding: 20px 15px;
+    }
+
+    .account-card {
+        padding: 28px 20px;
+        border-radius: 22px;
+    }
+
+    .account-card h2 {
+        font-size: 28px;
+    }
+
+    .account-mascot {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+    }
+
+}
