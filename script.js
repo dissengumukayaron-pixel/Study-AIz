@@ -80,8 +80,6 @@ if (createAccountButton) {
         }, 200 + (index * 150));
 
     });
-
-});
 /* VOLTAR PARA A PÁGINA INICIAL */
 
 const backHomeButton =
@@ -106,3 +104,5 @@ if (backHomeButton) {
     });
 
 }
+   
+});
