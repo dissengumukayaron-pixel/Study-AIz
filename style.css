@@ -1173,3 +1173,392 @@ body.profile-open #profileScreen .profile-card {
     position: relative !important;
     z-index: 100000 !important;
 }
+
+/* ========================================
+   STUDYAIZ — MODO VISITANTE
+======================================== */
+
+.guest-screen {
+    display: none;
+
+    min-height: 100vh;
+    width: 100%;
+
+    padding: 40px 20px;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(70, 80, 255, 0.25),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(150, 60, 255, 0.25),
+            transparent 40%
+        ),
+        #050816;
+}
+
+.guest-screen.active {
+    display: flex;
+}
+
+.guest-card {
+    width: 100%;
+    max-width: 560px;
+
+    padding: 40px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+
+    background: rgba(15,20,45,0.88);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.45),
+        0 0 50px rgba(80,80,255,0.12);
+
+    backdrop-filter: blur(20px);
+}
+
+.guest-mascot {
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 42px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #9333ea
+        );
+
+    box-shadow:
+        0 0 30px rgba(99,102,241,0.5);
+}
+
+.guest-badge {
+    display: block;
+
+    text-align: center;
+
+    color: #8b9cff;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+}
+
+.guest-card h2 {
+    text-align: center;
+
+    font-size: 32px;
+
+    margin: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #9fa8ff,
+            #d09cff
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.guest-card > p {
+    text-align: center;
+
+    color: #aab2d5;
+
+    line-height: 1.6;
+
+    margin: 12px 0 25px;
+}
+
+
+/* AVISO */
+
+.guest-notice {
+    display: flex;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    margin-bottom: 25px;
+
+    border-radius: 16px;
+
+    background: rgba(119,124,255,0.08);
+
+    border: 1px solid rgba(119,124,255,0.18);
+}
+
+.guest-notice > span {
+    font-size: 22px;
+}
+
+.guest-notice strong {
+    display: block;
+
+    color: #e8eaff;
+
+    margin-bottom: 4px;
+}
+
+.guest-notice small {
+    display: block;
+
+    color: #969fc5;
+
+    line-height: 1.5;
+}
+
+
+/* CAMPOS */
+
+.guest-field {
+    margin-bottom: 20px;
+}
+
+.guest-field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #e4e7ff;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.guest-field label span {
+    color: #737b9e;
+    font-weight: 400;
+}
+
+.guest-field input,
+.guest-field select {
+    width: 100%;
+
+    padding: 15px 16px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 14px;
+
+    outline: none;
+
+    background: rgba(255,255,255,0.06);
+
+    color: white;
+
+    font-size: 15px;
+
+    transition: 0.25s;
+}
+
+.guest-field input::placeholder {
+    color: #747c9f;
+}
+
+.guest-field input:focus,
+.guest-field select:focus {
+    border-color: #777cff;
+
+    box-shadow:
+        0 0 0 3px rgba(119,124,255,0.12),
+        0 0 25px rgba(119,124,255,0.12);
+}
+
+.guest-field select option {
+    background: #11162f;
+    color: white;
+}
+
+
+/* AVATARES */
+
+.guest-avatar-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 10px;
+}
+
+.guest-avatar {
+    height: 62px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.05);
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.guest-avatar:hover {
+    transform: translateY(-3px);
+
+    border-color: #777cff;
+
+    background: rgba(119,124,255,0.12);
+}
+
+.guest-avatar.selected {
+    border-color: #8b7cff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(79,70,229,0.30),
+            rgba(147,51,234,0.30)
+        );
+
+    box-shadow:
+        0 0 20px rgba(99,102,241,0.25);
+
+    transform: translateY(-2px);
+}
+
+
+/* BOTÃO */
+
+.guest-card .primary-button {
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #9333ea
+        );
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(99,70,255,0.3);
+
+    transition: 0.25s;
+}
+
+.guest-card .primary-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 35px rgba(99,70,255,0.45);
+}
+
+
+/* ========================================
+   FULLSCREEN VISITANTE
+======================================== */
+
+body.guest-open {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    width: 100% !important;
+    min-height: 100vh !important;
+
+    overflow: hidden !important;
+}
+
+body.guest-open > * {
+    display: none !important;
+}
+
+body.guest-open > #guestScreen {
+    display: flex !important;
+
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    min-height: 100vh !important;
+
+    padding: 40px 20px !important;
+
+    box-sizing: border-box;
+
+    z-index: 99999 !important;
+
+    overflow-y: auto;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .guest-screen {
+        padding: 20px 15px;
+    }
+
+    .guest-card {
+        padding: 28px 20px;
+        border-radius: 22px;
+    }
+
+    .guest-card h2 {
+        font-size: 27px;
+    }
+
+    .guest-mascot {
+        width: 70px;
+        height: 70px;
+
+        font-size: 36px;
+    }
+
+    .guest-avatar-options {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+}
