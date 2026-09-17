@@ -475,3 +475,14 @@ footer {
         padding: 40px 20px;
     }
           }
+.student-placeholder {
+    overflow: hidden;
+    position: relative;
+}
+
+.student-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
