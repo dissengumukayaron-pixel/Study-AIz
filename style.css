@@ -1129,3 +1129,47 @@ body.profile-open #profileScreen {
     width: 100%;
     box-sizing: border-box;
 }
+/* ========================================
+   STUDYAIZ — PERFIL FULLSCREEN DEFINITIVO
+======================================== */
+
+body.profile-open {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+}
+
+/* Esconde absolutamente tudo */
+body.profile-open > * {
+    display: none !important;
+}
+
+/* Mostra SOMENTE o perfil */
+body.profile-open > #profileScreen {
+    display: flex !important;
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+
+    margin: 0 !important;
+    padding: 40px 20px !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    z-index: 99999 !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* Cartão do perfil */
+body.profile-open #profileScreen .profile-card {
+    position: relative !important;
+    z-index: 100000 !important;
+}
