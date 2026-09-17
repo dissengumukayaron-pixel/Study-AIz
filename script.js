@@ -19,11 +19,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* Criar conta */
-    if (createAccountButton) {
-        createAccountButton.addEventListener("click", () => {
-            alert("A área de criação de conta do StudyAIz será aberta em breve.");
-        });
-    }
+if (createAccountButton) {
+
+    createAccountButton.addEventListener("click", () => {
+
+        const accountScreen =
+            document.getElementById("accountScreen");
+
+        if (accountScreen) {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+            accountScreen.classList.add("active");
+        }
+
+    });
+
+}
 
 
     /* Entrar sem conta */
