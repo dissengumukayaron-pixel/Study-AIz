@@ -729,3 +729,23 @@ footer {
     }
 
 }
+/* ========================================
+   STUDYAIZ — MODO TELA DE CADASTRO
+======================================== */
+
+body.account-open > *:not(#accountScreen) {
+    display: none !important;
+}
+
+body.account-open {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body.account-open #accountScreen {
+    display: flex !important;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
