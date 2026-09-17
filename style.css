@@ -1109,3 +1109,23 @@ body.account-open #accountScreen {
     }
 
 }
+/* ========================================
+   STUDYAIZ — TELA DE PERFIL EM ECRÃ COMPLETO
+======================================== */
+
+body.profile-open > *:not(#profileScreen) {
+    display: none !important;
+}
+
+body.profile-open {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body.profile-open #profileScreen {
+    display: flex !important;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
