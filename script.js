@@ -82,3 +82,27 @@ if (createAccountButton) {
     });
 
 });
+/* VOLTAR PARA A PÁGINA INICIAL */
+
+const backHomeButton =
+    document.getElementById("backHomeButton");
+
+if (backHomeButton) {
+
+    backHomeButton.addEventListener("click", () => {
+
+        const accountScreen =
+            document.getElementById("accountScreen");
+
+        if (accountScreen) {
+            accountScreen.classList.remove("active");
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+}
