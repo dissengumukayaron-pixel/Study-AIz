@@ -119,11 +119,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (guestButton) {
 
-        guestButton.addEventListener("click", () => {
+    guestButton.addEventListener("click", () => {
 
-            alert("Modo visitante do StudyAIz.");
+        const guestScreen =
+            document.getElementById("guestScreen");
 
-        });
+        if (guestScreen) {
+
+            document.body.classList.add("guest-open");
+
+            guestScreen.classList.add("active");
+
+            window.scrollTo(0, 0);
+
+        }
+
+    });
 
     }
 
