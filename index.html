@@ -604,7 +604,315 @@
         </div>
 
     </section>
+<!-- ========================================
+     STUDYAIZ — PERFIL VISITANTE
+======================================== -->
 
+<section id="guestScreen" class="guest-screen">
+
+    <div class="guest-card">
+
+        <div class="guest-mascot">
+            🤖
+        </div>
+
+        <span class="guest-badge">
+            MODO VISITANTE
+        </span>
+
+        <h2>Começa a tua jornada</h2>
+
+        <p>
+            Personaliza a tua experiência e experimenta
+            o StudyAIz sem criar uma conta.
+        </p>
+
+        <div class="guest-notice">
+            <span>💡</span>
+            <div>
+                <strong>Antes de começar</strong>
+                <small>
+                    O teu progresso será temporário.
+                    Cria uma conta depois para o guardar.
+                </small>
+            </div>
+        </div>
+
+        <!-- NOME -->
+
+        <div class="guest-field">
+
+            <label for="guestName">
+                Nome
+            </label>
+
+            <input
+                type="text"
+                id="guestName"
+                placeholder="Como queres ser chamado?"
+            >
+
+        </div>
+
+        <!-- AVATAR -->
+
+        <div class="guest-field">
+
+            <label>
+                Escolhe o teu avatar
+            </label>
+
+            <div class="guest-avatar-options">
+
+                <button type="button"
+                    class="guest-avatar"
+                    data-avatar="🧑🏽‍🎓">
+                    🧑🏽‍🎓
+                </button>
+
+                <button type="button"
+                    class="guest-avatar"
+                    data-avatar="👩🏽‍🎓">
+                    👩🏽‍🎓
+                </button>
+
+                <button type="button"
+                    class="guest-avatar"
+                    data-avatar="🧑🏾‍💻">
+                    🧑🏾‍💻
+                </button>
+
+                <button type="button"
+                    class="guest-avatar"
+                    data-avatar="👩🏾‍💻">
+                    👩🏾‍💻
+                </button>
+
+                <button type="button"
+                    class="guest-avatar"
+                    data-avatar="🧑🏽‍🔬">
+                    🧑🏽‍🔬
+                </button>
+
+                <button type="button"
+                    class="guest-avatar"
+                    data-avatar="👩🏽‍🔬">
+                    👩🏽‍🔬
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PAÍS -->
+
+        <div class="guest-field">
+
+            <label for="guestCountry">
+                País
+            </label>
+
+            <select id="guestCountry">
+
+                <option value="">
+                    Seleciona o teu país
+                </option>
+
+                <option value="Angola">
+                    🇦🇴 Angola
+                </option>
+
+                <option value="Portugal">
+                    🇵🇹 Portugal
+                </option>
+
+                <option value="Brasil">
+                    🇧🇷 Brasil
+                </option>
+
+                <option value="Moçambique">
+                    🇲🇿 Moçambique
+                </option>
+
+                <option value="Cabo Verde">
+                    🇨🇻 Cabo Verde
+                </option>
+
+                <option value="Guiné-Bissau">
+                    🇬🇼 Guiné-Bissau
+                </option>
+
+                <option value="São Tomé e Príncipe">
+                    🇸🇹 São Tomé e Príncipe
+                </option>
+
+                <option value="Estados Unidos">
+                    🇺🇸 Estados Unidos
+                </option>
+
+                <option value="Reino Unido">
+                    🇬🇧 Reino Unido
+                </option>
+
+                <option value="França">
+                    🇫🇷 França
+                </option>
+
+                <option value="Espanha">
+                    🇪🇸 Espanha
+                </option>
+
+                <option value="Alemanha">
+                    🇩🇪 Alemanha
+                </option>
+
+                <option value="Outro">
+                    🌍 Outro
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- NÍVEL -->
+
+        <div class="guest-field">
+
+            <label for="guestLevel">
+                Nível de ensino
+            </label>
+
+            <select id="guestLevel">
+
+                <option value="">
+                    Seleciona o teu nível
+                </option>
+
+                <option value="basico">
+                    Ensino Primário / Básico
+                </option>
+
+                <option value="fundamental">
+                    Ensino Fundamental
+                </option>
+
+                <option value="medio">
+                    Ensino Médio
+                </option>
+
+                <option value="secundario">
+                    Ensino Secundário
+                </option>
+
+                <option value="profissional">
+                    Ensino Profissional
+                </option>
+
+                <option value="tecnico">
+                    Curso Técnico
+                </option>
+
+                <option value="universidade">
+                    Universidade
+                </option>
+
+                <option value="exames">
+                    Preparação para exames
+                </option>
+
+                <option value="livre">
+                    Aprendizagem livre
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- CURSO -->
+
+        <div class="guest-field">
+
+            <label for="guestCourse">
+                Curso / Área
+                <span>(opcional)</span>
+            </label>
+
+            <input
+                type="text"
+                id="guestCourse"
+                placeholder="Ex.: Engenharia, Medicina..."
+            >
+
+        </div>
+
+        <!-- TEMPO -->
+
+        <div class="guest-field">
+
+            <label for="guestStudyTime">
+                Quanto queres estudar por dia?
+                <span>(opcional)</span>
+            </label>
+
+            <select id="guestStudyTime">
+
+                <option value="">
+                    Prefiro não definir
+                </option>
+
+                <option value="30">
+                    30 minutos
+                </option>
+
+                <option value="60">
+                    1 hora
+                </option>
+
+                <option value="90">
+                    1h30
+                </option>
+
+                <option value="120">
+                    2 horas
+                </option>
+
+                <option value="180">
+                    3 horas
+                </option>
+
+                <option value="240">
+                    4 horas ou mais
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- COMEÇAR -->
+
+        <button
+            type="button"
+            id="startGuestButton"
+            class="primary-button">
+
+            Começar a estudar 🚀
+
+        </button>
+
+        <!-- VOLTAR -->
+
+        <button
+            type="button"
+            id="backGuestButton"
+            class="back-button">
+
+            ← Voltar
+
+        </button>
+
+    </div>
+
+</section>
 
     <script src="script.js"></script>
 
