@@ -1,225 +1,69 @@
-// ========================================
-// StudyAIz — Navegação principal
-// ========================================
+/* ========================================
+   STUDYAIZ — SCRIPT PRINCIPAL
+======================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Botão Menu
-    const menuButton = document.getElementById("menuButton");
+    /* ==============================
+       BOTÕES DA PÁGINA INICIAL
+    ============================== */
 
-    if (menuButton) {
-        menuButton.addEventListener("click", () => {
+    const createAccountButton =
+        document.getElementById("createAccountButton");
 
-            const menu = document.getElementById("mainMenu");
+    const guestButton =
+        document.getElementById("guestButton");
 
-            if (menu) {
-                menu.classList.toggle("active");
-            }
+    const loginButton =
+        document.getElementById("loginButton");
+
+
+    /* Criar conta */
+    if (createAccountButton) {
+        createAccountButton.addEventListener("click", () => {
+            alert("A área de criação de conta do StudyAIz será aberta em breve.");
         });
     }
 
 
-    // Botões que levam para uma secção
-    document.querySelectorAll("[data-section]").forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const sectionId = button.dataset.section;
-            const section = document.getElementById(sectionId);
-
-            if (section) {
-
-                section.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-
+    /* Entrar sem conta */
+    if (guestButton) {
+        guestButton.addEventListener("click", () => {
+            alert("Modo visitante do StudyAIz.");
         });
+    }
+
+
+    /* Login */
+    if (loginButton) {
+        loginButton.addEventListener("click", () => {
+            alert("A área de login do StudyAIz será aberta em breve.");
+        });
+    }
+
+
+    /* ==============================
+       ANIMAÇÃO DOS CARTÕES
+    ============================== */
+
+    const cards =
+        document.querySelectorAll(".feature-card");
+
+    cards.forEach((card, index) => {
+
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+
+        setTimeout(() => {
+
+            card.style.transition =
+                "opacity 0.6s ease, transform 0.6s ease";
+
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+
+        }, 200 + (index * 150));
 
     });
 
-
-    // Botão Começar Estudos
-    const startButton =
-        document.getElementById("startStudies");
-
-    if (startButton) {
-
-        startButton.addEventListener("click", () => {
-
-            const setup =
-                document.getElementById("setup");
-
-            if (setup) {
-
-                setup.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-
-        });
-
-    }
-
-
-    // Botão Continuar
-    const continueButton =
-        document.getElementById("continueButton");
-
-    if (continueButton) {
-
-        continueButton.addEventListener("click", () => {
-
-            const country =
-                document.getElementById("country")?.value;
-
-            const education =
-                document.getElementById("education")?.value;
-
-            const discipline =
-                document.getElementById("discipline")?.value.trim();
-
-            const topic =
-                document.getElementById("topic")?.value.trim();
-
-
-            if (!country) {
-                alert("Escolha o seu país.");
-                return;
-            }
-
-            if (!education) {
-                alert("Escolha o seu sistema de ensino.");
-                return;
-            }
-
-            if (!discipline) {
-                alert("Escreva a disciplina que deseja estudar.");
-                return;
-            }
-
-            if (!topic) {
-                alert("Escreva o tema que deseja aprender.");
-                return;
-            }
-
-
-            const configuracao = {
-                country,
-                education,
-                discipline,
-                topic
-            };
-
-
-            localStorage.setItem(
-                "studyAIzSetup",
-                JSON.stringify(configuracao)
-            );
-
-
-            alert(
-                "Configuração guardada! Vamos começar os estudos."
-            );
-
-
-            const studyArea =
-                document.getElementById("studyArea");
-
-            if (studyArea) {
-
-                studyArea.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-
-        });
-
-    }
-    // ========================================
-    // Tutor IA — Perguntas do aluno
-    // ========================================
-
-    const sendButton = document.getElementById("sendBtn");
-    const questionInput = document.getElementById("questionInput");
-    const tutorResponse = document.getElementById("tutorResponse");
-
-    if (sendButton && questionInput) {
-
-        sendButton.addEventListener("click", async () => {
-
-            const question = questionInput.value.trim();
-
-            if (!question) {
-                alert("Escreva uma pergunta para o Tutor IA.");
-                return;
-            }
-
-            if (tutorResponse) {
-                tutorResponse.innerHTML = "🤖 O Tutor IA está a pensar...";
-            }
-
-            sendButton.disabled = true;
-
-            try {
-
-                const configuracao =
-                    JSON.parse(
-                        localStorage.getItem("studyAIzSetup") || "{}"
-                    );
-
-                const resposta = await fetch("/api/chat", {
-
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        message: question,
-                        profile: configuracao
-                    })
-
-                });
-
-                const dados = await resposta.json();
-
-                if (!resposta.ok) {
-                    throw new Error(
-                        dados.error || "Erro ao comunicar com a IA."
-                    );
-                }
-
-                if (tutorResponse) {
-                    tutorResponse.innerHTML =
-                        dados.reply ||
-                        dados.response ||
-                        "Não foi possível obter uma resposta.";
-                }
-
-            } catch (erro) {
-
-                console.error("Erro Tutor IA:", erro);
-
-                if (tutorResponse) {
-                    tutorResponse.innerHTML =
-                        "❌ Não foi possível contactar o Tutor IA. Verifica se o servidor está ligado.";
-                }
-
-            } finally {
-
-                sendButton.disabled = false;
-
-            }
-
-        });
-
-    }
 });
