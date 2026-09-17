@@ -1,784 +1,94 @@
-<!DOCTYPE html><html lang="pt">
+<!DOCTYPE html>
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#070B2A">
-<meta name="description" content="StudyAIz — a tua plataforma inteligente de estudos">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudyAIz — Tutor Inteligente</title>
+    <title>StudyAIz — Tutor Inteligente</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-</head><body><!-- =====================================
-     FUNDO FUTURISTA
-====================================== -->
+<body>
 
-<div class="space-background">
-    <div class="glow glow-one"></div>
-    <div class="glow glow-two"></div>
-    <div class="glow glow-three"></div>
+    <!-- =========================================
+         STUDYAIZ — PÁGINA INICIAL
+    ========================================== -->
 
-    <div class="stars"></div>
-</div>
+    <header class="topbar">
 
-
-<!-- =====================================
-     MENU LATERAL
-====================================== -->
-
-<aside id="sideMenu" class="side-menu">
-
-    <div class="menu-top">
-
-        <div class="brand">
-            <span class="brand-study">Study</span><span class="brand-aiz">AIz</span>
+        <div class="logo">
+            <span>Study</span><strong>AIz</strong>
         </div>
 
-        <button id="closeMenu" class="close-menu" aria-label="Fechar menu">
-            ×
-        </button>
-
-    </div>
-
-
-    <div class="menu-profile">
-
-        <div class="profile-avatar">
-            <span>👨‍🎓</span>
-        </div>
-
-        <div>
-            <strong>Meu perfil</strong>
-            <small>Área do estudante</small>
-        </div>
-
-    </div>
-
-
-    <nav class="main-navigation">
-
-        <button data-section="home">
-            <span class="nav-icon">⌂</span>
-            <span>Início</span>
-        </button>
-
-        <button data-section="tutor">
-            <span class="nav-icon">✦</span>
-            <span>Tutor IA</span>
-        </button>
-
-        <button data-section="theory">
-            <span class="nav-icon">▤</span>
-            <span>Teoria</span>
-        </button>
-
-        <button data-section="lab">
-            <span class="nav-icon">◈</span>
-            <span>Laboratório 3D</span>
-        </button>
-
-        <button data-section="tests">
-            <span class="nav-icon">✓</span>
-            <span>Testes</span>
-        </button>
-
-        <button data-section="progress">
-            <span class="nav-icon">◒</span>
-            <span>Progresso</span>
-        </button>
-
-        <button data-section="subjects">
-            <span class="nav-icon">▦</span>
-            <span>Disciplinas</span>
-        </button>
-
-        <button data-section="settings">
-            <span class="nav-icon">⚙</span>
-            <span>Definições</span>
-        </button>
-
-    </nav>
-
-
-    <div class="menu-bottom">
-
-        <div class="menu-ai-status">
-            <span class="status-dot"></span>
-            <div>
-                <strong>StudyAIz IA</strong>
-                <small>Assistente online</small>
-            </div>
-        </div>
-
-    </div>
-
-</aside>
-
-
-<div id="menuOverlay" class="menu-overlay"></div>
-
-
-
-<!-- =====================================
-     APLICAÇÃO
-====================================== -->
-
-<div id="app">
-
-
-    <!-- =====================================
-         HEADER
-    ====================================== -->
-
-    <header class="top-header">
-
-        <button
-            id="menuButton"
-            class="menu-button"
-            aria-label="Abrir menu"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-
-        <div class="header-brand">
-
-            <span class="brand-study">Study</span>
-            <span class="brand-aiz">AIz</span>
-
-        </div>
-
-
-        <button
-            id="profileButton"
-            class="header-profile"
-            aria-label="Perfil"
-        >
-            <span>👨‍🎓</span>
+        <button class="menu-button" aria-label="Abrir menu">
+            ☰
         </button>
 
     </header>
 
 
-
     <main>
 
+        <!-- HERO -->
+        <section class="hero">
 
-        <!-- =====================================
-             INÍCIO
-        ====================================== -->
+            <div class="hero-content">
 
-        <section id="homeSection" class="page-section active">
-
-
-            <!-- HERO FUTURISTA -->
-
-            <div class="hero">
-
-                <div class="hero-content">
-
-                    <span class="hero-tag">
-                        ✦ INTELIGÊNCIA PARA APRENDER
-                    </span>
-
-
-                    <h1>
-                        Aprende.
-                        <span>Explora.</span>
-                        Evolui.
-                    </h1>
-
-
-                    <p class="hero-description">
-                        O StudyAIz é o teu espaço inteligente
-                        para aprender qualquer matéria,
-                        estudar no teu ritmo e descobrir
-                        todo o teu potencial.
-                    </p>
-
-
-                    <div class="hero-actions">
-
-                        <button
-                            id="startStudyButton"
-                            class="primary-button hero-button"
-                        >
-                            <span>▶</span>
-                            Começar a estudar
-                        </button>
-
-
-                        <button
-                            id="openTutorButton"
-                            class="ghost-button"
-                        >
-                            <span>✦</span>
-                            Falar com o Tutor IA
-                        </button>
-
-                    </div>
-
-
-                    <div class="hero-stats">
-
-                        <div>
-                            <strong>∞</strong>
-                            <span>Matérias</span>
-                        </div>
-
-                        <div>
-                            <strong>24/7</strong>
-                            <span>Tutor IA</span>
-                        </div>
-
-                        <div>
-                            <strong>3D</strong>
-                            <span>Laboratório</span>
-                        </div>
-
-                    </div>
-
+                <div class="robot-placeholder">
+                    🤖
                 </div>
 
+                <p class="welcome-text">
+                    Bem-vindo ao
+                </p>
+
+                <h1>
+                    Study<span>AIz</span>
+                </h1>
+
+                <h2>
+                    Aprende qualquer matéria.
+                    <br>
+                    Do teu jeito.
+                </h2>
+
+                <p class="hero-description">
+                    O teu companheiro inteligente para aprender,
+                    praticar, testar e evoluir.
+                </p>
 
 
-                <!-- MASCOTE -->
+                <div class="hero-buttons">
 
-                <div class="mascot-stage">
+                    <button class="primary-button" id="createAccountButton">
+                        Criar conta
+                    </button>
 
-                    <div class="mascot-orbit orbit-one"></div>
-                    <div class="mascot-orbit orbit-two"></div>
-
-
-                    <div class="mascot-glow"></div>
-
-
-                    <!--
-                        MASCOTE OFICIAL
-                        A imagem será colocada aqui posteriormente.
-                    -->
-
-                    <div class="mascot-container">
-
-                        <img
-                            id="studyAizMascot"
-                            src="assets/mascote-studyaiz.png"
-                            alt="Mascote do StudyAIz"
-                            class="studyAiz-mascot"
-                        >
-
-
-                        <div class="mascot-fallback">
-                            <span>AI</span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="floating-chip chip-one">
-                        ✦ IA
-                    </div>
-
-                    <div class="floating-chip chip-two">
-                        ⚡ Aprender
-                    </div>
-
-                    <div class="floating-chip chip-three">
-                        ◈ Explorar
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 META DIÁRIA
-            ================================== -->
-
-            <div class="dashboard-section">
-
-                <div class="section-title">
-
-                    <div>
-                        <span class="section-kicker">O TEU DIA</span>
-                        <h2>Objetivo de estudo</h2>
-                    </div>
-
-                    <span id="dailyGoalText" class="goal-number">
-                        0h / 2h
-                    </span>
-
-                </div>
-
-
-                <div class="goal-panel">
-
-                    <div class="goal-top">
-
-                        <div class="goal-icon">
-                            ◷
-                        </div>
-
-                        <div class="goal-text">
-
-                            <strong>
-                                Meta diária
-                            </strong>
-
-                            <span>
-                                Continua a construir a tua sequência.
-                            </span>
-
-                        </div>
-
-                        <div class="goal-percent">
-                            0%
-                        </div>
-
-                    </div>
-
-
-                    <div class="futuristic-progress">
-
-                        <div
-                            id="dailyGoalProgress"
-                            class="futuristic-progress-fill"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 PLANO DE ESTUDO
-            ================================== -->
-
-            <div class="dashboard-section">
-
-                <div class="section-title">
-
-                    <div>
-                        <span class="section-kicker">
-                            PLANO INTELIGENTE
-                        </span>
-
-                        <h2>O que estudar hoje</h2>
-                    </div>
-
-                    <button id="viewPlanButton" class="text-button">
-                        Ver plano →
+                    <button class="secondary-button" id="guestButton">
+                        Entrar sem conta
                     </button>
 
                 </div>
 
 
-                <div id="studyPlan" class="study-plan">
-
-
-                    <article class="study-card">
-
-                        <div class="study-card-icon math-icon">
-                            ∑
-                        </div>
-
-                        <div class="study-card-info">
-
-                            <span>40 MIN</span>
-
-                            <h3>Matemática</h3>
-
-                            <p>
-                                Álgebra e equações
-                            </p>
-
-                        </div>
-
-                        <button class="card-arrow">
-                            →
-                        </button>
-
-                    </article>
-
-
-
-                    <article class="study-card">
-
-                        <div class="study-card-icon physics-icon">
-                            ⚛
-                        </div>
-
-                        <div class="study-card-info">
-
-                            <span>30 MIN</span>
-
-                            <h3>Física</h3>
-
-                            <p>
-                                Movimento e velocidade
-                            </p>
-
-                        </div>
-
-                        <button class="card-arrow">
-                            →
-                        </button>
-
-                    </article>
-
-
-
-                    <article class="study-card">
-
-                        <div class="study-card-icon language-icon">
-                            A
-                        </div>
-
-                        <div class="study-card-info">
-
-                            <span>20 MIN</span>
-
-                            <h3>Português</h3>
-
-                            <p>
-                                Interpretação de texto
-                            </p>
-
-                        </div>
-
-                        <button class="card-arrow">
-                            →
-                        </button>
-
-                    </article>
-
-
-
-                    <article class="study-card">
-
-                        <div class="study-card-icon review-icon">
-                            ↻
-                        </div>
-
-                        <div class="study-card-info">
-
-                            <span>30 MIN</span>
-
-                            <h3>Revisão</h3>
-
-                            <p>
-                                Rever conteúdos anteriores
-                            </p>
-
-                        </div>
-
-                        <button class="card-arrow">
-                            →
-                        </button>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 TUTOR IA + MASCOTE
-            ================================== -->
-
-            <div class="dashboard-section">
-
-                <div class="ai-tutor-banner">
-
-
-                    <div class="ai-tutor-mascot">
-
-                        <div class="mini-mascot-glow"></div>
-
-                        <img
-                            src="assets/mascote-studyaiz.png"
-                            alt="Mascote StudyAIz"
-                        >
-
-                    </div>
-
-
-                    <div class="ai-tutor-content">
-
-                        <span class="section-kicker">
-                            STUDYAIZ AI
-                        </span>
-
-                        <h2>
-                            Tens uma dúvida?
-                        </h2>
-
-                        <p>
-                            Pergunta qualquer coisa.
-                            O teu Tutor IA explica
-                            passo a passo.
-                        </p>
-
-                        <button
-                            id="bannerTutorButton"
-                            class="primary-button"
-                        >
-                            ✦ Perguntar ao Tutor IA
-                        </button>
-
-                    </div>
-
-
-                    <div class="ai-particles">
-                        <span>✦</span>
-                        <span>+</span>
-                        <span>◈</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 PROGRESSO
-            ================================== -->
-
-            <div class="dashboard-section">
-
-                <div class="section-title">
-
-                    <div>
-                        <span class="section-kicker">
-                            EVOLUÇÃO
-                        </span>
-
-                        <h2>O teu progresso</h2>
-                    </div>
-
-                    <button
-                        data-section="progress"
-                        class="text-button"
-                    >
-                        Ver tudo →
-                    </button>
-
-                </div>
-
-
-                <div class="progress-cards">
-
-
-                    <article class="progress-card">
-
-                        <div class="progress-card-top">
-
-                            <span>Matemática</span>
-
-                            <strong>80%</strong>
-
-                        </div>
-
-                        <div class="futuristic-progress">
-                            <div
-                                class="futuristic-progress-fill"
-                                style="width:80%"
-                            ></div>
-                        </div>
-
-                        <small>
-                            Bom progresso
-                        </small>
-
-                    </article>
-
-
-
-                    <article class="progress-card">
-
-                        <div class="progress-card-top">
-
-                            <span>Física</span>
-
-                            <strong>60%</strong>
-
-                        </div>
-
-                        <div class="futuristic-progress">
-                            <div
-                                class="futuristic-progress-fill"
-                                style="width:60%"
-                            ></div>
-                        </div>
-
-                        <small>
-                            Precisa de atenção
-                        </small>
-
-                    </article>
-
-
-
-                    <article class="progress-card">
-
-                        <div class="progress-card-top">
-
-                            <span>Português</span>
-
-                            <strong>85%</strong>
-
-                        </div>
-
-                        <div class="futuristic-progress">
-                            <div
-                                class="futuristic-progress-fill"
-                                style="width:85%"
-                            ></div>
-                        </div>
-
-                        <small>
-                            Excelente evolução
-                        </small>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================
-                 DICA DA IA
-            ================================== -->
-
-            <div class="ai-tip">
-
-                <div class="tip-mascot">
-
-                    <img
-                        src="assets/mascote-studyaiz.png"
-                        alt="Mascote"
-                    >
-
-                </div>
-
-
-                <div class="tip-content">
-
-                    <span class="section-kicker">
-                        DICA DO STUDYAIZ
-                    </span>
-
-                    <h3>
-                        Vamos melhorar Física?
-                    </h3>
-
-                    <p>
-                        O teu progresso mostra que
-                        Movimento e velocidade merece
-                        um pouco mais de atenção.
-                    </p>
-
-                </div>
-
-
-                <button
-                    data-section="tutor"
-                    class="tip-button"
-                >
-                    Estudar →
+                <button class="login-link" id="loginButton">
+                    Já tens conta? <strong>Entrar</strong>
                 </button>
 
             </div>
 
-        </section>
 
+            <!-- IMAGEM DO ESTUDANTE + ROBÔ
+                 Será colocada no CSS/design -->
+            <div class="hero-image">
 
-
-        <!-- =====================================
-             TUTOR IA
-        ====================================== -->
-
-        <section id="tutorSection" class="page-section">
-
-            <div class="page-header">
-
-                <div>
-                    <span class="section-kicker">STUDYAIZ AI</span>
-                    <h1>Tutor IA</h1>
-                    <p>
-                        Aprende com explicações personalizadas.
-                    </p>
+                <div class="student-placeholder">
+                    🧑🏽‍🎓
                 </div>
 
-                <div class="page-mascot">
-                    <img
-                        src="assets/mascote-studyaiz.png"
-                        alt="Mascote StudyAIz"
-                    >
-                </div>
-
-            </div>
-
-
-            <div class="tutor-interface">
-
-                <div id="tutorResponse" class="tutor-response">
-
-                    <div class="ai-message">
-
-                        <div class="message-avatar">
-                            <img
-                                src="assets/mascote-studyaiz.png"
-                                alt="StudyAIz"
-                            >
-                        </div>
-
-                        <div>
-
-                            <span class="message-label">
-                                STUDYAIZ AI
-                            </span>
-
-                            <p>
-                                Olá! 👋 Sou o teu Tutor IA.
-                                Pergunta-me qualquer coisa
-                                sobre os teus estudos.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="tutor-input-area">
-
-                    <textarea
-                        id="tutorQuestion"
-                        placeholder="Escreve a tua dúvida..."
-                        rows="3"
-                    ></textarea>
-
-
-                    <button
-                        id="askTutorButton"
-                        class="primary-button"
-                    >
-                        ✦ Perguntar ao Tutor IA
-                    </button>
-
+                <div class="floating-robot">
+                    🤖
                 </div>
 
             </div>
@@ -786,481 +96,69 @@
         </section>
 
 
+        <!-- BENEFÍCIOS -->
+        <section class="features">
 
-        <!-- =====================================
-             TEORIA
-        ====================================== -->
+            <div class="feature-card">
+                <span>🧠</span>
+                <h3>Aprende</h3>
+                <p>
+                    Explicações adaptadas ao teu nível.
+                </p>
+            </div>
 
-        <section id="theorySection" class="page-section">
 
-            <div class="page-header">
+            <div class="feature-card">
+                <span>🧩</span>
+                <h3>Pratica</h3>
+                <p>
+                    Exercícios teóricos e práticos.
+                </p>
+            </div>
 
-                <div>
-                    <span class="section-kicker">BIBLIOTECA</span>
-                    <h1>Teoria</h1>
-                    <p>
-                        Aprende através de capítulos,
-                        exemplos e resumos.
-                    </p>
-                </div>
 
-                <div class="page-symbol">  
-             ◫
-                    </div>
+            <div class="feature-card">
+                <span>🎯</span>
+                <h3>Evolui</h3>
+                <p>
+                    Acompanha o teu progresso.
+                </p>
+            </div>
 
-                </div>
+        </section>
 
 
-                <div class="theory-grid">
+        <!-- FRASE FINAL -->
+        <section class="motivation">
 
-                    <article class="future-card">
-                        <div class="future-card-icon">∑</div>
-                        <span>MATEMÁTICA</span>
-                        <h2>Álgebra</h2>
-                        <p>Equações, expressões e funções.</p>
-                        <button>Explorar →</button>
-                    </article>
+            <div class="motivation-robot">
+                🤖
+            </div>
 
-                    <article class="future-card">
-                        <div class="future-card-icon">⚛</div>
-                        <span>FÍSICA</span>
-                        <h2>Movimento</h2>
-                        <p>Velocidade, aceleração e forças.</p>
-                        <button>Explorar →</button>
-                    </article>
+            <h2>
+                O teu futuro começa com
+                <span>um passo.</span>
+            </h2>
 
-                    <article class="future-card">
-                        <div class="future-card-icon">🧬</div>
-                        <span>BIOLOGIA</span>
-                        <h2>Células</h2>
-                        <p>Estrutura e funcionamento celular.</p>
-                        <button>Explorar →</button>
-                    </article>
+            <p>
+                Estuda • Aprende • Conquista
+            </p>
 
-                </div>
+        </section>
 
-            </section>
+    </main>
 
 
+    <footer>
 
-            <!-- =====================================
-                 LABORATÓRIO 3D
-            ====================================== -->
+        <p>
+            © 2026 StudyAIz — Tutor Inteligente
+        </p>
 
-            <section id="labSection" class="page-section">
+    </footer>
 
-                <div class="page-header">
-
-                    <div>
-                        <span class="section-kicker">EXPLORAÇÃO</span>
-                        <h1>Laboratório 3D</h1>
-                        <p>
-                            Aprende explorando modelos interativos.
-                        </p>
-                    </div>
-
-                    <div class="page-symbol">
-                        ◈
-                    </div>
-
-                </div>
-
-
-                <div class="lab-grid">
-
-                    <article class="future-card lab-card">
-
-                        <div class="lab-visual">
-                            🌍
-                        </div>
-
-                        <span>FÍSICA</span>
-                        <h2>Sistema Solar</h2>
-                        <p>
-                            Explora planetas e órbitas.
-                        </p>
-
-                        <button>Explorar modelo →</button>
-
-                    </article>
-
-
-                    <article class="future-card lab-card">
-
-                        <div class="lab-visual">
-                            ⚛️
-                        </div>
-
-                        <span>QUÍMICA</span>
-                        <h2>Moléculas</h2>
-                        <p>
-                            Descobre estruturas químicas.
-                        </p>
-
-                        <button>Explorar modelo →</button>
-
-                    </article>
-
-
-                    <article class="future-card lab-card">
-
-                        <div class="lab-visual">
-                            🧠
-                        </div>
-
-                        <span>BIOLOGIA</span>
-                        <h2>Corpo Humano</h2>
-                        <p>
-                            Explora sistemas do corpo.
-                        </p>
-
-                        <button>Explorar modelo →</button>
-
-                    </article>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =====================================
-                 TESTES
-            ====================================== -->
-
-            <section id="testsSection" class="page-section">
-
-                <div class="page-header">
-
-                    <div>
-                        <span class="section-kicker">DESAFIO</span>
-                        <h1>Testes</h1>
-                        <p>
-                            Descobre o que realmente aprendeste.
-                        </p>
-                    </div>
-
-                    <div class="page-symbol">
-                        ✓
-                    </div>
-
-                </div>
-
-
-                <div class="test-hero">
-
-                    <span>✦</span>
-
-                    <h2>Teste geral</h2>
-
-                    <p>
-                        Um teste inteligente com conteúdos
-                        de diferentes matérias.
-                    </p>
-
-                    <button class="primary-button">
-                        Começar teste →
-                    </button>
-
-                </div>
-
-
-                <div class="test-grid">
-
-                    <article class="future-card">
-                        <span>MATEMÁTICA</span>
-                        <h2>Matemática</h2>
-                        <p>10 perguntas</p>
-                        <button>Começar →</button>
-                    </article>
-
-                    <article class="future-card">
-                        <span>FÍSICA</span>
-                        <h2>Física</h2>
-                        <p>10 perguntas</p>
-                        <button>Começar →</button>
-                    </article>
-
-                    <article class="future-card">
-                        <span>BIOLOGIA</span>
-                        <h2>Biologia</h2>
-                        <p>10 perguntas</p>
-                        <button>Começar →</button>
-                    </article>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =====================================
-                 PROGRESSO
-            ====================================== -->
-
-            <section id="progressSection" class="page-section">
-
-                <div class="page-header">
-
-                    <div>
-                        <span class="section-kicker">ANÁLISE</span>
-                        <h1>O teu progresso</h1>
-                        <p>
-                            Vê como estás a evoluir.
-                        </p>
-                    </div>
-
-                    <div class="page-symbol">
-                        ◒
-                    </div>
-
-                </div>
-
-
-                <div class="stats-grid">
-
-                    <div class="stat-card">
-                        <span>◷</span>
-                        <strong>12h 30m</strong>
-                        <small>Tempo estudado</small>
-                    </div>
-
-                    <div class="stat-card">
-                        <span>✓</span>
-                        <strong>84%</strong>
-                        <small>Média dos testes</small>
-                    </div>
-
-                    <div class="stat-card">
-                        <span>⚡</span>
-                        <strong>7 dias</strong>
-                        <small>Sequência atual</small>
-                    </div>
-
-                </div>
-
-
-                <div class="progress-panel">
-
-                    <span class="section-kicker">
-                        DESEMPENHO
-                    </span>
-
-                    <h2>Desempenho por matéria</h2>
-
-
-                    <div class="progress-row">
-
-                        <div>
-                            <span>Matemática</span>
-                            <strong>80%</strong>
-                        </div>
-
-                        <div class="futuristic-progress">
-                            <div
-                                class="futuristic-progress-fill"
-                                style="width:80%"
-                            ></div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-row">
-
-                        <div>
-                            <span>Física</span>
-                            <strong>60%</strong>
-                        </div>
-
-                        <div class="futuristic-progress">
-                            <div
-                                class="futuristic-progress-fill"
-                                style="width:60%"
-                            ></div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =====================================
-                 DISCIPLINAS
-            ====================================== -->
-
-            <section id="subjectsSection" class="page-section">
-
-                <div class="page-header">
-
-                    <div>
-                        <span class="section-kicker">APRENDER</span>
-                        <h1>Disciplinas</h1>
-                        <p>
-                            Escolhe qualquer área que queiras estudar.
-                        </p>
-                    </div>
-
-                    <div class="page-symbol">
-                        ▦
-                    </div>
-
-                </div>
-
-
-                <div class="subjects-grid">
-
-                    <button>∑ Matemática</button>
-                    <button>A Português</button>
-                    <button>EN Inglês</button>
-                    <button>⚛ Física</button>
-                    <button>⚗ Química</button>
-                    <button>🧬 Biologia</button>
-                    <button>◉ História</button>
-                    <button>🌍 Geografia</button>
-                    <button>⌘ Informática</button>
-                    <button>€ Economia</button>
-                    <button>◈ Filosofia</button>
-                    <button>✦ Artes</button>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =====================================
-                 DEFINIÇÕES
-            ====================================== -->
-
-            <section id="settingsSection" class="page-section">
-
-                <div class="page-header">
-
-                    <div>
-                        <span class="section-kicker">PERSONALIZAÇÃO</span>
-                        <h1>Definições</h1>
-                        <p>
-                            Configura o StudyAIz à tua maneira.
-                        </p>
-                    </div>
-
-                    <div class="page-symbol">
-                        ⚙
-                    </div>
-
-                </div>
-
-
-                <div class="settings-card">
-
-
-                    <label>
-
-                        <span>País</span>
-
-                        <select id="countrySetting">
-
-                            <option>Angola</option>
-                            <option>Portugal</option>
-                            <option>Brasil</option>
-                            <option>Moçambique</option>
-                            <option>Cabo Verde</option>
-                            <option>Guiné-Bissau</option>
-                            <option>São Tomé e Príncipe</option>
-                            <option>Estados Unidos</option>
-                            <option>Reino Unido</option>
-                            <option>França</option>
-                            <option>Espanha</option>
-                            <option>Alemanha</option>
-                            <option>Outro</option>
-
-                        </select>
-
-                    </label>
-
-
-                    <label>
-
-                        <span>Nível de ensino</span>
-
-                        <select id="levelSetting">
-
-                            <option>Ensino Primário/Básico</option>
-                            <option>Ensino Fundamental</option>
-                            <option>Ensino Médio</option>
-                            <option>Ensino Secundário</option>
-                            <option>Ensino Profissional</option>
-                            <option>Curso Técnico</option>
-                            <option>Universidade</option>
-                            <option>Preparação para exames</option>
-                            <option>Aprendizagem livre</option>
-
-                        </select>
-
-                    </label>
-
-
-                    <label>
-
-                        <span>Tempo de estudo por dia</span>
-
-                        <select id="studyTimeSetting">
-
-                            <option value="30">
-                                30 minutos
-                            </option>
-
-                            <option value="60">
-                                1 hora
-                            </option>
-
-                            <option value="90">
-                                1 hora e 30 minutos
-                            </option>
-
-                            <option value="120" selected>
-                                2 horas
-                            </option>
-
-                            <option value="180">
-                                3 horas
-                            </option>
-
-                            <option value="240">
-                                4 horas
-                            </option>
-
-                        </select>
-
-                    </label>
-
-
-                    <button
-                        id="saveSettingsButton"
-                        class="primary-button"
-                    >
-                        Guardar alterações
-                    </button>
-
-                </div>
-
-            </section>
-
-        </main>
-
-    </div>
-
-
-
-    <!-- =====================================
-         JAVASCRIPT
-    ====================================== -->
 
     <script src="script.js"></script>
 
 </body>
-</html>          
+</html>
