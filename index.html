@@ -61,30 +61,43 @@
 
                 <div class="hero-buttons">
 
-                    <button class="primary-button" id="createAccountButton">
+                    <button
+                        class="primary-button"
+                        id="createAccountButton"
+                    >
                         Criar conta
                     </button>
 
-                    <button class="secondary-button" id="guestButton">
+                    <button
+                        class="secondary-button"
+                        id="guestButton"
+                    >
                         Entrar sem conta
                     </button>
 
                 </div>
 
 
-                <button class="login-link" id="loginButton">
+                <button
+                    class="login-link"
+                    id="loginButton"
+                >
                     Já tens conta? <strong>Entrar</strong>
                 </button>
 
             </div>
 
 
-            <!-- IMAGEM DO ESTUDANTE + ROBÔ
-                 Será colocada no CSS/design -->
+            <!-- IMAGEM DO ESTUDANTE -->
             <div class="hero-image">
 
                 <div class="student-placeholder">
-    <img src="studyaiz-hero.png" alt="Estudante a estudar com a mascote StudyAIz">
+
+                    <img
+                        src="studyaiz-hero.png"
+                        alt="Estudante a estudar com a mascote StudyAIz"
+                    >
+
                 </div>
 
             </div>
@@ -96,29 +109,41 @@
         <section class="features">
 
             <div class="feature-card">
+
                 <span>🧠</span>
+
                 <h3>Aprende</h3>
+
                 <p>
                     Explicações adaptadas ao teu nível.
                 </p>
+
             </div>
 
 
             <div class="feature-card">
+
                 <span>🧩</span>
+
                 <h3>Pratica</h3>
+
                 <p>
                     Exercícios teóricos e práticos.
                 </p>
+
             </div>
 
 
             <div class="feature-card">
+
                 <span>🎯</span>
+
                 <h3>Evolui</h3>
+
                 <p>
                     Acompanha o teu progresso.
                 </p>
+
             </div>
 
         </section>
@@ -153,148 +178,435 @@
 
     </footer>
 
-<!-- ==============================
-     TELA CRIAR CONTA
-============================== -->
 
-<section id="accountScreen" class="account-screen">
 
-    <div class="account-card">
+    <!-- =========================================
+         TELA CRIAR CONTA
+    ========================================== -->
 
-        <div class="account-mascot">
-            🤖
+    <section
+        id="accountScreen"
+        class="account-screen"
+    >
+
+        <div class="account-card">
+
+            <div class="account-mascot">
+                🤖
+            </div>
+
+            <span class="account-badge">
+                STUDYAIZ
+            </span>
+
+            <h2>
+                Cria a tua conta
+            </h2>
+
+            <p>
+                Começa a tua jornada de estudos personalizada.
+            </p>
+
+
+            <form id="accountForm">
+
+                <div class="input-group">
+
+                    <label for="accountName">
+                        Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="accountName"
+                        placeholder="O teu nome"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="accountEmail">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="accountEmail"
+                        placeholder="teuemail@exemplo.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="accountPassword">
+                        Palavra-passe
+                    </label>
+
+                    <input
+                        type="password"
+                        id="accountPassword"
+                        placeholder="Cria uma palavra-passe"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="accountCountry">
+                        País
+                    </label>
+
+                    <select
+                        id="accountCountry"
+                        required
+                    >
+
+                        <option value="">
+                            Seleciona o teu país
+                        </option>
+
+                        <option value="Angola">
+                            🇦🇴 Angola
+                        </option>
+
+                        <option value="Portugal">
+                            🇵🇹 Portugal
+                        </option>
+
+                        <option value="Brasil">
+                            🇧🇷 Brasil
+                        </option>
+
+                        <option value="Moçambique">
+                            🇲🇿 Moçambique
+                        </option>
+
+                        <option value="Cabo Verde">
+                            🇨🇻 Cabo Verde
+                        </option>
+
+                        <option value="Guiné-Bissau">
+                            🇬🇼 Guiné-Bissau
+                        </option>
+
+                        <option value="São Tomé e Príncipe">
+                            🇸🇹 São Tomé e Príncipe
+                        </option>
+
+                        <option value="Estados Unidos">
+                            🇺🇸 Estados Unidos
+                        </option>
+
+                        <option value="Reino Unido">
+                            🇬🇧 Reino Unido
+                        </option>
+
+                        <option value="França">
+                            🇫🇷 França
+                        </option>
+
+                        <option value="Espanha">
+                            🇪🇸 Espanha
+                        </option>
+
+                        <option value="Alemanha">
+                            🇩🇪 Alemanha
+                        </option>
+
+                        <option value="Outro">
+                            🌍 Outro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Criar conta 🚀
+                </button>
+
+            </form>
+
+
+            <button
+                type="button"
+                id="backHomeButton"
+                class="back-button"
+            >
+                ← Voltar
+            </button>
+
         </div>
 
-        <span class="account-badge">
-            STUDYAIZ
-        </span>
+    </section>
 
-        <h2>Cria a tua conta</h2>
 
-        <p>
-            Começa a tua jornada de estudos personalizada.
-        </p>
 
-        <form id="accountForm">
+    <!-- =========================================
+         PERFIL DO ESTUDANTE
+    ========================================== -->
 
-            <div class="input-group">
-                <label for="accountName">Nome</label>
+    <section
+        id="profileScreen"
+        class="profile-screen"
+    >
+
+        <div class="profile-card">
+
+            <div class="profile-mascot">
+                🤖
+            </div>
+
+            <span class="profile-badge">
+                PASSO 2 DE 2
+            </span>
+
+            <h2>
+                Personaliza o teu perfil
+            </h2>
+
+            <p>
+                Conta-nos um pouco sobre ti para o StudyAIz
+                adaptar os teus estudos.
+            </p>
+
+
+            <!-- NOME -->
+
+            <div class="profile-field">
+
+                <label for="studentName">
+                    Nome
+                </label>
 
                 <input
                     type="text"
-                    id="accountName"
-                    placeholder="O teu nome"
-                    required
+                    id="studentName"
+                    placeholder="Como queres ser chamado?"
                 >
+
             </div>
 
-            <div class="input-group">
-                <label for="accountEmail">E-mail</label>
 
-                <input
-                    type="email"
-                    id="accountEmail"
-                    placeholder="teuemail@exemplo.com"
-                    required
-                >
+            <!-- AVATAR -->
+
+            <div class="profile-field">
+
+                <label>
+                    Escolhe o teu avatar
+                </label>
+
+                <div class="avatar-options">
+
+                    <button
+                        type="button"
+                        class="avatar-option"
+                        data-avatar="🧑🏽‍🎓"
+                    >
+                        🧑🏽‍🎓
+                    </button>
+
+                    <button
+                        type="button"
+                        class="avatar-option"
+                        data-avatar="👩🏽‍🎓"
+                    >
+                        👩🏽‍🎓
+                    </button>
+
+                    <button
+                        type="button"
+                        class="avatar-option"
+                        data-avatar="🧑🏾‍💻"
+                    >
+                        🧑🏾‍💻
+                    </button>
+
+                    <button
+                        type="button"
+                        class="avatar-option"
+                        data-avatar="👩🏾‍💻"
+                    >
+                        👩🏾‍💻
+                    </button>
+
+                    <button
+                        type="button"
+                        class="avatar-option"
+                        data-avatar="🧑🏽‍🔬"
+                    >
+                        🧑🏽‍🔬
+                    </button>
+
+                    <button
+                        type="button"
+                        class="avatar-option"
+                        data-avatar="👩🏽‍🔬"
+                    >
+                        👩🏽‍🔬
+                    </button>
+
+                </div>
+
             </div>
 
-            <div class="input-group">
-                <label for="accountPassword">Palavra-passe</label>
 
-                <input
-                    type="password"
-                    id="accountPassword"
-                    placeholder="Cria uma palavra-passe"
-                    required
-                >
-            </div>
+            <!-- NÍVEL -->
 
-            <div class="input-group">
-                <label for="accountCountry">País</label>
+            <div class="profile-field">
 
-                <select id="accountCountry" required>
+                <label for="studentLevel">
+                    Nível de ensino
+                </label>
+
+                <select id="studentLevel">
 
                     <option value="">
-                        Seleciona o teu país
+                        Seleciona o teu nível
                     </option>
 
-                    <option value="Angola">
-                        🇦🇴 Angola
+                    <option value="basico">
+                        Ensino Primário / Básico
                     </option>
 
-                    <option value="Portugal">
-                        🇵🇹 Portugal
+                    <option value="fundamental">
+                        Ensino Fundamental
                     </option>
 
-                    <option value="Brasil">
-                        🇧🇷 Brasil
+                    <option value="medio">
+                        Ensino Médio
                     </option>
 
-                    <option value="Moçambique">
-                        🇲🇿 Moçambique
+                    <option value="secundario">
+                        Ensino Secundário
                     </option>
 
-                    <option value="Cabo Verde">
-                        🇨🇻 Cabo Verde
+                    <option value="profissional">
+                        Ensino Profissional
                     </option>
 
-                    <option value="Guiné-Bissau">
-                        🇬🇼 Guiné-Bissau
+                    <option value="tecnico">
+                        Curso Técnico
                     </option>
 
-                    <option value="São Tomé e Príncipe">
-                        🇸🇹 São Tomé e Príncipe
+                    <option value="universidade">
+                        Universidade
                     </option>
 
-                    <option value="Estados Unidos">
-                        🇺🇸 Estados Unidos
+                    <option value="exames">
+                        Preparação para exames
                     </option>
 
-                    <option value="Reino Unido">
-                        🇬🇧 Reino Unido
-                    </option>
-
-                    <option value="França">
-                        🇫🇷 França
-                    </option>
-
-                    <option value="Espanha">
-                        🇪🇸 Espanha
-                    </option>
-
-                    <option value="Alemanha">
-                        🇩🇪 Alemanha
-                    </option>
-
-                    <option value="Outro">
-                        🌍 Outro
+                    <option value="livre">
+                        Aprendizagem livre
                     </option>
 
                 </select>
+
             </div>
 
+
+            <!-- CURSO -->
+
+            <div class="profile-field">
+
+                <label for="studentCourse">
+                    Curso / Área
+                    <span>(opcional)</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="studentCourse"
+                    placeholder="Ex.: Engenharia, Medicina..."
+                >
+
+            </div>
+
+
+            <!-- TEMPO DE ESTUDO -->
+
+            <div class="profile-field">
+
+                <label for="studyTime">
+                    Quanto queres estudar por dia?
+                    <span>(opcional)</span>
+                </label>
+
+                <select id="studyTime">
+
+                    <option value="">
+                        Prefiro não definir
+                    </option>
+
+                    <option value="30">
+                        30 minutos
+                    </option>
+
+                    <option value="60">
+                        1 hora
+                    </option>
+
+                    <option value="90">
+                        1h30
+                    </option>
+
+                    <option value="120">
+                        2 horas
+                    </option>
+
+                    <option value="180">
+                        3 horas
+                    </option>
+
+                    <option value="240">
+                        4 horas ou mais
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- COMEÇAR -->
+
             <button
-                type="submit"
+                type="button"
+                id="finishProfileButton"
                 class="primary-button"
             >
-                Criar conta 🚀
+                Começar os meus estudos 🚀
             </button>
 
-        </form>
 
-        <button
-            type="button"
-            id="backHomeButton"
-            class="back-button"
-        >
-            ← Voltar
-        </button>
+            <!-- VOLTAR -->
 
-    </div>
+            <button
+                type="button"
+                id="backAccountButton"
+                class="back-button"
+            >
+                ← Voltar
+            </button>
 
-</section>
+        </div>
+
+    </section>
+
+
     <script src="script.js"></script>
 
 </body>
-</html>
+                        </html>
