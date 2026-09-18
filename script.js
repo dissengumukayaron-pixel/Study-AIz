@@ -165,21 +165,52 @@ if (backGuestButton) {
 
 }
 
-    /* ==============================
-       LOGIN
-    ============================== */
+/* ==============================
+   LOGIN
+============================== */
 
-    if (loginButton) {
+const loginButton =
+    document.getElementById("loginButton");
 
-        loginButton.addEventListener("click", () => {
+const loginScreen =
+    document.getElementById("loginScreen");
 
-            alert(
-                "A área de login do StudyAIz será aberta em breve."
-            );
+const backLoginButton =
+    document.getElementById("backLoginButton");
 
-        });
 
-    }
+/* ABRIR LOGIN */
+
+if (loginButton && loginScreen) {
+
+    loginButton.addEventListener("click", () => {
+
+        document.body.classList.add("login-open");
+
+        loginScreen.classList.add("active");
+
+        window.scrollTo(0, 0);
+
+    });
+
+}
+
+
+/* VOLTAR PARA A PÁGINA INICIAL */
+
+if (backLoginButton && loginScreen) {
+
+    backLoginButton.addEventListener("click", () => {
+
+        document.body.classList.remove("login-open");
+
+        loginScreen.classList.remove("active");
+
+        window.scrollTo(0, 0);
+
+    });
+
+}
 
 
     /* ==============================
