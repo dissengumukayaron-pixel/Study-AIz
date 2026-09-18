@@ -672,5 +672,104 @@ if (mainDashboard) {
         }, 200 + (index * 150));
 
     });
+/* ==============================
+   MENU DO DASHBOARD
+============================== */
 
+const dashboardMenuButton =
+    document.getElementById(
+        "dashboardMenuButton"
+    );
+
+const dashboardSideMenu =
+    document.getElementById(
+        "dashboardSideMenu"
+    );
+
+const closeDashboardMenu =
+    document.getElementById(
+        "closeDashboardMenu"
+    );
+
+const dashboardMenuOverlay =
+    document.getElementById(
+        "dashboardMenuOverlay"
+    );
+
+
+/* ABRIR MENU */
+
+if (
+    dashboardMenuButton &&
+    dashboardSideMenu &&
+    dashboardMenuOverlay
+) {
+
+    dashboardMenuButton.addEventListener(
+        "click",
+        () => {
+
+            dashboardSideMenu.classList.add(
+                "active"
+            );
+
+            dashboardMenuOverlay.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+}
+
+
+/* FECHAR NO X */
+
+if (
+    closeDashboardMenu &&
+    dashboardSideMenu &&
+    dashboardMenuOverlay
+) {
+
+    closeDashboardMenu.addEventListener(
+        "click",
+        () => {
+
+            dashboardSideMenu.classList.remove(
+                "active"
+            );
+
+            dashboardMenuOverlay.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+}
+
+
+/* FECHAR AO CLICAR FORA */
+
+if (
+    dashboardMenuOverlay &&
+    dashboardSideMenu
+) {
+
+    dashboardMenuOverlay.addEventListener(
+        "click",
+        () => {
+
+            dashboardSideMenu.classList.remove(
+                "active"
+            );
+
+            dashboardMenuOverlay.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+}
 });
