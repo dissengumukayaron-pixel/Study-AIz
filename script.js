@@ -215,78 +215,87 @@ if (backGuestButton) {
     }
 
 
-    /* ==============================
-       AVATARES
-    ============================== */
+   /* ==============================
+   AVATARES
+============================== */
 
-    const avatarOptions =
-        document.querySelectorAll(".avatar-option");
+// AVATARES DO PERFIL
 
-    avatarOptions.forEach((avatar) => {
+const avatarOptions =
+    document.querySelectorAll(".avatar-option");
 
-        avatar.addEventListener("click", () => {
+avatarOptions.forEach((avatar) => {
 
-            avatarOptions.forEach((item) => {
+    avatar.addEventListener("click", () => {
 
-                item.classList.remove("selected");
-
-            });
-
-            avatar.classList.add("selected");
-
+        avatarOptions.forEach((item) => {
+            item.classList.remove("selected");
         });
+
+        avatar.classList.add("selected");
 
     });
 
+});
 
-    /* ==============================
-       VOLTAR PARA A CONTA
-    ============================== */
 
-    const backAccountButton =
-        document.getElementById("backAccountButton");
+// AVATARES DO MODO VISITANTE
 
-    if (backAccountButton) {
+const guestAvatarOptions =
+    document.querySelectorAll(".guest-avatar");
 
-        backAccountButton.addEventListener("click", () => {
+guestAvatarOptions.forEach((avatar) => {
 
-            const profileScreen =
-                document.getElementById("profileScreen");
+    avatar.addEventListener("click", () => {
 
-            if (profileScreen) {
-
-                profileScreen.classList.remove(
-                    "active"
-                );
-
-            }
-
-            document.body.classList.remove(
-                "profile-open"
-            );
-
-            document.body.classList.add(
-                "account-open"
-            );
-
-            const accountScreen =
-                document.getElementById("accountScreen");
-
-            if (accountScreen) {
-
-                accountScreen.classList.add(
-                    "active"
-                );
-
-            }
-
-            window.scrollTo(0, 0);
-
+        guestAvatarOptions.forEach((item) => {
+            item.classList.remove("selected");
         });
 
-    }
+        avatar.classList.add("selected");
 
+    });
 
+}); 
+
+/* ==============================
+   VOLTAR PARA A CONTA
+============================== */
+
+const backAccountButton =
+    document.getElementById("backAccountButton");
+
+if (backAccountButton) {
+
+    backAccountButton.addEventListener("click", () => {
+
+        const profileScreen =
+            document.getElementById("profileScreen");
+
+        if (profileScreen) {
+
+            profileScreen.classList.remove("active");
+
+        }
+
+        document.body.classList.remove("profile-open");
+
+        document.body.classList.add("account-open");
+
+        const accountScreen =
+            document.getElementById("accountScreen");
+
+        if (accountScreen) {
+
+            accountScreen.classList.add("active");
+
+        }
+
+        window.scrollTo(0, 0);
+
+    });
+
+}
     /* ==============================
        TERMINAR PERFIL
     ============================== */
