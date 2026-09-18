@@ -607,13 +607,17 @@ if (finishProfileButton) {
 
             /* Abrir Dashboard */
 
-            if (mainDashboard) {
+document.body.classList.add(
+    "dashboard-open"
+);
 
-                mainDashboard.classList.add(
-                    "active"
-                );
+if (mainDashboard) {
 
-            }
+    mainDashboard.classList.add(
+        "active"
+    );
+
+               }
 
 
             /* Atualizar saudação */
