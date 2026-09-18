@@ -2703,3 +2703,30 @@ body.login-open > #loginScreen {
     }
 
 }
+/* ========================================
+   STUDYAIZ — DASHBOARD EM ECRÃ COMPLETO
+======================================== */
+
+body.dashboard-open {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+}
+
+body.dashboard-open > * {
+    display: none !important;
+}
+
+body.dashboard-open > #mainDashboard {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+    box-sizing: border-box;
+    z-index: 99999 !important;
+}
