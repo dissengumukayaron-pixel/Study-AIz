@@ -197,6 +197,168 @@ if (accountForm) {
     });
 
     }
+   /* ==============================
+   COMEÇAR COMO VISITANTE
+============================== */
+
+const startGuestButton =
+    document.getElementById(
+        "startGuestButton"
+    );
+
+if (startGuestButton) {
+
+    startGuestButton.addEventListener(
+        "click",
+        () => {
+
+            const guestName =
+                document.getElementById(
+                    "guestName"
+                );
+
+            const guestCountry =
+                document.getElementById(
+                    "guestCountry"
+                );
+
+            const guestLevel =
+                document.getElementById(
+                    "guestLevel"
+                );
+
+            const guestCourse =
+                document.getElementById(
+                    "guestCourse"
+                );
+
+            const guestStudyTime =
+                document.getElementById(
+                    "guestStudyTime"
+                );
+
+            const guestScreen =
+                document.getElementById(
+                    "guestScreen"
+                );
+
+            const mainDashboard =
+                document.getElementById(
+                    "mainDashboard"
+                );
+
+
+            /* Verificar informações obrigatórias */
+
+            if (
+                !guestName.value.trim() ||
+                !guestCountry.value ||
+                !guestLevel.value
+            ) {
+
+                alert(
+                    "Preenche o teu nome, país e nível de ensino."
+                );
+
+                return;
+
+            }
+
+
+            /* Avatar escolhido */
+
+            const selectedAvatar =
+                document.querySelector(
+                    ".guest-avatar.selected"
+                );
+
+
+            /* Guardar perfil temporário */
+
+            const guestProfile = {
+
+                name:
+                    guestName.value.trim(),
+
+                country:
+                    guestCountry.value,
+
+                level:
+                    guestLevel.value,
+
+                course:
+                    guestCourse.value.trim(),
+
+                studyTime:
+                    guestStudyTime.value,
+
+                avatar:
+                    selectedAvatar
+                        ? selectedAvatar.dataset.avatar
+                        : "🧑🏽‍🎓"
+
+            };
+
+
+            sessionStorage.setItem(
+                "studyaizGuestProfile",
+                JSON.stringify(guestProfile)
+            );
+
+
+            /* Fechar tela de visitante */
+
+            if (guestScreen) {
+
+                guestScreen.classList.remove(
+                    "active"
+                );
+
+            }
+
+            document.body.classList.remove(
+                "guest-open"
+            );
+
+
+            /* Abrir Dashboard */
+
+            document.body.classList.add(
+                "dashboard-open"
+            );
+
+            if (mainDashboard) {
+
+                mainDashboard.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            /* Atualizar saudação */
+
+            const dashboardGreeting =
+                document.querySelector(
+                    ".dashboard-greeting"
+                );
+
+            if (dashboardGreeting) {
+
+                dashboardGreeting.textContent =
+                    "👋 Olá, " +
+                    guestName.value.trim() +
+                    "!";
+
+            }
+
+
+            window.scrollTo(0, 0);
+
+        }
+    );
+
+}
 /* ==============================
    VOLTAR DO MODO VISITANTE
 ============================== */
