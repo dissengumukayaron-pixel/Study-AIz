@@ -482,90 +482,163 @@ if (backAccountButton) {
 
 }
     /* ==============================
-       TERMINAR PERFIL
-    ============================== */
+   TERMINAR PERFIL
+============================== */
 
-    const finishProfileButton =
-        document.getElementById(
-            "finishProfileButton"
-        );
+const finishProfileButton =
+    document.getElementById(
+        "finishProfileButton"
+    );
 
-    if (finishProfileButton) {
+if (finishProfileButton) {
 
-        finishProfileButton.addEventListener(
-            "click",
-            () => {
+    finishProfileButton.addEventListener(
+        "click",
+        () => {
 
-                const studentName =
-                    document.getElementById(
-                        "studentName"
-                    );
+            const studentName =
+                document.getElementById(
+                    "studentName"
+                );
 
-                const studentLevel =
-                    document.getElementById(
-                        "studentLevel"
-                    );
+            const studentLevel =
+                document.getElementById(
+                    "studentLevel"
+                );
 
-                const studentCourse =
-                    document.getElementById(
-                        "studentCourse"
-                    );
+            const studentCourse =
+                document.getElementById(
+                    "studentCourse"
+                );
 
-                const studyTime =
-                    document.getElementById(
-                        "studyTime"
-                    );
+            const studyTime =
+                document.getElementById(
+                    "studyTime"
+                );
 
+            const profileScreen =
+                document.getElementById(
+                    "profileScreen"
+                );
 
-                /* Verificação básica */
-
-                if (
-                    !studentName.value.trim() ||
-                    !studentLevel.value
-                ) {
-
-                    alert(
-                        "Preenche o teu nome e seleciona o teu nível de ensino."
-                    );
-
-                    return;
-
-                }
-
-
-                /* Guarda temporariamente o perfil */
-
-                const profile = {
-
-                    name:
-                        studentName.value.trim(),
-
-                    level:
-                        studentLevel.value,
-
-                    course:
-                        studentCourse.value.trim(),
-
-                    studyTime:
-                        studyTime.value
-
-                };
-
-
-                localStorage.setItem(
-                    "studyaizProfile",
-                    JSON.stringify(profile)
+            const mainDashboard =
+                document.getElementById(
+                    "mainDashboard"
                 );
 
 
+            /* Verificação básica */
+
+            if (
+                !studentName.value.trim() ||
+                !studentLevel.value
+            ) {
+
                 alert(
-                    "Perfil criado com sucesso! 🚀"
+                    "Preenche o teu nome e seleciona o teu nível de ensino."
+                );
+
+                return;
+
+            }
+
+
+            /* Avatar escolhido */
+
+            const selectedAvatar =
+                document.querySelector(
+                    ".avatar-option.selected"
+                );
+
+
+            /* Guarda o perfil */
+
+            const profile = {
+
+                name:
+                    studentName.value.trim(),
+
+                level:
+                    studentLevel.value,
+
+                course:
+                    studentCourse.value.trim(),
+
+                studyTime:
+                    studyTime.value,
+
+                avatar:
+                    selectedAvatar
+                        ? selectedAvatar.dataset.avatar
+                        : "🧑🏽‍🎓"
+
+            };
+
+
+            localStorage.setItem(
+                "studyaizProfile",
+                JSON.stringify(profile)
+            );
+
+
+            /* Marca o estudante como conectado */
+
+            localStorage.setItem(
+                "studyaizLoggedIn",
+                "true"
+            );
+
+
+            /* Fechar perfil */
+
+            if (profileScreen) {
+
+                profileScreen.classList.remove(
+                    "active"
                 );
 
             }
-        );
 
-    }
+
+            document.body.classList.remove(
+                "profile-open"
+            );
+
+
+            /* Abrir Dashboard */
+
+            if (mainDashboard) {
+
+                mainDashboard.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            /* Atualizar saudação */
+
+            const dashboardGreeting =
+                document.querySelector(
+                    ".dashboard-greeting"
+                );
+
+            if (dashboardGreeting) {
+
+                dashboardGreeting.textContent =
+                    "👋 Olá, " +
+                    studentName.value.trim() +
+                    "!";
+
+            }
+
+
+            window.scrollTo(0, 0);
+
+        }
+    );
+
+}
 
 
     /* ==============================
