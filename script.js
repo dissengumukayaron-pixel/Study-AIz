@@ -137,7 +137,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     }
+/* ==============================
+   VOLTAR DO MODO VISITANTE
+============================== */
 
+const backGuestButton =
+    document.getElementById("backGuestButton");
+
+if (backGuestButton) {
+
+    backGuestButton.addEventListener("click", () => {
+
+        const guestScreen =
+            document.getElementById("guestScreen");
+
+        if (guestScreen) {
+
+            guestScreen.classList.remove("active");
+
+        }
+
+        document.body.classList.remove("guest-open");
+
+        window.scrollTo(0, 0);
+
+    });
+
+}
 
     /* ==============================
        LOGIN
