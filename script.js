@@ -169,9 +169,6 @@ if (backGuestButton) {
    LOGIN
 ============================== */
 
-const loginButton =
-    document.getElementById("loginButton");
-
 const loginScreen =
     document.getElementById("loginScreen");
 
@@ -185,6 +182,10 @@ if (loginButton && loginScreen) {
 
     loginButton.addEventListener("click", () => {
 
+        document.body.classList.remove("account-open");
+        document.body.classList.remove("guest-open");
+        document.body.classList.remove("profile-open");
+
         document.body.classList.add("login-open");
 
         loginScreen.classList.add("active");
@@ -196,15 +197,15 @@ if (loginButton && loginScreen) {
 }
 
 
-/* VOLTAR PARA A PÁGINA INICIAL */
+/* VOLTAR DO LOGIN */
 
 if (backLoginButton && loginScreen) {
 
     backLoginButton.addEventListener("click", () => {
 
-        document.body.classList.remove("login-open");
-
         loginScreen.classList.remove("active");
+
+        document.body.classList.remove("login-open");
 
         window.scrollTo(0, 0);
 
