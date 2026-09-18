@@ -43,74 +43,134 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* ==============================
-       FORMULÁRIO DA CONTA
-    ============================== */
+   /* ==============================
+   FORMULÁRIO DA CONTA
+============================== */
 
-    const accountForm =
-        document.getElementById("accountForm");
+const accountForm =
+    document.getElementById("accountForm");
 
-    if (accountForm) {
+if (accountForm) {
 
-        accountForm.addEventListener("submit", (event) => {
+    accountForm.addEventListener("submit", (event) => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const accountName =
-                document.getElementById("accountName");
+        const accountName =
+            document.getElementById("accountName");
 
-            const accountCountry =
-                document.getElementById("accountCountry");
+        const accountEmail =
+            document.getElementById("accountEmail");
 
-            const profileScreen =
-                document.getElementById("profileScreen");
+        const accountPassword =
+            document.getElementById("accountPassword");
 
-            const studentName =
-                document.getElementById("studentName");
+        const accountCountry =
+            document.getElementById("accountCountry");
 
+        const accountScreen =
+            document.getElementById("accountScreen");
 
-            if (
-                accountName &&
-                accountCountry &&
-                profileScreen
-            ) {
+        const profileScreen =
+            document.getElementById("profileScreen");
 
-                /* Passa o nome para o perfil */
-
-                if (studentName) {
-                    studentName.value =
-                        accountName.value;
-                }
+        const studentName =
+            document.getElementById("studentName");
 
 
-                /* Esconde a tela da conta */
+        if (
+            !accountName ||
+            !accountEmail ||
+            !accountPassword ||
+            !accountCountry ||
+            !profileScreen
+        ) {
+            return;
+        }
 
-                document.body.classList.remove(
-                    "account-open"
-                );
 
-                accountScreen.classList.remove(
-                    "active"
-                );
+        /* VERIFICAR CAMPOS */
+
+        if (
+            !accountName.value.trim() ||
+            !accountEmail.value.trim() ||
+            !accountPassword.value ||
+            !accountCountry.value
+        ) {
+
+            alert(
+                "Preenche todos os campos para criar a tua conta."
+            );
+
+            return;
+
+        }
 
 
-                /* Abre o perfil */
+        /* GUARDAR CONTA */
 
-                document.body.classList.add(
-                    "profile-open"
-                );
+        const account = {
 
-                profileScreen.classList.add(
-                    "active"
-                );
+            name:
+                accountName.value.trim(),
 
-                window.scrollTo(0, 0);
+            email:
+                accountEmail.value.trim(),
 
-            }
+            password:
+                accountPassword.value,
 
-        });
+            country:
+                accountCountry.value
 
-    }
+        };
+
+
+        localStorage.setItem(
+            "studyaizAccount",
+            JSON.stringify(account)
+        );
+
+
+        /* PASSAR PARA O PERFIL */
+
+        if (studentName) {
+
+            studentName.value =
+                accountName.value.trim();
+
+        }
+
+
+        if (accountScreen) {
+
+            accountScreen.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        document.body.classList.remove(
+            "account-open"
+        );
+
+
+        document.body.classList.add(
+            "profile-open"
+        );
+
+
+        profileScreen.classList.add(
+            "active"
+        );
+
+
+        window.scrollTo(0, 0);
+
+    });
+
+           } 
 
 
     /* ==============================
