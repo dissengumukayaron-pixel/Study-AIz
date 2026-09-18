@@ -235,6 +235,9 @@ const loginScreen =
 const backLoginButton =
     document.getElementById("backLoginButton");
 
+const loginSubmitButton =
+    document.getElementById("loginSubmitButton");
+
 
 /* ABRIR LOGIN */
 
@@ -251,6 +254,96 @@ if (loginButton && loginScreen) {
         loginScreen.classList.add("active");
 
         window.scrollTo(0, 0);
+
+    });
+
+}
+
+
+/* ENTRAR NA CONTA */
+
+if (loginSubmitButton) {
+
+    loginSubmitButton.addEventListener("click", () => {
+
+        const loginEmail =
+            document.getElementById("loginEmail");
+
+        const loginPassword =
+            document.getElementById("loginPassword");
+
+
+        if (
+            !loginEmail.value.trim() ||
+            !loginPassword.value
+        ) {
+
+            alert(
+                "Preenche o teu e-mail e a tua palavra-passe."
+            );
+
+            return;
+
+        }
+
+
+        /* PROCURAR CONTA GUARDADA */
+
+        const savedAccount =
+            localStorage.getItem("studyaizAccount");
+
+
+        if (!savedAccount) {
+
+            alert(
+                "Não encontrámos uma conta criada neste dispositivo."
+            );
+
+            return;
+
+        }
+
+
+        const account =
+            JSON.parse(savedAccount);
+
+
+        /* VERIFICAR DADOS */
+
+        if (
+            loginEmail.value.trim().toLowerCase()
+            !== account.email.toLowerCase()
+            ||
+            loginPassword.value
+            !== account.password
+        ) {
+
+            alert(
+                "E-mail ou palavra-passe incorretos."
+            );
+
+            return;
+
+        }
+
+
+        /* LOGIN CORRETO */
+
+        localStorage.setItem(
+            "studyaizLoggedIn",
+            "true"
+        );
+
+
+        alert(
+            "Login efetuado com sucesso! 🚀"
+        );
+
+
+        /*
+           AQUI VAMOS ABRIR
+           A ÁREA PRINCIPAL DO STUDYAIZ
+        */
 
     });
 
