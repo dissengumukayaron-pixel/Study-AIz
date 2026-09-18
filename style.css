@@ -2730,3 +2730,242 @@ body.dashboard-open > #mainDashboard {
     box-sizing: border-box;
     z-index: 99999 !important;
 }
+/* ========================================
+   STUDYAIZ — MENU LATERAL FUTURISTA
+======================================== */
+
+.dashboard-side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(390px, 88vw);
+    height: 100vh;
+    padding: 28px 22px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(92, 56, 255, 0.28),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #0d102b 0%,
+            #07091d 100%
+        );
+
+    border-right: 1px solid rgba(130, 110, 255, 0.25);
+
+    box-shadow:
+        20px 0 60px rgba(0, 0, 0, 0.45),
+        inset -1px 0 rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(25px);
+
+    transform: translateX(-105%);
+    transition: transform 0.35s ease;
+
+    z-index: 100001;
+
+    overflow-y: auto;
+}
+
+
+/* MENU ABERTO */
+
+.dashboard-side-menu.active {
+    transform: translateX(0);
+}
+
+
+/* CABEÇALHO */
+
+.side-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.side-menu-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #9b8cff;
+    margin-bottom: 5px;
+}
+
+.side-menu-header h2 {
+    margin: 0;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+
+/* BOTÃO FECHAR */
+
+.close-dashboard-menu {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: white;
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.close-dashboard-menu:hover {
+    background: rgba(124, 92, 255, 0.25);
+    transform: rotate(90deg);
+}
+
+
+/* NAVEGAÇÃO */
+
+.side-menu-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* ITEM DO MENU */
+
+.side-menu-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: white;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.side-menu-item:hover {
+    transform: translateX(5px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(93, 65, 255, 0.18),
+            rgba(0, 183, 255, 0.08)
+        );
+
+    border-color: rgba(126, 104, 255, 0.3);
+}
+
+
+/* ÍCONE */
+
+.side-menu-item > span {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    font-size: 23px;
+}
+
+
+/* TEXTO */
+
+.side-menu-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.side-menu-item strong {
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.side-menu-item small {
+    font-size: 11px;
+    color: #8d91b5;
+}
+
+
+/* FUNDO ESCURO */
+
+.dashboard-menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(2, 4, 15, 0.62);
+
+    backdrop-filter: blur(4px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+
+    z-index: 100000;
+}
+
+.dashboard-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .dashboard-side-menu {
+        width: 88vw;
+        padding: 22px 16px;
+    }
+
+    .side-menu-header h2 {
+        font-size: 26px;
+    }
+
+    .side-menu-item {
+        padding: 13px;
+    }
+
+    .side-menu-item > span {
+        width: 42px;
+        height: 42px;
+        font-size: 21px;
+    }
+
+}
