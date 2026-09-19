@@ -3920,3 +3920,464 @@ body.goals-open > #goalsScreen {
     }
 
    }
+/* ========================================
+   STUDYAIz — ÁREA DE APRENDIZAGEM
+======================================== */
+
+.learning-area {
+    display: none;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 24px 70px;
+    box-sizing: border-box;
+}
+
+/* Quando a área estiver ativa */
+
+.learning-area.active {
+    display: block;
+}
+
+/* ========================================
+   TOPO
+======================================== */
+
+.learning-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.learning-back-button {
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    padding: 11px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.learning-back-button:hover {
+    background: rgba(139, 92, 246, 0.18);
+    transform: translateX(-3px);
+}
+
+.learning-status {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    color: #b9a7ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ========================================
+   CABEÇALHO DA APRENDIZAGEM
+======================================== */
+
+.learning-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 38px;
+    margin-bottom: 22px;
+    border-radius: 28px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(99, 102, 241, 0.22),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(30, 27, 75, 0.95),
+            rgba(15, 23, 42, 0.98)
+        );
+
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.learning-topic-label {
+    color: #8b7cff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.learning-header h2 {
+    margin: 8px 0 10px;
+    color: #ffffff;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1;
+}
+
+.learning-header p {
+    margin: 0;
+    max-width: 650px;
+    color: #aeb8cf;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.learning-mascot {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139, 92, 246, 0.35),
+            rgba(37, 99, 235, 0.08)
+        );
+
+    border: 1px solid rgba(139, 92, 246, 0.3);
+
+    font-size: 52px;
+
+    box-shadow:
+        0 0 40px rgba(99, 102, 241, 0.18);
+}
+
+/* ========================================
+   PROGRESSO
+======================================== */
+
+.learning-progress {
+    margin-bottom: 22px;
+    padding: 22px 24px;
+
+    border-radius: 20px;
+
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.learning-progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    margin-bottom: 12px;
+}
+
+.learning-progress-info span {
+    color: #8f9ab2;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.learning-progress-info strong {
+    color: #a78bfa;
+    font-size: 16px;
+}
+
+.learning-progress-bar {
+    width: 100%;
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.learning-progress-fill {
+    width: 0%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        #6366f1,
+        #8b5cf6,
+        #38bdf8
+    );
+
+    box-shadow:
+        0 0 18px rgba(99, 102, 241, 0.5);
+
+    transition: width 0.5s ease;
+}
+
+/* ========================================
+   CARTÃO DO CONTEÚDO
+======================================== */
+
+.learning-content-card {
+    padding: 32px;
+    margin-bottom: 22px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 41, 59, 0.95),
+            rgba(15, 23, 42, 0.98)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.18);
+}
+
+.learning-section-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #8b7cff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.learning-content-card h3 {
+    margin: 0 0 18px;
+
+    color: #ffffff;
+    font-size: 26px;
+}
+
+.learning-explanation {
+    color: #c4ccdc;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* ========================================
+   AÇÕES DE APRENDIZAGEM
+======================================== */
+
+.learning-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+.learning-action {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 20px;
+
+    text-align: left;
+
+    border-radius: 18px;
+
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.learning-action:hover {
+    transform: translateY(-4px);
+
+    background: rgba(79, 70, 229, 0.14);
+
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.learning-action > span {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(139, 92, 246, 0.12);
+
+    font-size: 20px;
+}
+
+.learning-action strong {
+    display: block;
+    margin-bottom: 5px;
+
+    font-size: 14px;
+}
+
+.learning-action small {
+    display: block;
+
+    color: #8994aa;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* ========================================
+   BOTÃO CONTINUAR
+======================================== */
+
+.next-learning-button {
+    width: 100%;
+
+    padding: 17px 22px;
+
+    border: none;
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #8b5cf6
+        );
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(99, 102, 241, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.next-learning-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(99, 102, 241, 0.35);
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+
+    .learning-area {
+        padding: 25px 20px 60px;
+    }
+
+    .learning-header {
+        padding: 30px;
+    }
+
+    .learning-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .learning-area {
+        padding: 20px 15px 50px;
+    }
+
+    .learning-top {
+        margin-bottom: 20px;
+    }
+
+    .learning-status {
+        font-size: 10px;
+        padding: 7px 10px;
+    }
+
+    .learning-back-button {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .learning-header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 25px 20px;
+
+        border-radius: 22px;
+    }
+
+    .learning-header h2 {
+        font-size: 28px;
+    }
+
+    .learning-header p {
+        font-size: 14px;
+    }
+
+    .learning-mascot {
+        width: 70px;
+        height: 70px;
+        border-radius: 20px;
+        font-size: 36px;
+    }
+
+    .learning-progress {
+        padding: 18px;
+    }
+
+    .learning-content-card {
+        padding: 22px 18px;
+        border-radius: 20px;
+    }
+
+    .learning-content-card h3 {
+        font-size: 22px;
+    }
+
+    .learning-explanation {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .learning-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .learning-action {
+        padding: 17px;
+    }
+
+}
