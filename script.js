@@ -1321,3 +1321,265 @@ if (
 
 }
 });
+/* ========================================
+   STUDYAIz — ÁREA DE APRENDIZAGEM
+======================================== */
+
+const learningArea = document.getElementById("learningArea");
+
+const backToStudiesButton =
+    document.getElementById("backToStudiesButton");
+
+const learningTopic =
+    document.getElementById("learningTopic");
+
+const learningIntro =
+    document.getElementById("learningIntro");
+
+const learningTitle =
+    document.getElementById("learningTitle");
+
+const learningExplanation =
+    document.getElementById("learningExplanation");
+
+const learningProgressText =
+    document.getElementById("learningProgressText");
+
+const learningProgressBar =
+    document.getElementById("learningProgressBar");
+
+const explainAgainButton =
+    document.getElementById("explainAgainButton");
+
+const showExampleButton =
+    document.getElementById("showExampleButton");
+
+const startPracticeButton =
+    document.getElementById("startPracticeButton");
+
+const nextLearningButton =
+    document.getElementById("nextLearningButton");
+
+
+/* ========================================
+   MOSTRAR ÁREA DE APRENDIZAGEM
+======================================== */
+
+function abrirAprendizagem(topic) {
+
+    if (!learningArea) return;
+
+    const studiesSections = document.querySelectorAll(
+        "#studiesScreen .studies-content > section:not(#learningArea)"
+    );
+
+    studiesSections.forEach((section) => {
+        section.style.display = "none";
+    });
+
+    learningArea.classList.add("active");
+
+    learningTopic.textContent = topic;
+
+    learningIntro.textContent =
+        "Vamos começar a aprender " +
+        topic +
+        " passo a passo.";
+
+    learningTitle.textContent =
+        "Introdução a " + topic;
+
+    learningExplanation.innerHTML =
+        "<p><strong>Vamos começar pelo essencial.</strong></p>" +
+        "<p>Primeiro vamos compreender o que é <strong>" +
+        topic +
+        "</strong>, depois veremos exemplos e, por fim, poderás praticar.</p>" +
+        "<p>Esta estrutura será ligada ao Tutor IA para gerar uma explicação completa e personalizada.</p>";
+
+    atualizarProgresso(10);
+
+    localStorage.setItem(
+        "studyaizCurrentLearning",
+        JSON.stringify({
+            topic: topic,
+            progress: 10
+        })
+    );
+
+    window.scrollTo(0, 0);
+}
+
+
+/* ========================================
+   PROGRESSO
+======================================== */
+
+function atualizarProgresso(valor) {
+
+    if (learningProgressText) {
+        learningProgressText.textContent = valor + "%";
+    }
+
+    if (learningProgressBar) {
+        learningProgressBar.style.width = valor + "%";
+    }
+}
+
+
+/* ========================================
+   BOTÃO APRENDER
+======================================== */
+
+if (studiesLearnButton) {
+
+    studiesLearnButton.addEventListener("click", () => {
+
+        const topic =
+            studiesTopicInput.value.trim();
+
+        if (!topic) {
+
+            alert(
+                "Escreve primeiro o que queres aprender."
+            );
+
+            studiesTopicInput.focus();
+
+            return;
+        }
+
+        abrirAprendizagem(topic);
+
+    });
+
+}
+
+
+/* ========================================
+   VOLTAR PARA ESTUDOS
+======================================== */
+
+if (backToStudiesButton) {
+
+    backToStudiesButton.addEventListener("click", () => {
+
+        learningArea.classList.remove("active");
+
+        const studiesSections =
+            document.querySelectorAll(
+                "#studiesScreen .studies-content > section"
+            );
+
+        studiesSections.forEach((section) => {
+            section.style.display = "";
+        });
+
+        window.scrollTo(0, 0);
+
+    });
+
+}
+
+
+/* ========================================
+   EXPLICAR DE OUTRA FORMA
+======================================== */
+
+if (explainAgainButton) {
+
+    explainAgainButton.addEventListener("click", () => {
+
+        const topic =
+            learningTopic.textContent;
+
+        learningTitle.textContent =
+            "Vamos simplificar " + topic;
+
+        learningExplanation.innerHTML =
+            "<p><strong>Imagina que estás a conhecer este tema pela primeira vez.</strong></p>" +
+            "<p>Em vez de começarmos pelos detalhes, vamos dividir <strong>" +
+            topic +
+            "</strong> em pequenas partes.</p>" +
+            "<p>Primeiro entendemos a ideia principal. Depois acrescentamos os detalhes, exemplos e exercícios.</p>";
+
+    });
+
+}
+
+
+/* ========================================
+   DAR UM EXEMPLO
+======================================== */
+
+if (showExampleButton) {
+
+    showExampleButton.addEventListener("click", () => {
+
+        const topic =
+            learningTopic.textContent;
+
+        learningTitle.textContent =
+            "Exemplo de " + topic;
+
+        learningExplanation.innerHTML =
+            "<p><strong>Agora vamos aplicar a ideia.</strong></p>" +
+            "<p>Um exemplo relacionado com <strong>" +
+            topic +
+            "</strong> será apresentado aqui.</p>" +
+            "<p>Quando o Tutor IA estiver ligado, esta parte será gerada automaticamente de acordo com o teu nível de ensino.</p>";
+
+    });
+
+}
+
+
+/* ========================================
+   PRATICAR
+======================================== */
+
+if (startPracticeButton) {
+
+    startPracticeButton.addEventListener("click", () => {
+
+        alert(
+            "A área de exercícios será ligada aqui. ✏️"
+        );
+
+    });
+
+}
+
+
+/* ========================================
+   CONTINUAR APRENDIZAGEM
+======================================== */
+
+if (nextLearningButton) {
+
+    nextLearningButton.addEventListener("click", () => {
+
+        const topic =
+            learningTopic.textContent;
+
+        atualizarProgresso(25);
+
+        learningTitle.textContent =
+            "A ideia principal";
+
+        learningExplanation.innerHTML =
+            "<p>Agora que já conhecemos a introdução, vamos avançar para a ideia principal de <strong>" +
+            topic +
+            "</strong>.</p>" +
+            "<p>O próximo passo será aprender o conteúdo de forma detalhada, com exemplos e exercícios adaptados ao teu nível.</p>";
+
+        localStorage.setItem(
+            "studyaizCurrentLearning",
+            JSON.stringify({
+                topic: topic,
+                progress: 25
+            })
+        );
+
+    });
+
+}
