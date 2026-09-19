@@ -1007,4 +1007,118 @@ if (
     );
 
 }
+   /* ==============================
+   TELA ESTUDOS
+============================== */
+
+const studiesScreen =
+    document.getElementById("studiesScreen");
+
+const dashboardStudiesButton =
+    document.getElementById("dashboardStudiesButton");
+
+const backStudiesButton =
+    document.getElementById("backStudiesButton");
+
+const studiesTopicInput =
+    document.getElementById("studiesTopicInput");
+
+const studiesLearnButton =
+    document.getElementById("studiesLearnButton");
+
+
+/* ABRIR ESTUDOS */
+
+if (
+    dashboardStudiesButton &&
+    studiesScreen
+) {
+
+    dashboardStudiesButton.addEventListener(
+        "click",
+        () => {
+
+            document.body.classList.remove(
+                "dashboard-open"
+            );
+
+            document.body.classList.add(
+                "studies-open"
+            );
+
+            studiesScreen.classList.add(
+                "active"
+            );
+
+            window.scrollTo(0, 0);
+
+        }
+    );
+
+}
+
+
+/* VOLTAR PARA O DASHBOARD */
+
+if (
+    backStudiesButton &&
+    studiesScreen
+) {
+
+    backStudiesButton.addEventListener(
+        "click",
+        () => {
+
+            studiesScreen.classList.remove(
+                "active"
+            );
+
+            document.body.classList.remove(
+                "studies-open"
+            );
+
+            document.body.classList.add(
+                "dashboard-open"
+            );
+
+            window.scrollTo(0, 0);
+
+        }
+    );
+
+}
+
+
+/* PESQUISAR TEMA */
+
+if (studiesLearnButton) {
+
+    studiesLearnButton.addEventListener(
+        "click",
+        () => {
+
+            const topic =
+                studiesTopicInput.value.trim();
+
+            if (!topic) {
+
+                alert(
+                    "Escreve primeiro o que queres aprender."
+                );
+
+                studiesTopicInput.focus();
+
+                return;
+            }
+
+            alert(
+                "Tema escolhido: " +
+                topic +
+                "\n\nA aprendizagem inteligente será ligada ao Tutor IA mais tarde. 🤖"
+            );
+
+        }
+    );
+
+}
 });
