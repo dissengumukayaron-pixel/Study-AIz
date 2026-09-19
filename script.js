@@ -1089,38 +1089,7 @@ if (
 }
 
 
-/* PESQUISAR TEMA */
 
-if (studiesLearnButton) {
-
-    studiesLearnButton.addEventListener(
-        "click",
-        () => {
-
-            const topic =
-                studiesTopicInput.value.trim();
-
-            if (!topic) {
-
-                alert(
-                    "Escreve primeiro o que queres aprender."
-                );
-
-                studiesTopicInput.focus();
-
-                return;
-            }
-
-            alert(
-                "Tema escolhido: " +
-                topic +
-                "\n\nA aprendizagem inteligente será ligada ao Tutor IA mais tarde. 🤖"
-            );
-
-        }
-    );
-
-}
    /* ==============================
    TELA OBJETIVOS
 ============================== */
