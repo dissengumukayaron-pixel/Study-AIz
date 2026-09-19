@@ -1121,4 +1121,234 @@ if (studiesLearnButton) {
     );
 
 }
+   /* ==============================
+   TELA OBJETIVOS
+============================== */
+
+const goalsScreen =
+    document.getElementById("goalsScreen");
+
+const backGoalsButton =
+    document.getElementById("backGoalsButton");
+
+const goalCards =
+    document.querySelectorAll(".goal-card");
+
+const currentGoalText =
+    document.getElementById("currentGoalText");
+
+
+/* ABRIR OBJETIVOS */
+
+const dashboardGoalButton =
+    document.getElementById("dashboardGoal");
+
+if (dashboardGoalButton) {
+
+    dashboardGoalButton.addEventListener(
+        "click",
+        () => {
+
+            if (!goalsScreen) return;
+
+            document.body.classList.remove(
+                "dashboard-open"
+            );
+
+            document.body.classList.add(
+                "goals-open"
+            );
+
+            goalsScreen.classList.add(
+                "active"
+            );
+
+            window.scrollTo(0, 0);
+
+        }
+    );
+
+}
+
+
+/* ABRIR PELO MENU */
+
+const sideMenuItems =
+    document.querySelectorAll(
+        ".side-menu-item"
+    );
+
+sideMenuItems.forEach((item) => {
+
+    const title =
+        item.querySelector("strong");
+
+    if (
+        title &&
+        title.textContent.trim() === "Objetivos"
+    ) {
+
+        item.addEventListener(
+            "click",
+            () => {
+
+                if (!goalsScreen) return;
+
+                dashboardSideMenu.classList.remove(
+                    "active"
+                );
+
+                dashboardMenuOverlay.classList.remove(
+                    "active"
+                );
+
+                document.body.classList.remove(
+                    "dashboard-open"
+                );
+
+                document.body.classList.add(
+                    "goals-open"
+                );
+
+                goalsScreen.classList.add(
+                    "active"
+                );
+
+                window.scrollTo(0, 0);
+
+            }
+        );
+
+    }
+
+});
+
+
+/* ESCOLHER OBJETIVO */
+
+goalCards.forEach((card) => {
+
+    card.addEventListener(
+        "click",
+        () => {
+
+            goalCards.forEach((otherCard) => {
+                otherCard.classList.remove(
+                    "selected"
+                );
+            });
+
+            card.classList.add(
+                "selected"
+            );
+
+            const goalTitle =
+                card.querySelector("h3");
+
+            if (
+                goalTitle &&
+                currentGoalText
+            ) {
+
+                currentGoalText.textContent =
+                    goalTitle.textContent;
+
+            }
+
+            const goal =
+                card.dataset.goal;
+
+            localStorage.setItem(
+                "studyaizGoal",
+                JSON.stringify({
+                    id: goal,
+                    title:
+                        goalTitle
+                            ? goalTitle.textContent
+                            : ""
+                })
+            );
+
+        }
+    );
+
+});
+
+
+/* RECUPERAR OBJETIVO */
+
+const savedGoal =
+    localStorage.getItem(
+        "studyaizGoal"
+    );
+
+if (savedGoal) {
+
+    try {
+
+        const goal =
+            JSON.parse(savedGoal);
+
+        if (
+            goal &&
+            goal.id &&
+            currentGoalText
+        ) {
+
+            currentGoalText.textContent =
+                goal.title;
+
+            const savedCard =
+                document.querySelector(
+                    `.goal-card[data-goal="${goal.id}"]`
+                );
+
+            if (savedCard) {
+                savedCard.classList.add(
+                    "selected"
+                );
+            }
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Não foi possível carregar o objetivo."
+        );
+
+    }
+
+}
+
+
+/* VOLTAR PARA O DASHBOARD */
+
+if (
+    backGoalsButton &&
+    goalsScreen
+) {
+
+    backGoalsButton.addEventListener(
+        "click",
+        () => {
+
+            goalsScreen.classList.remove(
+                "active"
+            );
+
+            document.body.classList.remove(
+                "goals-open"
+            );
+
+            document.body.classList.add(
+                "dashboard-open"
+            );
+
+            window.scrollTo(0, 0);
+
+        }
+    );
+
+}
 });
