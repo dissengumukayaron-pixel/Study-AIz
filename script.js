@@ -422,7 +422,9 @@ if (loginButton && loginScreen) {
 }
 
 
-/* ENTRAR NA CONTA */
+/* ==============================
+   ENTRAR NA CONTA
+============================== */
 
 if (loginSubmitButton) {
 
@@ -434,6 +436,11 @@ if (loginSubmitButton) {
         const loginPassword =
             document.getElementById("loginPassword");
 
+        const mainDashboard =
+            document.getElementById("mainDashboard");
+
+
+        /* VERIFICAR CAMPOS */
 
         if (
             !loginEmail.value.trim() ||
@@ -449,16 +456,18 @@ if (loginSubmitButton) {
         }
 
 
-        /* PROCURAR CONTA GUARDADA */
+        /* PROCURAR CONTA */
 
         const savedAccount =
             localStorage.getItem("studyaizAccount");
 
 
+        /* CONTA NÃO EXISTENTE */
+
         if (!savedAccount) {
 
             alert(
-                "Não encontrámos uma conta criada neste dispositivo."
+                "Conta não existente."
             );
 
             return;
@@ -470,18 +479,31 @@ if (loginSubmitButton) {
             JSON.parse(savedAccount);
 
 
-        /* VERIFICAR DADOS */
+        /* VERIFICAR E-MAIL */
 
         if (
             loginEmail.value.trim().toLowerCase()
             !== account.email.toLowerCase()
-            ||
+        ) {
+
+            alert(
+                "Conta não existente."
+            );
+
+            return;
+
+        }
+
+
+        /* VERIFICAR PALAVRA-PASSE */
+
+        if (
             loginPassword.value
             !== account.password
         ) {
 
             alert(
-                "E-mail ou palavra-passe incorretos."
+                "Palavra-passe incorreta."
             );
 
             return;
@@ -497,15 +519,66 @@ if (loginSubmitButton) {
         );
 
 
-        alert(
-            "Login efetuado com sucesso! 🚀"
+        /* FECHAR LOGIN */
+
+        if (loginScreen) {
+
+            loginScreen.classList.remove(
+                "active"
+            );
+
+        }
+
+        document.body.classList.remove(
+            "login-open"
         );
 
 
-        /*
-           AQUI VAMOS ABRIR
-           A ÁREA PRINCIPAL DO STUDYAIZ
-        */
+        /* ABRIR DASHBOARD */
+
+        document.body.classList.add(
+            "dashboard-open"
+        );
+
+        if (mainDashboard) {
+
+            mainDashboard.classList.add(
+                "active"
+            );
+
+        }
+
+
+        /* RECUPERAR PERFIL */
+
+        const savedProfile =
+            localStorage.getItem(
+                "studyaizProfile"
+            );
+
+        if (savedProfile) {
+
+            const profile =
+                JSON.parse(savedProfile);
+
+            const dashboardGreeting =
+                document.querySelector(
+                    ".dashboard-greeting"
+                );
+
+            if (dashboardGreeting) {
+
+                dashboardGreeting.textContent =
+                    "👋 Olá, " +
+                    profile.name +
+                    "!";
+
+            }
+
+        }
+
+
+        window.scrollTo(0, 0);
 
     });
 
