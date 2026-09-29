@@ -4381,3 +4381,340 @@ body.goals-open > #goalsScreen {
     }
 
 }
+/* ========================================
+   STUDYAIz — ÁREA DE EXERCÍCIOS
+======================================== */
+
+.exercise-area {
+    display: none;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 24px 70px;
+    box-sizing: border-box;
+}
+
+.exercise-area.active {
+    display: block;
+}
+
+/* TOPO */
+
+.exercise-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    gap: 20px;
+}
+
+.exercise-back-button {
+    padding: 11px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.exercise-back-button:hover {
+    background: rgba(139,92,246,0.18);
+    transform: translateX(-3px);
+}
+
+.exercise-status {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.35);
+    color: #b9a7ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* CABEÇALHO */
+
+.exercise-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 38px;
+    margin-bottom: 22px;
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(99,102,241,0.22),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(30,27,75,0.95),
+            rgba(15,23,42,0.98)
+        );
+
+    border: 1px solid rgba(139,92,246,0.25);
+}
+
+.exercise-topic-label {
+    color: #8b7cff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.exercise-header h2 {
+    margin: 8px 0 10px;
+    color: #fff;
+    font-size: clamp(28px,4vw,42px);
+}
+
+.exercise-header p {
+    margin: 0;
+    color: #aeb8cf;
+    font-size: 16px;
+}
+
+.exercise-mascot {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 28px;
+    background:
+        radial-gradient(
+            circle,
+            rgba(139,92,246,0.35),
+            rgba(37,99,235,0.08)
+        );
+
+    border: 1px solid rgba(139,92,246,0.3);
+    font-size: 52px;
+}
+
+/* PROGRESSO */
+
+.exercise-progress {
+    padding: 22px 24px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+    background: rgba(15,23,42,0.85);
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.exercise-progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.exercise-progress-info span {
+    color: #8f9ab2;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.exercise-progress-info strong {
+    color: #a78bfa;
+}
+
+.exercise-progress-bar {
+    width: 100%;
+    height: 9px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.07);
+}
+
+.exercise-progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(
+        90deg,
+        #6366f1,
+        #8b5cf6,
+        #38bdf8
+    );
+    transition: width 0.5s ease;
+}
+
+/* PERGUNTA */
+
+.exercise-card {
+    padding: 32px;
+    margin-bottom: 22px;
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,41,59,0.95),
+            rgba(15,23,42,0.98)
+        );
+
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.exercise-label {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: #8b7cff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.exercise-card h3 {
+    margin: 0 0 25px;
+    color: #fff;
+    font-size: 22px;
+    line-height: 1.5;
+}
+
+.exercise-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.exercise-option {
+    padding: 17px;
+    text-align: left;
+
+    border-radius: 15px;
+    border: 1px solid rgba(139,92,246,0.18);
+
+    background: rgba(255,255,255,0.04);
+    color: #dce3f2;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.exercise-option:hover {
+    transform: translateY(-2px);
+    border-color: rgba(139,92,246,0.5);
+    background: rgba(99,102,241,0.12);
+}
+
+.exercise-option.selected {
+    border-color: #8b5cf6;
+    background: rgba(139,92,246,0.18);
+}
+
+/* RESULTADO */
+
+.exercise-result {
+    padding: 24px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+
+    background: rgba(30,41,59,0.75);
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+.exercise-result-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.exercise-result h3 {
+    margin: 0 0 8px;
+    color: #fff;
+}
+
+.exercise-result p {
+    margin: 0;
+    color: #9da8bd;
+    line-height: 1.6;
+}
+
+/* BOTÃO */
+
+.next-exercise-button {
+    width: 100%;
+    padding: 17px 22px;
+
+    border: none;
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.next-exercise-button:hover {
+    transform: translateY(-3px);
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .exercise-area {
+        padding: 25px 20px 60px;
+    }
+
+    .exercise-header {
+        padding: 30px;
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .exercise-area {
+        padding: 20px 15px 50px;
+    }
+
+    .exercise-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 20px;
+        border-radius: 22px;
+    }
+
+    .exercise-header h2 {
+        font-size: 28px;
+    }
+
+    .exercise-header p {
+        font-size: 14px;
+    }
+
+    .exercise-mascot {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+    }
+
+    .exercise-card {
+        padding: 22px 18px;
+    }
+
+    .exercise-options {
+        grid-template-columns: 1fr;
+    }
+
+}
