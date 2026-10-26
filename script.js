@@ -1533,21 +1533,6 @@ if (showExampleButton) {
 }
 
 
-/* ========================================
-   PRATICAR
-======================================== */
-
-if (startPracticeButton) {
-
-    startPracticeButton.addEventListener("click", () => {
-
-        alert(
-            "A área de exercícios será ligada aqui. ✏️"
-        );
-
-    });
-
-}
 
 
 /* ========================================
@@ -1579,6 +1564,184 @@ if (nextLearningButton) {
                 progress: 25
             })
         );
+
+    });
+
+}
+/* ========================================
+   STUDYAIz — SISTEMA DE EXERCÍCIOS
+======================================== */
+
+const exerciseArea =
+    document.getElementById("exerciseArea");
+
+const backToLearningButton =
+    document.getElementById("backToLearningButton");
+
+const exerciseTopic =
+    document.getElementById("exerciseTopic");
+
+const exerciseQuestion =
+    document.getElementById("exerciseQuestion");
+
+const exerciseOptions =
+    document.getElementById("exerciseOptions");
+
+const exerciseResultTitle =
+    document.getElementById("exerciseResultTitle");
+
+const exerciseResultText =
+    document.getElementById("exerciseResultText");
+
+const nextExerciseButton =
+    document.getElementById("nextExerciseButton");
+
+const exerciseProgressBar =
+    document.getElementById("exerciseProgressBar");
+
+const exerciseNumber =
+    document.getElementById("exerciseNumber");
+
+
+let selectedExerciseOption = null;
+
+
+/* ABRIR EXERCÍCIOS */
+
+if (startPracticeButton && exerciseArea) {
+
+    startPracticeButton.addEventListener("click", () => {
+
+        const topic = learningTopic.textContent;
+
+        learningArea.classList.remove("active");
+
+        exerciseArea.classList.add("active");
+
+        exerciseTopic.textContent = topic;
+
+        exerciseQuestion.textContent =
+            "O que já sabes sobre " + topic + "?";
+
+        exerciseResultTitle.textContent =
+            "Escolhe uma resposta";
+
+        exerciseResultText.textContent =
+            "Seleciona uma opção para registar a tua resposta.";
+
+        exerciseNumber.textContent = "1 de 1";
+
+        exerciseProgressBar.style.width = "0%";
+
+        selectedExerciseOption = null;
+
+        document.querySelectorAll(".exercise-option")
+            .forEach((option) => {
+                option.classList.remove("selected");
+                option.disabled = false;
+            });
+
+        nextExerciseButton.textContent =
+            "Ver resultado";
+
+        nextExerciseButton.disabled = false;
+
+        window.scrollTo(0, 0);
+
+    });
+
+}
+
+
+/* SELECIONAR RESPOSTA */
+
+if (exerciseOptions) {
+
+    exerciseOptions.addEventListener("click", (event) => {
+
+        const option = event.target.closest(".exercise-option");
+
+        if (!option || option.disabled) return;
+
+        document.querySelectorAll(".exercise-option")
+            .forEach((item) => {
+                item.classList.remove("selected");
+            });
+
+        option.classList.add("selected");
+
+        selectedExerciseOption = option.textContent.trim();
+
+        exerciseResultTitle.textContent =
+            "Resposta selecionada!";
+
+        exerciseResultText.textContent =
+            "Carrega em Ver resultado para continuar.";
+
+    });
+
+}
+
+
+/* VER RESULTADO */
+
+if (nextExerciseButton) {
+
+    nextExerciseButton.addEventListener("click", () => {
+
+        if (!selectedExerciseOption) {
+
+            exerciseResultTitle.textContent =
+                "Escolhe uma opção primeiro";
+
+            exerciseResultText.textContent =
+                "Seleciona uma das respostas para continuar.";
+
+            return;
+        }
+
+        exerciseProgressBar.style.width = "100%";
+
+        exerciseResultTitle.textContent =
+            "Resposta registada! ✨";
+
+        exerciseResultText.textContent =
+            "A tua resposta foi selecionada. A correção automática e a explicação personalizada serão ligadas ao Tutor IA numa etapa posterior.";
+
+        nextExerciseButton.textContent =
+            "Voltar à aprendizagem";
+
+        document.querySelectorAll(".exercise-option")
+            .forEach((option) => {
+                option.disabled = true;
+            });
+
+        nextExerciseButton.onclick = () => {
+
+            exerciseArea.classList.remove("active");
+
+            learningArea.classList.add("active");
+
+            window.scrollTo(0, 0);
+
+        };
+
+    });
+
+}
+
+
+/* VOLTAR À APRENDIZAGEM */
+
+if (backToLearningButton) {
+
+    backToLearningButton.addEventListener("click", () => {
+
+        exerciseArea.classList.remove("active");
+
+        learningArea.classList.add("active");
+
+        window.scrollTo(0, 0);
 
     });
 
